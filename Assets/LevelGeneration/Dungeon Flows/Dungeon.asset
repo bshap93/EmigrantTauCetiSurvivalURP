@@ -33,7 +33,7 @@ MonoBehaviour:
   Nodes:
   - Graph: {fileID: 11400000}
     TileSets:
-    - {fileID: 11400000, guid: 8a9357af9492ad5448317b2e8a1f573f, type: 2}
+    - {fileID: 11400000, guid: d91d4c89d2b3c814ba1532cebe9413a2, type: 2}
     NodeType: 1
     Position: 0
     Label: Start
@@ -46,6 +46,15 @@ MonoBehaviour:
     NodeType: 2
     Position: 1
     Label: Goal
+    Keys: []
+    Locks: []
+    LockPlacement: 0
+  - Graph: {fileID: 11400000}
+    TileSets:
+    - {fileID: 11400000, guid: 8a9357af9492ad5448317b2e8a1f573f, type: 2}
+    NodeType: 0
+    Position: 0.5470086
+    Label: MainLevelSection
     Keys: []
     Locks: []
     LockPlacement: 0
