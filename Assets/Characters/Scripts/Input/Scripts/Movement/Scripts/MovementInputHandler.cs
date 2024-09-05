@@ -1,4 +1,4 @@
-﻿using Characters.Player.Scripts.Commands;
+﻿using Characters.Scripts.Commands.Move;
 using UnityEngine;
 
 namespace Characters.Scripts.Input.Scripts.Movement.Scripts

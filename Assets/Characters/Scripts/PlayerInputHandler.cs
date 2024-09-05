@@ -28,25 +28,26 @@ namespace Characters.Scripts
             if (UnityEngine.Input.GetKey(KeyCode.W))
             {
                 movementInputHandler.ExecuteMoveUpCommand();
-                rotationInputHandler.RotateToAbsoluteAngle(180);
+                rotationInputHandler.ExecuteRotateUpCommand();
             }
 
             if (UnityEngine.Input.GetKey(KeyCode.S))
             {
                 movementInputHandler.ExecuteMoveDownCommand();
-                rotationInputHandler.RotateToAbsoluteAngle(0);
+                rotationInputHandler.ExecuteRotateDownCommand();
             }
 
             if (UnityEngine.Input.GetKey(KeyCode.A))
             {
                 movementInputHandler.ExecuteMoveLeftCommand();
-                rotationInputHandler.RotateToAbsoluteAngle(90);
+                rotationInputHandler.ExecuteRotateLeftCommand();
             }
+
 
             if (UnityEngine.Input.GetKey(KeyCode.D))
             {
                 movementInputHandler.ExecuteMoveRightCommand();
-                rotationInputHandler.RotateToAbsoluteAngle(-90);
+                rotationInputHandler.ExecuteRotateRightCommand();
             }
         }
     }

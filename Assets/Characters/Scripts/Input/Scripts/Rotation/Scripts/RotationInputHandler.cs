@@ -5,18 +5,10 @@ namespace Characters.Scripts.Input.Scripts.Rotation.Scripts
 {
     public class RotationInputHandler : MonoBehaviour
     {
-        // Reference to the player object
         public GameObject player;
-        // Reference to the main camera
-        public Camera mainCamera;
-
-        // Character controller replaces the rigidbody for movement
-        public CharacterController controller;
-
         public float rotationSpeed = 10f;
 
-        RotateCommand _rotateCommand;
-
+        public Camera mainCamera;
         public static RotationInputHandler Instance { get; private set; }
 
         void Awake()
@@ -32,35 +24,37 @@ namespace Characters.Scripts.Input.Scripts.Rotation.Scripts
             }
         }
 
-        void Start()
+
+        public void ExecuteRotateLeftCommand()
         {
-            _rotateCommand = new RotateCommand(Vector3.zero);
+            var cameraForward = mainCamera.transform.forward;
+            cameraForward.y = 0; // Ignore vertical direction
+            var rotateLeft = new RotateCommand(-90f, cameraForward);
+            rotateLeft.Execute(player);
         }
 
-        void Update()
+        public void ExecuteRotateRightCommand()
         {
+            var cameraForward = mainCamera.transform.forward;
+            cameraForward.y = 0; // Ignore vertical direction
+            var rotateRight = new RotateCommand(90f, cameraForward);
+            rotateRight.Execute(player);
         }
 
-
-        // Method to rotate by a relative Y angle (current behavior)
-        public void RotateByRelativeAngle(float angle)
+        public void ExecuteRotateUpCommand()
         {
-            var currentRotation = player.transform.eulerAngles;
-            var newRotationY = currentRotation.y + angle;
-
-            // Apply the new rotation
-            player.transform.eulerAngles = new Vector3(currentRotation.x, newRotationY, currentRotation.z);
+            var cameraForward = mainCamera.transform.forward;
+            cameraForward.y = 0; // Ignore vertical direction
+            var rotateUp = new RotateCommand(0f, cameraForward);
+            rotateUp.Execute(player);
         }
 
-        // Method to rotate to an absolute Y angle
-        public void RotateToAbsoluteAngle(float targetY)
+        public void ExecuteRotateDownCommand()
         {
-            var currentRotation = player.transform.eulerAngles;
-
-            // Set rotation directly to the target Y angle
-            player.transform.eulerAngles = new Vector3(currentRotation.x, targetY, currentRotation.z);
-
-            Debug.Log("Rotated to absolute Y angle: " + targetY);
+            var cameraForward = mainCamera.transform.forward;
+            cameraForward.y = 0; // Ignore vertical direction
+            var rotateDown = new RotateCommand(180f, cameraForward);
+            rotateDown.Execute(player);
         }
     }
 }

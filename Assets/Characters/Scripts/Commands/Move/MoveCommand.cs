@@ -1,7 +1,7 @@
 ﻿using Core.Command;
 using UnityEngine;
 
-namespace Characters.Player.Scripts.Commands
+namespace Characters.Scripts.Commands.Move
 {
     public abstract class MoveCommand : BaseCommand
     {
@@ -10,7 +10,7 @@ namespace Characters.Player.Scripts.Commands
         protected readonly Transform CameraTransform;
         protected readonly CharacterController Controller;
         protected readonly float Speed;
-        float verticalVelocity;
+        float _verticalVelocity;
 
         protected MoveCommand(Transform cameraTransform, CharacterController controller, float speed)
         {
@@ -34,15 +34,15 @@ namespace Characters.Player.Scripts.Commands
         protected void ApplyGravity()
         {
             if (Controller.isGrounded)
-                verticalVelocity = -0.5f; // Slight negative value to keep the player grounded
+                _verticalVelocity = -0.5f; // Slight negative value to keep the player grounded
             else
-                verticalVelocity += Gravity * Time.deltaTime;
+                _verticalVelocity += Gravity * Time.deltaTime;
         }
 
         // Apply vertical movement based on gravity
         protected Vector3 ApplyVerticalMovement(Vector3 movement)
         {
-            movement.y = verticalVelocity * Time.deltaTime;
+            movement.y = _verticalVelocity * Time.deltaTime;
             return movement;
         }
     }
