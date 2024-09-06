@@ -2,10 +2,10 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Core.Cameras.Scripts
+namespace Characters.Player.Camera
 {
     // Camera controller for rotating the virtual camera
-    public class CameraController : MonoBehaviour
+    public class BasicCameraController : MonoBehaviour
     {
         // Reference to the Cinemachine Virtual Camera
         public CinemachineVirtualCamera virtualCamera; // Reference to the Cinemachine Virtual Camera

@@ -6,13 +6,13 @@ namespace Characters.Player.Input.Scripts
     public class ManeuverToAutomatedInputHandler : MonoBehaviour
     {
         public float speed = 5f;
-        [SerializeField] CharacterController controller;
-        Camera _camera;
+        [SerializeField] GameObject playerGameObject;
+        UnityEngine.Camera _camera;
         MoveToCommand _moveToCommand;
 
         void Start()
         {
-            _camera = Camera.main;
+            _camera = UnityEngine.Camera.main;
         }
         void Update()
         {
@@ -22,8 +22,8 @@ namespace Characters.Player.Input.Scripts
                     var ray = _camera.ScreenPointToRay(UnityEngine.Input.mousePosition);
                     if (Physics.Raycast(ray, out var hit))
                     {
-                        _moveToCommand = new MoveToCommand(hit.point, speed, controller); // Create MoveCommand
-                        _moveToCommand.Execute(gameObject); // Execute the MoveCommand for the player
+                        _moveToCommand = new MoveToCommand(hit.point, speed); // Create MoveCommand
+                        _moveToCommand.Execute(playerGameObject); // Execute the MoveCommand for the player
                     }
                 }
         }

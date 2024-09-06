@@ -1,31 +1,32 @@
 using Core.Command;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
+
+// Include DoTween
 
 namespace Characters.Scripts.Commands.Move
 {
     public class MoveToCommand : BaseCommand
     {
         readonly Vector3 _destination;
-        readonly NavMeshPath _path;
         readonly float _speed;
-        readonly CharacterController _characterController;
+        readonly NavMeshPath _path;
         int _pathIndex;
 
         // Constructor for the move command
-        public MoveToCommand(Vector3 destination, float speed, CharacterController characterController)
+        public MoveToCommand(Vector3 destination, float speed)
         {
             _destination = destination;
             _speed = speed;
             _path = new NavMeshPath();
-            _characterController = characterController;
         }
 
         public override void Execute(GameObject actor)
         {
-            // Get the CharacterController from the actor
+            var controller = actor.GetComponent<CharacterController>();
 
-            if (_characterController == null)
+            if (controller == null)
             {
                 UnityEngine.Debug.LogError("No CharacterController found on the actor.");
                 return;
@@ -36,8 +37,8 @@ namespace Characters.Scripts.Commands.Move
 
             if (_path.status == NavMeshPathStatus.PathComplete)
             {
-                _pathIndex = 0; // Reset path index to the start of the path
-                MoveAlongPath(actor, _characterController);
+                _pathIndex = 0; // Start at the first waypoint
+                MoveAlongPathWithDoTween(actor); // Move with DoTween
             }
             else
             {
@@ -45,8 +46,8 @@ namespace Characters.Scripts.Commands.Move
             }
         }
 
-        // Move the actor along the calculated path
-        void MoveAlongPath(GameObject actor, CharacterController controller)
+        // Use DoTween to move along the path smoothly
+        void MoveAlongPathWithDoTween(GameObject actor)
         {
             if (_path == null || _path.corners.Length == 0)
             {
@@ -57,15 +58,18 @@ namespace Characters.Scripts.Commands.Move
             if (_pathIndex < _path.corners.Length)
             {
                 var targetPosition = _path.corners[_pathIndex];
-                var direction = (targetPosition - actor.transform.position).normalized;
 
-                // Move the CharacterController
-                controller.Move(direction * _speed * Time.deltaTime);
-
-                // Check if the actor has reached the current waypoint
-                if (Vector3.Distance(
-                        actor.transform.position, targetPosition) <
-                    0.1f) _pathIndex++; // Move to the next waypoint in the path
+                // Use DoTween to smoothly move the actor to the target position
+                actor.transform.DOMove(targetPosition, _speed)
+                    .SetSpeedBased(true) // Adjust speed based on distance
+                    .SetEase(Ease.Linear) // Use a linear movement ease
+                    .OnComplete(
+                        () =>
+                        {
+                            _pathIndex++; // Move to the next waypoint when completed
+                            if (_pathIndex < _path.corners.Length)
+                                MoveAlongPathWithDoTween(actor); // Move to the next point
+                        });
             }
         }
     }
