@@ -12,11 +12,5 @@ namespace LevelGeneration.GenerationAssets.Tiles.Scripts
             if (other.CompareTag("Player") && Enabled)
                 CameraManager.Instance.SwitchToRoomCamera();
         }
-
-        void OnTriggerExit(Collider other)
-        {
-            if (other.CompareTag("Player") && Enabled)
-                UnityEngine.Debug.LogWarning("Leaving tile");
-        }
     }
 }

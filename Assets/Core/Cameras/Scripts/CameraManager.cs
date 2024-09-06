@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Cinemachine;
+﻿using Cinemachine;
 using UnityEngine;
 
 namespace Core.Cameras.Scripts
@@ -14,7 +13,6 @@ namespace Core.Cameras.Scripts
     {
         public GameObject playerCamera;
         public GameObject roomCamera;
-        public Dictionary<CameraTypeEnum, CinemachineVirtualCamera> Cameras = new();
 
         public static CameraManager Instance { get; private set; }
 
@@ -35,14 +33,22 @@ namespace Core.Cameras.Scripts
 
         void Start()
         {
-            // Create a new CameraData instance for a player camera without room data
-            var playerCameraData = new CameraData(CameraData.CameraTypeEnum.Player);
-            // Create a new CameraData instance for a room camera without room data
-            var roomCameraData = new CameraData(CameraData.CameraTypeEnum.Room);
         }
 
-        public void SetActiveCamera(CameraTypeEnum cameraType)
+        public void SetActiveCamera(CameraTypeEnum virtualCamera)
         {
+            switch (virtualCamera)
+            {
+                case CameraTypeEnum.Player:
+                    playerCamera.GetComponent<CinemachineVirtualCamera>().Priority = 10;
+                    roomCamera.GetComponent<CinemachineVirtualCamera>().Priority = 5;
+                    break;
+                case CameraTypeEnum.Room:
+                    playerCamera.GetComponent<CinemachineVirtualCamera>().Priority = 5;
+                    roomCamera.GetComponent<CinemachineVirtualCamera>().Priority = 10;
+
+                    break;
+            }
         }
 
 
