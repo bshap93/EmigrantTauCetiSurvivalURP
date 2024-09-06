@@ -78,6 +78,17 @@ namespace Characters.Scripts.Input.Scripts.Movement.Scripts
             _moveRightCommand.Execute(player);
         }
 
+        public void ExecuteMoveCommand(Vector3 moveDirection)
+        {
+            if (moveDirection.z > 0)
+                _moveUpCommand.Execute(player);
+            else if (moveDirection.z < 0)
+                _moveDownCommand.Execute(player);
+            else if (moveDirection.x < 0)
+                _moveLeftCommand.Execute(player);
+            else if (moveDirection.x > 0) _moveRightCommand.Execute(player);
+        }
+
         // Handle player input for movement
         void HandleInput()
         {

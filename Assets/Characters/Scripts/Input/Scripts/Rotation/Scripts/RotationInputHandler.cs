@@ -6,7 +6,7 @@ namespace Characters.Scripts.Input.Scripts.Rotation.Scripts
     public class RotationInputHandler : MonoBehaviour
     {
         public GameObject player;
-        public float rotationSpeed = 10f;
+        public float timeToRotate = 0.5f;
 
         public Camera mainCamera;
         public static RotationInputHandler Instance { get; private set; }
@@ -29,7 +29,7 @@ namespace Characters.Scripts.Input.Scripts.Rotation.Scripts
         {
             var cameraForward = mainCamera.transform.forward;
             cameraForward.y = 0; // Ignore vertical direction
-            var rotateLeft = new RotateCommand(-90f, cameraForward);
+            var rotateLeft = new RotateCommand(-90f, cameraForward, timeToRotate);
             rotateLeft.Execute(player);
         }
 
@@ -37,7 +37,7 @@ namespace Characters.Scripts.Input.Scripts.Rotation.Scripts
         {
             var cameraForward = mainCamera.transform.forward;
             cameraForward.y = 0; // Ignore vertical direction
-            var rotateRight = new RotateCommand(90f, cameraForward);
+            var rotateRight = new RotateCommand(90f, cameraForward, timeToRotate);
             rotateRight.Execute(player);
         }
 
@@ -45,7 +45,7 @@ namespace Characters.Scripts.Input.Scripts.Rotation.Scripts
         {
             var cameraForward = mainCamera.transform.forward;
             cameraForward.y = 0; // Ignore vertical direction
-            var rotateUp = new RotateCommand(0f, cameraForward);
+            var rotateUp = new RotateCommand(0f, cameraForward, timeToRotate);
             rotateUp.Execute(player);
         }
 
@@ -53,7 +53,7 @@ namespace Characters.Scripts.Input.Scripts.Rotation.Scripts
         {
             var cameraForward = mainCamera.transform.forward;
             cameraForward.y = 0; // Ignore vertical direction
-            var rotateDown = new RotateCommand(180f, cameraForward);
+            var rotateDown = new RotateCommand(180f, cameraForward, timeToRotate);
             rotateDown.Execute(player);
         }
     }

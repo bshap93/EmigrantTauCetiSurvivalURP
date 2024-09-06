@@ -370,8 +370,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853345640}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.02768945, y: 0.8728069, z: -0.4844643, w: 0.05230563}
-  m_LocalPosition: {x: 1.26274, y: 212.37158, z: 59.512917}
+  m_LocalRotation: {x: -0.04259573, y: 0.87237966, z: -0.48695952, w: 0.0031425592}
+  m_LocalPosition: {x: 1.3478348, y: 212.68268, z: 58.882812}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -599,7 +599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 768217407}
-  rotationSpeed: 10
+  timeToRotate: 0.1
   mainCamera: {fileID: 853345642}
 --- !u!1 &1794978891
 GameObject:
@@ -627,14 +627,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794978891}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.02768945, y: 0.8728069, z: -0.4844643, w: 0.05230563}
-  m_LocalPosition: {x: 1.26274, y: 212.37158, z: 59.512917}
+  m_LocalRotation: {x: -0.04259573, y: 0.87237966, z: -0.48695952, w: 0.0031425592}
+  m_LocalPosition: {x: 1.3478348, y: 212.68268, z: 58.882812}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2085994608}
   m_Father: {fileID: 176692167}
-  m_LocalEulerAnglesHint: {x: 58.058, y: 173, z: -0.254}
+  m_LocalEulerAnglesHint: {x: 58.142, y: 174.895, z: -8.43}
 --- !u!114 &1794978893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,16 +693,16 @@ MonoBehaviour:
   m_TransparentLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_MinimumDistanceFromTarget: 0.1
+  m_MinimumDistanceFromTarget: 0.5
   m_AvoidObstacles: 1
   m_DistanceLimit: 0
   m_MinimumOcclusionTime: 0
-  m_CameraRadius: 0.1
-  m_Strategy: 2
-  m_MaximumEffort: 4
-  m_SmoothingTime: 0.987
-  m_Damping: 5.26
-  m_DampingWhenOccluded: 5.71
+  m_CameraRadius: 0
+  m_Strategy: 0
+  m_MaximumEffort: 3
+  m_SmoothingTime: 0.194
+  m_Damping: 0.46
+  m_DampingWhenOccluded: 0.41
   m_OptimalTargetDistance: 0
 --- !u!1 &2085994607
 GameObject:
