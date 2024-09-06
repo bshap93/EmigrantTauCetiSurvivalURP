@@ -1,19 +1,22 @@
 using UnityEngine;
 
-public class PlayerDebug : MonoBehaviour
+namespace Debug.Scripts
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerDebug : MonoBehaviour
     {
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+        // Update is called once per frame
+        void Update()
+        {
+        }
 
-    void OnCollisionEnter(Collision other)
-    {
-        Debug.Log("Player collided with " + other.gameObject.name);
+        void OnCollisionEnter(Collision other)
+        {
+            UnityEngine.Debug.Log("Player collided with " + other.gameObject.name);
+        }
     }
 }
