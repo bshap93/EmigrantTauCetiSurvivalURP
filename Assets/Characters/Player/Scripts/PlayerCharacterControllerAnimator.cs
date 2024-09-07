@@ -30,19 +30,18 @@ namespace Characters.Player.Scripts
             var horizontalInput = UnityEngine.Input.GetAxis("Horizontal");
             var verticalInput = UnityEngine.Input.GetAxis("Vertical");
 
-            // If there is movement input
+            // If there is input, calculate speed and set the animation
             if (Mathf.Abs(horizontalInput) > 0.1f || Mathf.Abs(verticalInput) > 0.1f)
             {
-                // Calculate movement speed based on CharacterController's velocity
-                var velocity = _characterController.velocity;
-                var speed = velocity.magnitude / SpeedDivider;
+                // Set the animation speed directly based on input, ignoring velocity
+                var inputDirection = new Vector3(horizontalInput, 0, verticalInput);
+                var inputMagnitude = inputDirection.magnitude / SpeedDivider;
 
-                // Update the animator's speed parameter
-                _animator.SetFloat(SpeedParameter, speed);
+                _animator.SetFloat(SpeedParameter, inputMagnitude);
             }
             else
             {
-                // If no input, immediately stop the walking animation
+                // Stop the animation immediately when no input is detected
                 _animator.SetFloat(SpeedParameter, 0f);
             }
         }
