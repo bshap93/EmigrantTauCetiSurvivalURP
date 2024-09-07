@@ -1,7 +1,7 @@
 using DunGen;
 using UnityEngine;
 
-namespace LevelGeneration.Tiles.BasicRooms.Tutorial.Scripts
+namespace LevelGeneration.Tiles.Doors.Scripts
 {
     public class AutoHatch : MonoBehaviour
     {
@@ -13,20 +13,23 @@ namespace LevelGeneration.Tiles.BasicRooms.Tutorial.Scripts
             Closing
         }
 
+
         public float speed = 3.0f;
         public GameObject hatchRightHalf;
         public GameObject hatchLeftHalf;
 
         public Vector3 hatchRightOpenOffset = new(0, 2.5f, 0);
         public Vector3 hatchLeftOpenOffset = new(0, 2.5f, 0);
+        IDoorCommand _closeCommand;
+
         float _currentFramePosition;
-
-
         DoorState _currentState = DoorState.Closed;
         Door _doorComponent;
         Vector3 _hatchLeftClosedPosition;
-
         Vector3 _hatchRightClosedPosition;
+
+        IDoorCommand _openCommand;
+
         // Start is called before the first frame update
         void Start()
         {
