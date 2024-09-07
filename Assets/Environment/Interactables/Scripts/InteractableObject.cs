@@ -21,11 +21,8 @@ namespace Environment.Interactables.Scripts
         void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
-            {
                 // Notify the player they can interact with this object
                 SimpleInteractInputHandler.Instance.SetInteractable(this);
-                UnityEngine.Debug.Log("Player can interact with object: " + gameObject.name);
-            }
         }
 
         // Trigger detection for when the player exits the zone
@@ -34,8 +31,6 @@ namespace Environment.Interactables.Scripts
             if (other.CompareTag("Player"))
                 // Clear the reference when the player leaves the range
                 SimpleInteractInputHandler.Instance.ClearInteractable();
-
-            UnityEngine.Debug.Log("Player left the range of object: " + gameObject.name);
         }
 
         public void InteractSimple()
