@@ -1,0 +1,38 @@
+﻿using LevelGeneration.Rooms.Scripts;
+using UnityEngine;
+
+namespace Characters.Player.Managers.Scripts
+{
+    public class PlayerStartManager : MonoBehaviour
+    {
+        public GameObject player; // Reference to your player object
+        public string startPointName = "StartPoint"; // The name of the start point object in the start room
+
+
+        void Start()
+        {
+            if (RoomManager.Instance != null)
+                RoomManager.Instance.onRoomGeneration.AddListener(OnRoomGenerated);
+            else
+                UnityEngine.Debug.LogError("Listener not added!");
+        }
+
+        // Match the correct signature
+        void OnRoomGenerated()
+        {
+            // Find the start point by name in the scene after generation is complete
+            var startPoint = GameObject.Find(startPointName);
+            if (startPoint != null)
+            {
+                UnityEngine.Debug.Log("Start point found in the generated dungeon.");
+                // Move the player to the start point's position
+                player.transform.position = startPoint.transform.position;
+                player.transform.rotation = startPoint.transform.rotation;
+            }
+            else
+            {
+                UnityEngine.Debug.LogWarning("Start point not found in the generated dungeon.");
+            }
+        }
+    }
+}

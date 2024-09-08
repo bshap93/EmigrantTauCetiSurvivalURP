@@ -1,15 +1,16 @@
 ﻿using LevelGeneration.GenerationAssets.Tiles.BasicRooms.Scripts;
 using Sirenix.Utilities;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace LevelGeneration.GenerationAssets.Tiles.Scripts
+namespace LevelGeneration.Rooms.Scripts
 {
     public class RoomManager : MonoBehaviour
     {
         public Room[] rooms;
+        public UnityEvent onRoomGeneration;
 
-        public static RoomManager Instance { get; private set; }
-
+        public static RoomManager Instance { get; set; }
         void Awake()
         {
             if (Instance == null)
@@ -26,6 +27,12 @@ namespace LevelGeneration.GenerationAssets.Tiles.Scripts
             rooms = FindObjectsOfType<Room>();
         }
 
+        void Start()
+        {
+            onRoomGeneration ??= new UnityEvent();
+        }
+
+
         void Update()
         {
             // Check if rooms are still null or empty
@@ -38,6 +45,7 @@ namespace LevelGeneration.GenerationAssets.Tiles.Scripts
 
                 // Disable Update by setting the enabled property to false
                 enabled = false; // Disables the Update method from running again
+                onRoomGeneration.Invoke();
             }
         }
     }

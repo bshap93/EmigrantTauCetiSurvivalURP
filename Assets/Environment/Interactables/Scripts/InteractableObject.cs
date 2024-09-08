@@ -36,7 +36,7 @@ namespace Environment.Interactables.Scripts
         public void InteractSimple()
         {
             UnityEngine.Debug.Log("Interacting with object: " + gameObject.name);
-            // Interaction logic goes here
+            // Interaction logic goes hera
         }
     }
 }
