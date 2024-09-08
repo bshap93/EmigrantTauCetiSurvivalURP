@@ -1,5 +1,5 @@
 ﻿using System;
-using Core.Command;
+using Characters.Command;
 using UnityEngine;
 
 namespace Core.SaveSystem.Scripts.Commands

@@ -1,4 +1,4 @@
-﻿using Core.Command;
+﻿using Characters.Command;
 using UnityEngine;
 
 namespace Characters.Scripts.Commands.Move

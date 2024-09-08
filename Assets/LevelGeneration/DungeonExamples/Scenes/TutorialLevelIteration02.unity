@@ -201,6 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 821136002}
   - component: {fileID: 821136001}
+  - component: {fileID: 821136003}
   m_Layer: 0
   m_Name: PlayerStartManager
   m_TagString: Untagged
@@ -222,37 +223,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 546393805865092104}
   startPointName: StartPoint
-  dungeonGenerator:
-    allowImmediateRepeats: 0
-    Seed: 0
-    ShouldRandomizeSeed: 1
-    MaxAttemptCount: 20
-    UseMaximumPairingAttempts: 0
-    MaxPairingAttempts: 5
-    IgnoreSpriteBounds: 0
-    UpDirection: 2
-    OverrideRepeatMode: 0
-    RepeatMode: 0
-    OverrideAllowTileRotation: 0
-    AllowTileRotation: 0
-    DebugRender: 0
-    LengthMultiplier: 1
-    PlaceTileTriggers: 1
-    TileTriggerLayer: 2
-    GenerateAsynchronously: 0
-    MaxAsyncFrameMilliseconds: 50
-    PauseBetweenRooms: 0
-    RestrictDungeonToBounds: 0
-    TilePlacementBounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 5, y: 5, z: 5}
-    OverlapThreshold: 0.01
-    Padding: 0
-    DisallowOverhangs: 0
-    AvoidCollisionsWithOtherDungeons: 1
-    Root: {fileID: 0}
-    DungeonFlow: {fileID: 0}
-    fileVersion: 1
 --- !u!4 &821136002
 Transform:
   m_ObjectHideFlags: 0
@@ -268,6 +238,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &821136003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821136000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6389365c610644de9567730c8f037df4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &853345640
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +721,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rooms: []
+  onRoomGeneration:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1794978891
 GameObject:
   m_ObjectHideFlags: 0

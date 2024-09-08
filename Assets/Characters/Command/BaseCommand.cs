@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.Command
+namespace Characters.Command
 {
     // Base class for all commands
     public abstract class BaseCommand

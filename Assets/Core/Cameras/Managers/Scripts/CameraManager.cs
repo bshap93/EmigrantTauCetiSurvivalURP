@@ -1,7 +1,7 @@
 ﻿using Cinemachine;
 using UnityEngine;
 
-namespace Core.Cameras.Scripts
+namespace Core.Cameras.Managers.Scripts
 {
     public enum CameraTypeEnum
     {
@@ -31,10 +31,6 @@ namespace Core.Cameras.Scripts
             // SetActiveCamera(0);
         }
 
-        void Start()
-        {
-        }
-
         public void SetActiveCamera(CameraTypeEnum virtualCamera)
         {
             switch (virtualCamera)
@@ -50,16 +46,9 @@ namespace Core.Cameras.Scripts
                     break;
             }
         }
-
-
-        public void SwitchToRoomCamera()
+        public void SetActiveRoom(GameObject room)
         {
-            SetActiveCamera(CameraTypeEnum.Room);
-        }
-
-        public void SwitchToPlayerCamera()
-        {
-            SetActiveCamera(CameraTypeEnum.Player);
+            throw new System.NotImplementedException();
         }
     }
 }

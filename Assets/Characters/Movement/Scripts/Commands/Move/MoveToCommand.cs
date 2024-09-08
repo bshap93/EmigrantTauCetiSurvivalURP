@@ -1,4 +1,4 @@
-using Core.Command;
+using Characters.Command;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,8 +10,8 @@ namespace Characters.Scripts.Commands.Move
     public class MoveToCommand : BaseCommand
     {
         readonly Vector3 _destination;
-        readonly float _speed;
         readonly NavMeshPath _path;
+        readonly float _speed;
         int _pathIndex;
 
         // Constructor for the move command

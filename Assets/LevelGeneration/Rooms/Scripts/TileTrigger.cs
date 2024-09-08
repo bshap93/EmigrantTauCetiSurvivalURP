@@ -1,16 +1,20 @@
-using Core.Cameras.Scripts;
+using Core.Cameras.Managers.Scripts;
 using UnityEngine;
 
-namespace LevelGeneration.GenerationAssets.Tiles.Scripts
+namespace LevelGeneration.Rooms.Scripts
 {
     public class TileTrigger : MonoBehaviour
     {
-        public bool Enabled; // Hides the enabled field from the base class
-
+        public new bool enabled; // Hides the enabled field from the base class
+        public CameraTypeEnum cameraType;
         void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player") && Enabled)
-                CameraManager.Instance.SwitchToRoomCamera();
+            if (other.CompareTag("Player") && enabled)
+            {
+                CameraManager.Instance.SetActiveCamera(cameraType); 
+                CameraManager.Instance.SetActiveRoom(this.gameObject);
+            }
+
         }
     }
 }
