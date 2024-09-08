@@ -1,10 +1,12 @@
 ﻿using Characters.Player.InputHandlers.Scripts;
+using UI.InGameConsole.Scripts;
 using UnityEngine;
 
 namespace Environment.Interactables.Scripts
 {
     public class InteractableObject : MonoBehaviour, IInteractable
     {
+        public string objectName;
         Collider _zoneCollider;
 
         void Start()
@@ -35,8 +37,7 @@ namespace Environment.Interactables.Scripts
 
         public void InteractSimple()
         {
-            UnityEngine.Debug.Log("Interacting with object: " + gameObject.name);
-            // Interaction logic goes hera
+            ConsoleManager.Instance.LogMessage("Interacting with object: " + objectName);
         }
     }
 }

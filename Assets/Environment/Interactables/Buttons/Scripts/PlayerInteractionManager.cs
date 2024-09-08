@@ -2,7 +2,7 @@
 using Environment.Navigation.Scripts;
 using UnityEngine;
 
-namespace Environment.Navigation.Managers
+namespace Environment.Interactables.Buttons.Scripts
 {
     public class PlayerInteractionManager : MonoBehaviour
     {

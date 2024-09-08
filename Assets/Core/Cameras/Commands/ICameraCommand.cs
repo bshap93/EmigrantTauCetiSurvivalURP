@@ -1,6 +1,6 @@
 ﻿using Cinemachine;
 
-namespace Characters.Player.Camera.Scripts.Commands
+namespace Core.Cameras.Commands
 {
     public interface ICameraCommand
     {
