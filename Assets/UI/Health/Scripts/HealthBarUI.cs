@@ -1,4 +1,5 @@
 ﻿using Characters.Health.Scripts;
+using Characters.Player.Scripts;
 using Core.GameManager.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,27 +11,36 @@ namespace UI.Health.Scripts
         public Image healthBarFill; // Reference to the UI Image for the health bar fill
         HealthSystem _healthSystem; // Reference to the HealthSystem
 
-        void Awake()
+
+        void Start()
         {
             GameManager.Instance.onSystemActivated.AddListener(OnSystemActivated);
+            _healthSystem = PlayerCharacter.Instance.HealthSystem; // Get the player's health system
             UnityEngine.Debug.Log("HealthBarUI Awake");
-        }
 
+            // Subscribe to health change events
+            _healthSystem.OnHealthChanged.AddListener(UpdateHealthBar);
+
+            // Initialize the health bar with the current health
+            UpdateHealthBar(_healthSystem.CurrentHealth);
+        }
 
         void OnDestroy()
         {
             // Unsubscribe to avoid memory leaks
-            _healthSystem.OnHealthChanged -= UpdateHealthBar;
+            _healthSystem.OnHealthChanged.RemoveListener(UpdateHealthBar);
             GameManager.Instance.onSystemActivated.RemoveListener(OnSystemActivated);
         }
+
+
         void OnSystemActivated(string systemName)
         {
             if (systemName == "Health")
             {
                 UnityEngine.Debug.Log("Health system activated");
-                _healthSystem = GameManager.Instance.PlayerHealthSystem; // Get the player's health system
+                _healthSystem = PlayerCharacter.Instance.HealthSystem; // Get the player's health system
                 // Subscribe to health change events
-                _healthSystem.OnHealthChanged += UpdateHealthBar;
+                _healthSystem.OnHealthChanged.AddListener(UpdateHealthBar);
 
                 // Initialize the health bar with the current health
                 UpdateHealthBar(_healthSystem.CurrentHealth);

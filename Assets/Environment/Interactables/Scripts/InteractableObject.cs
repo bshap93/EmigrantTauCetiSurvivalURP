@@ -37,7 +37,7 @@ namespace Environment.Interactables.Scripts
 
         public void InteractSimple()
         {
-            ConsoleManager.Instance.LogMessage("Interacting with object: " + objectName);
+            InGameConsoleManager.Instance.LogMessage("Interacting with object: " + objectName);
         }
     }
 }

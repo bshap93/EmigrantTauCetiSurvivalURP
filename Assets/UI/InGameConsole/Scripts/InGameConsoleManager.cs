@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 namespace UI.InGameConsole.Scripts
 {
-    public class ConsoleManager : MonoBehaviour
+    public class InGameConsoleManager : MonoBehaviour
     {
         const int MaxMessages = 100; // Limit the number of messages displayed
         public TMP_Text consoleText; // Reference to the UI Text element (or TMP_Text for TextMeshPro)
         public ScrollRect scrollRect; // Reference to the ScrollRect to allow scrolling through messages
         readonly Queue<string> _messageQueue = new(); // Stores messages for the console
-        public static ConsoleManager Instance { get; private set; } // Singleton instance of the console manager
+        public static InGameConsoleManager Instance { get; private set; } // Singleton instance of the console manager
 
         void Awake()
         {

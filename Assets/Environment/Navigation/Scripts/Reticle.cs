@@ -1,11 +1,17 @@
-﻿using DG.Tweening;
+﻿using System.Collections.Generic;
+using DG.Tweening;
+using Environment.Navigation.Scripts.ReticleData;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Environment.Navigation.Scripts
 {
     public class Reticle : MonoBehaviour
     {
+        [FormerlySerializedAs("ReticleLocations")]
+        public List<ReticleLocation> reticleLocations; // List of reticle locations 
         public static Reticle Instance { get; private set; }
+
 
         void Awake()
         {
@@ -18,6 +24,12 @@ namespace Environment.Navigation.Scripts
             {
                 Destroy(gameObject);
             }
+        }
+
+        void Start()
+        {
+            // Set the reticle's initial position
+            SetPosition(reticleLocations[0].relativePosition);
         }
 
         public void SetPosition(Vector3 targetPosition)

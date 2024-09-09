@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 684273050740227211}
   - component: {fileID: 6957920063636033639}
   - component: {fileID: 9090805961294938893}
+  - component: {fileID: 4091325955565847143}
   m_Layer: 0
   m_Name: Reticle
   m_TagString: Untagged
@@ -193,6 +194,22 @@ MonoBehaviour:
   optionalScrambleMode: 0
   optionalShakeRandomnessMode: 0
   optionalString: 
+--- !u!114 &4091325955565847143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2866036838527045154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eeed3af91e74bb58a3065f58cf8fd28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reticleLocations:
+  - currentTile: {fileID: 0}
+    absolutePosition: {x: 0, y: 0, z: 0}
+    relativePosition: {x: 0, y: 0, z: 0}
 --- !u!1 &8448076974044894350
 GameObject:
   m_ObjectHideFlags: 0
