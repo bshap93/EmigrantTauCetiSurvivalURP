@@ -26,7 +26,7 @@ MonoBehaviour:
   DoorwayConnectionChance: 0
   RestrictConnectionToSameSection: 0
   TileInjectionRules:
-  - TileSet: {fileID: 0}
+  - TileSet: {fileID: 11400000, guid: a1874b7307b250649a0b0c9c41de732f, type: 2}
     NormalizedPathDepth:
       Min: 0
       Max: 1
@@ -34,8 +34,8 @@ MonoBehaviour:
       Min: 0
       Max: 1
     CanAppearOnMainPath: 1
-    CanAppearOnBranchPath: 0
-    IsRequired: 0
+    CanAppearOnBranchPath: 1
+    IsRequired: 1
     IsLocked: 0
     LockID: 0
   TileTagConnectionMode: 1
@@ -64,7 +64,7 @@ MonoBehaviour:
     LockPlacement: 0
   - Graph: {fileID: 11400000}
     TileSets:
-    - {fileID: 11400000, guid: 671f1ca93fe24174f85146b5fc4c4ec2, type: 2}
+    - {fileID: 11400000, guid: 06b255746cc297447833278e0276e132, type: 2}
     NodeType: 2
     Position: 1
     Label: Goal
