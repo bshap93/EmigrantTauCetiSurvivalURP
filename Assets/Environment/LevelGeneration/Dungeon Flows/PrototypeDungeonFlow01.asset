@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e228b45736a8cf4ea000616e628a4dd, type: 3}
-  m_Name: Dungeon
+  m_Name: PrototypeDungeonFlow01
   m_EditorClassIdentifier: 
   globalPropGroupID_obsolete: 
   globalPropRanges_obsolete: []
@@ -33,7 +33,7 @@ MonoBehaviour:
   Nodes:
   - Graph: {fileID: 11400000}
     TileSets:
-    - {fileID: 11400000, guid: 6b61c693a87bc51448d14697fcb923bd, type: 2}
+    - {fileID: 11400000, guid: 8234a975f769d1645a58ea1c10844486, type: 2}
     NodeType: 1
     Position: 0
     Label: Start
@@ -42,7 +42,7 @@ MonoBehaviour:
     LockPlacement: 0
   - Graph: {fileID: 11400000}
     TileSets:
-    - {fileID: 11400000, guid: 6b61c693a87bc51448d14697fcb923bd, type: 2}
+    - {fileID: 11400000, guid: 671f1ca93fe24174f85146b5fc4c4ec2, type: 2}
     NodeType: 2
     Position: 1
     Label: Goal
@@ -52,7 +52,7 @@ MonoBehaviour:
   Lines:
   - Graph: {fileID: 11400000}
     DungeonArchetypes:
-    - {fileID: 11400000, guid: da7269af1f3acb944b1163c5ef22b83b, type: 2}
+    - {fileID: 11400000, guid: 96f0dfec3d0f14848b4e2c5681b83e96, type: 2}
     Position: 0
     Length: 1
     Keys: []

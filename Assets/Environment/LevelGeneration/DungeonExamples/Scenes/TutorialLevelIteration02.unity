@@ -532,7 +532,7 @@ Transform:
   m_GameObject: {fileID: 853345640}
   serializedVersion: 2
   m_LocalRotation: {x: -0.04259573, y: 0.87237966, z: -0.48695952, w: 0.0031425592}
-  m_LocalPosition: {x: 1.3475282, y: 212.68265, z: 58.882824}
+  m_LocalPosition: {x: 1.3507509, y: 212.68289, z: 58.882706}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1026,7 +1026,7 @@ Transform:
   m_GameObject: {fileID: 1794978891}
   serializedVersion: 2
   m_LocalRotation: {x: -0.04259573, y: 0.87237966, z: -0.48695952, w: 0.0031425592}
-  m_LocalPosition: {x: 1.3475282, y: 212.68265, z: 58.882824}
+  m_LocalPosition: {x: 1.3507509, y: 212.68289, z: 58.882706}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1584,7 +1584,7 @@ MonoBehaviour:
     OverrideAllowTileRotation: 0
     AllowTileRotation: 0
     DebugRender: 0
-    LengthMultiplier: 1
+    LengthMultiplier: 0.01
     PlaceTileTriggers: 1
     TileTriggerLayer: 2
     GenerateAsynchronously: 0

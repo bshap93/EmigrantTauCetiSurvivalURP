@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Archetype
   m_EditorClassIdentifier: 
   TileSets:
-  - {fileID: 11400000, guid: 8a9357af9492ad5448317b2e8a1f573f, type: 2}
+  - {fileID: 11400000, guid: 73db4525f5a006f4c974db5c1b317a85, type: 2}
+  - {fileID: 11400000, guid: 2a38c38a1b0165144ad750add65d0f74, type: 2}
+  - {fileID: 11400000, guid: 452f217ec76a8ec4d85a34dda221fb4b, type: 2}
   BranchStartTileSets: []
   BranchStartType: 0
   BranchCapTileSets: []
