@@ -1,8 +1,10 @@
 using DunGen;
-using LevelGeneration.Tiles.Doors.Scripts.Commands.OpenClose;
+using Environment.LevelGeneration.Doors.Scripts.Commands.OpenClose;
+using LevelGeneration.Tiles.Doors.Scripts;
 using UnityEngine;
+using UnityEngine.AI;
 
-namespace LevelGeneration.Tiles.Doors.Scripts
+namespace Environment.LevelGeneration.Doors.Scripts
 {
     public class AutoHatch : MonoBehaviour
     {
@@ -28,6 +30,7 @@ namespace LevelGeneration.Tiles.Doors.Scripts
         Door _doorComponent;
         Vector3 _hatchLeftClosedPosition;
         Vector3 _hatchRightClosedPosition;
+        NavMeshObstacle _navMeshObstacle;
 
         IDoorCommand _openCommand;
 
@@ -37,9 +40,12 @@ namespace LevelGeneration.Tiles.Doors.Scripts
             _doorComponent = GetComponent<Door>();
             _hatchLeftClosedPosition = hatchLeftHalf.transform.localPosition;
             _hatchRightClosedPosition = hatchRightHalf.transform.localPosition;
+            _navMeshObstacle = GetComponent<NavMeshObstacle>();
 
-            _openCommand = new OpenHatchCommand(this);
-            _closeCommand = new CloseHatchCommand(this);
+            _navMeshObstacle.carving = true;
+
+            _openCommand = new OpenHatchCommand(this, _navMeshObstacle);
+            _closeCommand = new CloseHatchCommand(this, _navMeshObstacle);
         }
 
         // Update is called once per frame

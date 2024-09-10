@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Debug.Scripts
+namespace Debugging.Scripts
 {
     public class PlayerDebug : MonoBehaviour
     {
@@ -16,7 +16,7 @@ namespace Debug.Scripts
 
         void OnCollisionEnter(Collision other)
         {
-            UnityEngine.Debug.Log("Player collided with " + other.gameObject.name);
+            Debug.Log("Player collided with " + other.gameObject.name);
         }
     }
 }

@@ -41,7 +41,7 @@ namespace LevelGeneration.Rooms.Scripts
             // If rooms are found, stop calling Update
             if (!rooms.IsNullOrEmpty())
             {
-                foreach (var room in rooms) UnityEngine.Debug.Log("Room " + room.getRoomId());
+                UnityEngine.Debug.Log("Rooms found");
 
                 // Disable Update by setting the enabled property to false
                 enabled = false; // Disables the Update method from running again

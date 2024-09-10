@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 5577920681555047415}
   - component: {fileID: 773168876508235156}
   - component: {fileID: 3197893270865988421}
+  - component: {fileID: -8461112870134957636}
   m_Layer: 0
   m_Name: UpAutoOpeningHatch
   m_TagString: Untagged
@@ -307,6 +308,22 @@ MonoBehaviour:
   hatchLeftHalf: {fileID: 6504750741630392636}
   hatchRightOpenOffset: {x: 0, y: 2.5, z: 0}
   hatchLeftOpenOffset: {x: 0, y: 2.5, z: 0}
+--- !u!208 &-8461112870134957636
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6504750741630392634}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6504750741630392636
 GameObject:
   m_ObjectHideFlags: 0

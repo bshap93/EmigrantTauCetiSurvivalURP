@@ -1,15 +1,23 @@
-﻿using System;
-using Characters.Command;
+﻿using Core.Levels;
+using Polyperfect.Crafting.Demo;
 using UnityEngine;
 
 namespace Core.SaveSystem.Scripts.Commands
 {
-    public class SaveCommand : BaseCommand
-
+    public class SaveGameCommand : BaseCommand
     {
-        public override void Execute(GameObject actor)
+        readonly int _levelID;
+
+        public SaveGameCommand(int levelID)
         {
-            throw new NotImplementedException();
+            _levelID = levelID;
+        }
+
+        public void Execute()
+        {
+            // Execute save
+            SaveManager.Instance.SaveGame(_levelID, LevelManager.Instance.currentLevelState);
+            Debug.Log($"Game saved for level {_levelID}");
         }
     }
 }
