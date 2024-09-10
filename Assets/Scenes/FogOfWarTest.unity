@@ -4589,23 +4589,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4262867575042702296, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
+      propertyPath: unitScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
       propertyPath: levelMidPoint
       value: 
-      objectReference: {fileID: 5878225215151113}
+      objectReference: {fileID: 808895171}
+    - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
+      propertyPath: FogRefreshRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
+      propertyPath: fogPlaneHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
+      propertyPath: rayMaxDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
       propertyPath: rayStartHeight
-      value: 1.03
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
       propertyPath: levelDimensionX
-      value: 128
+      value: 107
       objectReference: {fileID: 0}
     - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
       propertyPath: levelDimensionY
-      value: 128
+      value: 107
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
+      propertyPath: levelNameToSave
+      value: Default
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
+      propertyPath: fogPlaneMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 36b93ac6fcf129c449491654e397fe4a, type: 2}
+    - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
+      propertyPath: keepRevealedTiles
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
+      propertyPath: scanSpacingPerUnit
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
+      propertyPath: obstacleLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
+      propertyPath: fogRevealers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
+      propertyPath: fogRevealers.Array.data[0].sightRange
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
+      propertyPath: fogRevealers.Array.data[0].updateOnlyOnMove
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4903124643108616960, guid: 88c605c37623bfd4bbfe75be6a88cb87, type: 3}
       propertyPath: fogRevealers.Array.data[0].revealerTransform

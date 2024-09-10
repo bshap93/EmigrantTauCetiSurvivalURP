@@ -1,5 +1,4 @@
-﻿using DG.Tweening;
-using DunGen;
+﻿using DunGen;
 using UnityEngine;
 
 namespace Environment.Navigation.Scripts
@@ -19,8 +18,7 @@ namespace Environment.Navigation.Scripts
         {
             // Use Dotween to move the midpoint to the new tile's position
 
-            _tileMidpoint.DOMove(newTile.Placement.Position, 1.0f)
-                .SetEase(Ease.Linear);
+            _tileMidpoint = newTile.transform;
         }
     }
 }
