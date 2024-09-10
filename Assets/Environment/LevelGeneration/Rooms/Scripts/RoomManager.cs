@@ -3,7 +3,7 @@ using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace LevelGeneration.Rooms.Scripts
+namespace Environment.LevelGeneration.Rooms.Scripts
 {
     public class RoomManager : MonoBehaviour
     {
@@ -41,7 +41,7 @@ namespace LevelGeneration.Rooms.Scripts
             // If rooms are found, stop calling Update
             if (!rooms.IsNullOrEmpty())
             {
-                UnityEngine.Debug.Log("Rooms found");
+                Debug.Log("Rooms found");
 
                 // Disable Update by setting the enabled property to false
                 enabled = false; // Disables the Update method from running again

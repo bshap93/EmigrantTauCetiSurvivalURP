@@ -2,6 +2,7 @@ using Characters.Health.Scripts;
 using Characters.Health.Scripts.Commands;
 using Characters.Health.Scripts.Debugging;
 using Characters.Player.Scripts;
+using Core.SaveSystem.Scripts;
 using UI.InGameConsole.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,6 +16,8 @@ namespace Core.GameManager.Scripts
 
 
         public UnityEvent<string> onSystemActivated;
+
+        public SaveManager saveManager;
 
         InGameConsoleManager _inGameConsoleManager;
         public static GameManager Instance { get; private set; }
@@ -40,6 +43,8 @@ namespace Core.GameManager.Scripts
             Cursor.visible = false;
 
             healthSystemDebug.onDebugDealDamage.AddListener(HandleDebugDamage);
+
+            saveManager.InitializedDungeonLevel(null);
         }
 
 

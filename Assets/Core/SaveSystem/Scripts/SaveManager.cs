@@ -1,93 +1,126 @@
+using System.Collections.Generic;
 using Characters.Player.Scripts;
 using Core.Levels;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Core.SaveSystem.Scripts
 {
     public class SaveManager : MonoBehaviour
     {
-        [SerializeField] LevelManager levelManager;
-        public static SaveManager Instance { get; private set; }
-
-        void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
-
+        public PlayerCharacter playerCharacter; // Drag the PlayerCharacter object here
+        Transform _initialCameraTransform; // Drag the Camera object here
         void Start()
         {
-            if (levelManager == null)
-                levelManager = LevelManager.Instance;
+            if (PlayerCharacter.Instance == null)
+                Debug.LogError("PlayerCharacter is not initialized!");
+
+            if (LevelManager.Instance == null)
+                Debug.LogError("LevelManager is not initialized!");
+
+            if (Camera.main != null) _initialCameraTransform = Camera.main.transform;
         }
 
         [Button("Save Game")]
-        public void SaveGame(int levelID, LevelState levelState)
+        public void SaveGame()
         {
-            // Save player data
-            ES3.Save("playerPosition", PlayerCharacter.Instance.transform.position);
-            ES3.Save("playerHealth", PlayerCharacter.Instance.GetCurrentHealth());
+            if (playerCharacter == null || LevelManager.Instance == null)
+            {
+                Debug.LogError(
+                    "Missing references in SaveManager. Ensure PlayerCharacter and LevelManager are assigned.");
 
-            // Save the current level seed and dynamic state
-            ES3.Save("dungeonSeed_" + levelID, levelState.dungeonSeed); // Save seed as int
-            ES3.Save("levelState_" + levelID, levelState);              // Save level-specific data
+                return;
+            }
 
-            levelManager.currentLevelState = levelState;
+            // Simple test save
+            ES3.Save("playerPosition", playerCharacter.transform.position);
+            ES3.Save("cameraTransform", _initialCameraTransform);
+            ES3.Save("dungeonSeed", LevelManager.Instance.GetSeed());
+            SaveDungeonLevels();
 
-            Debug.Log("Game saved for level " + levelID);
+
+            Debug.Log("Game saved successfully!");
         }
 
-        [Button("Load Game")]
-        public void LoadGame(int levelID)
+        public void InitializedDungeonLevel(int? seed)
         {
-            if (ES3.FileExists("SaveFile.es3"))
+            LevelManager.Instance.GenerateLevel(seed);
+
+            SaveGame();
+        }
+
+
+        void SaveDungeonLevels()
+        {
+            // Save the list of DungeonLevel objects
+            ES3.Save("DungeonLevels", LevelManager.Instance.DungeonLevels);
+        }
+
+        void LoadDungeonLevels()
+        {
+            // Load the list of DungeonLevel objects
+            if (ES3.KeyExists("DungeonLevels"))
+                LevelManager.Instance.DungeonLevels = ES3.Load<List<DungeonLevel>>("DungeonLevels");
+            else
+                Debug.LogWarning("No saved data found!");
+        }
+
+
+        [Button("Load Game")]
+        public void LoadGame()
+        {
+            if (!ES3.KeyExists("playerPosition") || !ES3.KeyExists("dungeonSeed") || !ES3.KeyExists("DungeonLevels"))
             {
-                // Load player data
-                PlayerCharacter.Instance.transform.position = ES3.Load<Vector3>("playerPosition");
-                PlayerCharacter.Instance.HealthSystem.CurrentHealth = ES3.Load<float>("playerHealth");
+                Debug.LogWarning("No saved data found!");
+                return;
+            }
 
-                // Load level-specific data, including the dungeon seed
-                levelManager.currentLevelState = ES3.Load<LevelState>("levelState_" + levelID);
+            playerCharacter.transform.position = ES3.Load<Vector3>("playerPosition");
+            LevelManager.Instance.GenerateLevel(ES3.Load<int>("dungeonSeed"));
+            _initialCameraTransform.position = ES3.Load<Vector3>("cameraTransform");
+            LoadDungeonLevels();
 
-                // Reinitialize the random state using the loaded seed
-                Random.InitState(levelManager.currentLevelState.dungeonSeed);
 
-                Debug.Log("Game loaded for level " + levelID);
+            Debug.Log("Game loaded successfully!");
+        }
+
+        [Button("Delete Save")]
+        public void DeleteSave()
+        {
+            if (!ES3.KeyExists("playerPosition") || !ES3.KeyExists("dungeonSeed") || !ES3.KeyExists("DungeonLevels"))
+            {
+                Debug.LogWarning("Incomplete or missing save data");
+                return;
+            }
+
+            ES3.DeleteKey("playerPosition");
+            ES3.DeleteKey("dungeonSeed");
+            ES3.DeleteKey("DungeonLevels");
+            ES3.DeleteKey("cameraTransform");
+        }
+
+        [Button("Delete File")]
+        public void DeleteSaveFile()
+        {
+            ES3.DeleteFile();
+        }
+
+
+        [Button("List Saved Levels Dungeons")]
+        public void ListLevelsInSave()
+        {
+            if (ES3.KeyExists("DungeonLevels"))
+            {
+                var dungeonLevels = ES3.Load<List<DungeonLevel>>("DungeonLevels");
+
+                Debug.LogWarning("Hi");
+
+                foreach (var level in dungeonLevels) Debug.Log($"Level ID: {level.LevelID}, Seed: {level.Seed}");
             }
             else
             {
-                Debug.LogWarning("No save file found. Starting a new game.");
-                levelManager.GenerateNewLevel();
+                Debug.LogWarning("No saved data found!");
             }
-        }
-
-        public bool HasLevelData(int levelID)
-        {
-            var data = ES3.KeyExists("dungeonSeed_" + levelID) && ES3.KeyExists("levelState_" + levelID);
-            Debug.Log("Level data exists for level " + levelID + ": " + data);
-            return data;
-        }
-
-        public void StartNewGame()
-        {
-            // Initialize new game state
-            PlayerCharacter.Instance.ResetPlayer();
-            Random.InitState(System.Environment.TickCount);
-            Debug.Log("New game started!");
-        }
-
-        public int GetLevelSeed(int currentLevelID)
-        {
-            return ES3.Load<int>("dungeonSeed_" + currentLevelID); // Load the seed as an int
         }
     }
 }

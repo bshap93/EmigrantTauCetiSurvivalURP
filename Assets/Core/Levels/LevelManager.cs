@@ -1,21 +1,24 @@
-﻿using Core.SaveSystem.Scripts;
+﻿using System.Collections.Generic;
 using DunGen;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 namespace Core.Levels
 {
     public class LevelManager : MonoBehaviour
     {
-        public static LevelManager Instance;
-
+        public static LevelManager Instance { get; private set; }
         // UnityEvent for when the level is generated (does not require the DungeonGenerator parameter)
-        public UnityEvent OnLevelGenerated;
+        public UnityEvent onLevelGenerated;
 
         public DungeonGenerator dungeonGenerator; // Reference to DunGen's DungeonGenerator
         public int currentLevelID;
-        public LevelState currentLevelState;
+
+        [SerializeField] int dungeonSeed;
+
+        public List<DungeonLevel> DungeonLevels;
 
         void Awake()
         {
@@ -30,47 +33,60 @@ namespace Core.Levels
             }
         }
 
-        [Button("Generate or Load Level")]
-        public void GenerateOrLoadLevel()
+        void Start()
         {
-            if (SaveManager.Instance.HasLevelData(currentLevelID))
-                LoadLevel();
-            else
-                GenerateNewLevel();
+            DungeonLevels = new List<DungeonLevel>();
         }
 
+        public void SetSeed(int seed)
+        {
+            dungeonSeed = seed;
+        }
+
+        public int GetSeed()
+        {
+            return dungeonSeed;
+        }
+
+
         [Button("Generate New Level")]
-        public void GenerateNewLevel()
+        public void GenerateLevel(int? seed)
         {
             // Generate a new procedural level using DunGen
-            currentLevelState = new LevelState();
             // Set the seed for the dungeon generator
-            currentLevelState.dungeonSeed = Random.Range(0, int.MaxValue); // Create new seed
-            dungeonGenerator.Seed = currentLevelState.dungeonSeed;         // Set the seed
+            if (seed != null)
+                dungeonSeed = seed.Value;
+            else
+                dungeonSeed = Random.Range(0, int.MaxValue); // Create new seed
 
-            SaveManager.Instance.SaveGame(currentLevelID, currentLevelState);
+            dungeonGenerator.Seed = dungeonSeed; // Set the seed
+            currentLevelID++; // Increment the level ID
+
+            DungeonLevels.Add(new DungeonLevel(currentLevelID, dungeonSeed));
 
             // Subscribe to DunGen's OnGenerationComplete event
             dungeonGenerator.OnGenerationComplete += HandleDungeonGenerated;
 
+
             // Start generating the dungeon
             dungeonGenerator.Generate();
+
+            onLevelGenerated?.Invoke();
         }
 
-        [Button("Load Level")]
-        public void LoadLevel()
+
+        [Button("Remove Level with Seed")]
+        public void RemoveLevelWithSeed(int seed)
         {
-            SaveManager.Instance.LoadGame(currentLevelID);
-
-            // Retrieve the saved seed from the LevelState and set it to DunGen
-            dungeonGenerator.Seed = currentLevelState.dungeonSeed;
-
-            // Load level-specific data (DunGen can regenerate based on saved seed)
-            dungeonGenerator.OnGenerationComplete += HandleDungeonGenerated;
-
-            // Start generating the dungeon using DunGen
-            dungeonGenerator.Generate();
+            DungeonLevels.RemoveAll(x => x.Seed == seed);
         }
+
+        [Button("List Current Dungeon Levels")]
+        public void ListCurrentDungeonLevels()
+        {
+            foreach (var level in DungeonLevels) Debug.Log($"Level ID: {level.LevelID}, Seed: {level.Seed}");
+        }
+
 
         // Called when DunGen completes the dungeon generation
         void HandleDungeonGenerated(DungeonGenerator generator)
@@ -79,7 +95,7 @@ namespace Core.Levels
             dungeonGenerator.OnGenerationComplete -= HandleDungeonGenerated;
 
             // Invoke the custom UnityEvent for other listeners
-            OnLevelGenerated?.Invoke();
+            onLevelGenerated?.Invoke();
 
             Debug.Log("Dungeon generated, UnityEvent triggered.");
         }

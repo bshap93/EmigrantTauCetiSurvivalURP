@@ -1,4 +1,4 @@
-﻿using LevelGeneration.Rooms.Scripts;
+﻿using Environment.LevelGeneration.Rooms.Scripts;
 using UnityEngine;
 
 namespace Characters.Player.Managers.Scripts
@@ -14,7 +14,7 @@ namespace Characters.Player.Managers.Scripts
             if (RoomManager.Instance != null)
                 RoomManager.Instance.onRoomGeneration.AddListener(OnRoomGenerated);
             else
-                UnityEngine.Debug.LogError("Listener not added!");
+                Debug.LogError("Listener not added!");
         }
 
         // Match the correct signature
@@ -24,14 +24,14 @@ namespace Characters.Player.Managers.Scripts
             var startPoint = GameObject.Find(startPointName);
             if (startPoint != null)
             {
-                UnityEngine.Debug.Log("Start point found in the generated dungeon.");
+                Debug.Log("Start point found in the generated dungeon.");
                 // Move the player to the start point's position
                 player.transform.position = startPoint.transform.position;
                 player.transform.rotation = startPoint.transform.rotation;
             }
             else
             {
-                UnityEngine.Debug.LogWarning("Start point not found in the generated dungeon.");
+                Debug.LogWarning("Start point not found in the generated dungeon.");
             }
         }
     }
