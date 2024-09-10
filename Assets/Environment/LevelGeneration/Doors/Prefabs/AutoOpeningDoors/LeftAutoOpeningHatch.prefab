@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7060901288489461950}
   - component: {fileID: 7060901288490461822}
   - component: {fileID: 7060901288492495386}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: scifi-door-metal_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 7060901288489461944}
   - component: {fileID: 7060901288490461816}
   - component: {fileID: 7060901288492495387}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: scifi-door-metal_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 7060901288489461948}
   - component: {fileID: 7060901288490461820}
   - component: {fileID: 7060901288492495397}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: scifi-door-frame-metal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 3531386041733687312}
   - component: {fileID: 1718663009241540289}
   - component: {fileID: 1029899350663831499}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftAutoOpeningHatch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 8015159098692786333}
   - component: {fileID: 8007320619131225695}
   - component: {fileID: 8046488269960660645}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Floor_Small_Walkway_Endcap_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

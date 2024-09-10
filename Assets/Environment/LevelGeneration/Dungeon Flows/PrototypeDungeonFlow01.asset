@@ -74,7 +74,7 @@ MonoBehaviour:
   Lines:
   - Graph: {fileID: 11400000}
     DungeonArchetypes:
-    - {fileID: 11400000, guid: 96f0dfec3d0f14848b4e2c5681b83e96, type: 2}
+    - {fileID: 11400000, guid: 4e06dbd3193a8a3468ee179a88b88402, type: 2}
     Position: 0
     Length: 1
     Keys: []

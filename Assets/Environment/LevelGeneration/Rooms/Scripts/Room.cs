@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LevelGeneration.GenerationAssets.Tiles.BasicRooms.Scripts
+namespace Environment.LevelGeneration.Rooms.Scripts
 {
     public class Room : MonoBehaviour
     {

@@ -1,5 +1,4 @@
-﻿using LevelGeneration.GenerationAssets.Tiles.BasicRooms.Scripts;
-using Sirenix.Utilities;
+﻿using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +8,7 @@ namespace Environment.LevelGeneration.Rooms.Scripts
     {
         public Room[] rooms;
         public UnityEvent onRoomGeneration;
+        
 
         public static RoomManager Instance { get; set; }
         void Awake()
