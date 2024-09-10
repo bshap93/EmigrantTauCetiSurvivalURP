@@ -121,10 +121,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4542548655337612719}
   - component: {fileID: 5931666908659655558}
+  - component: {fileID: 4973870481940298455}
   - component: {fileID: 2702714331730169759}
   - component: {fileID: 2751857395565338091}
   - component: {fileID: 999053925013893843}
-  - component: {fileID: 4973870481940298455}
   - component: {fileID: 556781646401931944}
   m_Layer: 0
   m_Name: Player
@@ -170,6 +170,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.521935, y: 1.8697155, z: 0.52267456}
   m_Center: {x: 0.00000023841858, y: 0.9195677, z: -0.0041360855}
+--- !u!114 &4973870481940298455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153839185403758724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981fdc5a078d4beeba030616e285555a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!143 &2702714331730169759
 CharacterController:
   m_ObjectHideFlags: 0
@@ -225,18 +237,6 @@ MonoBehaviour:
   onDebugDealDamage:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4973870481940298455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4153839185403758724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 981fdc5a078d4beeba030616e285555a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &556781646401931944
 MonoBehaviour:
   m_ObjectHideFlags: 0
