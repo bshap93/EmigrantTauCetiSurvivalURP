@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Core.Cameras.InputHandlers
 {
-    public class BasicCameraMovementInputHandler : MonoBehaviour
+    public class PlayerCameraMovementInputHandler : MonoBehaviour
     {
         public CinemachineVirtualCamera virtualCamera;
         public Transform player;
@@ -14,6 +14,9 @@ namespace Core.Cameras.InputHandlers
         public float mouseInfluence = 2f;
         public float maxMouseOffset = 3f;
         public float deadZoneRadius = 50f;
+        public float rotateYAmount = 15f;
+        public float mouseSensitivity = 100f;
+        public bool invertYAxisRotation = false;
 
         Vector2 _initialMousePosition;
 
@@ -41,11 +44,20 @@ namespace Core.Cameras.InputHandlers
         {
             ICameraCommand rotateCommand = null;
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKey(KeyCode.E))
                 rotateCommand = new RotateClockwiseCommand();
-            else if (Input.GetKeyDown(KeyCode.E)) rotateCommand = new RotateCounterClockwiseCommand();
+            else if (Input.GetKey(KeyCode.Q)) rotateCommand = new RotateCounterClockwiseCommand();
 
-            rotateCommand?.Execute(virtualCamera);
+            if (Input.GetMouseButton(1)) // Right-click to rotate
+            {
+                var mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+
+                if (mouseX > 0)
+                    rotateCommand = new RotateClockwiseCommand();
+                else if (mouseX < 0) rotateCommand = new RotateCounterClockwiseCommand();
+            }
+
+            rotateCommand?.Execute(virtualCamera, rotateYAmount);
         }
 
         void HandleCameraMovement()
@@ -56,7 +68,7 @@ namespace Core.Cameras.InputHandlers
             var moveCommand = new MouseCameraMovementCommand(
                 mouseMovement, mouseInfluence, maxMouseOffset, deadZoneRadius);
 
-            moveCommand.Execute(virtualCamera);
+            moveCommand.Execute(virtualCamera, 0);
         }
     }
 }

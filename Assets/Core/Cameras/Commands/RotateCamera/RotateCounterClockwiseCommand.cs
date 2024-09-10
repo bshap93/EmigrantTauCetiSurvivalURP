@@ -6,13 +6,13 @@ namespace Core.Cameras.Commands.RotateCamera
 {
     public class RotateCounterClockwiseCommand : ICameraCommand
     {
-        public void Execute(CinemachineVirtualCamera virtualCamera)
+        public void Execute(CinemachineVirtualCamera virtualCamera, float value)
         {
             var initialYRotation = virtualCamera.transform.rotation.eulerAngles.y;
             var initialXRotation = virtualCamera.transform.rotation.eulerAngles.x;
             var initialZRotation = virtualCamera.transform.rotation.eulerAngles.z;
 
-            var targetYRotation = initialYRotation - 90f;
+            var targetYRotation = initialYRotation - value;
 
             // Rotate the virtual camera to the new rotation over 0.5 seconds using DOTween
             virtualCamera.transform.DORotate(

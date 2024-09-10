@@ -175,6 +175,9 @@ MonoBehaviour:
   mouseInfluence: 2
   maxMouseOffset: 6
   deadZoneRadius: 100
+  rotateYAmount: 15
+  mouseSensitivity: 100
+  invertYAxisRotation: 0
 --- !u!114 &176692169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,7 +599,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853345640}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc9a8729e87e17144bfbab73b3b5aa24, type: 3}
   m_Name: 
@@ -1601,7 +1604,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1522122806290774401, guid: 99917a7e1b675c248bbf0dbc83e86e08, type: 3}
       propertyPath: m_Name
-      value: RuntimeDungeon
+      value: PrototypeDungeonGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066621188242135136, guid: 99917a7e1b675c248bbf0dbc83e86e08, type: 3}
+      propertyPath: Generator.OverrideRepeatMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7236471892248163230, guid: 99917a7e1b675c248bbf0dbc83e86e08, type: 3}
       propertyPath: m_LocalPosition.x

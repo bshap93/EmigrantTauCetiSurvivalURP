@@ -4,6 +4,6 @@ namespace Core.Cameras.Commands
 {
     public interface ICameraCommand
     {
-        void Execute(CinemachineVirtualCamera virtualCamera);
+        void Execute(CinemachineVirtualCamera virtualCamera, float value);
     }
 }

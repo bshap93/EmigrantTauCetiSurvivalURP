@@ -19,7 +19,7 @@ namespace Core.Cameras.Commands.MoveCamera
             _deadZoneRadius = deadZoneRadius;
         }
 
-        public void Execute(CinemachineVirtualCamera virtualCamera)
+        public void Execute(CinemachineVirtualCamera virtualCamera, float _)
         {
             var cameraOffset = virtualCamera.GetComponent<CinemachineCameraOffset>();
             if (cameraOffset == null || _mouseMovement.magnitude <= _deadZoneRadius) return;
