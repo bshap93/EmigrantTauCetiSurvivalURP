@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Characters.InputHandlers.Scripts
 {
-    public class MovementInputHandler : MonoBehaviour
+    public class MovementManager : MonoBehaviour
     {
         // Reference to the player object
         public GameObject player;
@@ -24,7 +24,7 @@ namespace Characters.InputHandlers.Scripts
         MoveCommand _moveUpCommand;
 
         // Singleton instance
-        public static MovementInputHandler Instance { get; private set; }
+        public static MovementManager Instance { get; private set; }
 
         // Awake is called when the script instance is being loaded
         void Awake()
@@ -52,12 +52,6 @@ namespace Characters.InputHandlers.Scripts
             _moveRightCommand = new MoveRightCommand(mainCamera.transform, controller, walkSpeed);
         }
 
-        void Update()
-        {
-            // Handle player input
-            // HandleInput();
-        }
-
         public void ExecuteMoveUpCommand()
         {
             _moveUpCommand.Execute(player);
@@ -76,31 +70,6 @@ namespace Characters.InputHandlers.Scripts
         public void ExecuteMoveRightCommand()
         {
             _moveRightCommand.Execute(player);
-        }
-
-        public void ExecuteMoveCommand(Vector3 moveDirection)
-        {
-            if (moveDirection.z > 0)
-                _moveUpCommand.Execute(player);
-            else if (moveDirection.z < 0)
-                _moveDownCommand.Execute(player);
-            else if (moveDirection.x < 0)
-                _moveLeftCommand.Execute(player);
-            else if (moveDirection.x > 0) _moveRightCommand.Execute(player);
-        }
-
-        // Handle player input for movement
-        void HandleInput()
-        {
-            // Check for movement input
-            if (UnityEngine.Input.GetKey(KeyCode.W))
-                _moveUpCommand.Execute(player);
-
-            else if (UnityEngine.Input.GetKey(KeyCode.S))
-                _moveDownCommand.Execute(player);
-            else if (UnityEngine.Input.GetKey(KeyCode.A))
-                _moveLeftCommand.Execute(player);
-            else if (UnityEngine.Input.GetKey(KeyCode.D)) _moveRightCommand.Execute(player);
         }
     }
 }

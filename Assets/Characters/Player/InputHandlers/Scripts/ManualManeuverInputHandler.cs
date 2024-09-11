@@ -1,20 +1,21 @@
 ﻿using Characters.InputHandlers.Scripts;
-using Characters.Player.InputHandlers.Scripts;
+using Core.InputHandler.Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Characters.Player.Input.Scripts
+namespace Characters.Player.InputHandlers.Scripts
 {
-    public class ManualManeuverInputHandler : MonoBehaviour
+    public class ManualManeuverInputHandler : MonoBehaviour, IInputHandler
     {
-        [SerializeField] MovementInputHandler movementInputHandler;
+        [FormerlySerializedAs("movementInputHandler")] [SerializeField]
+        MovementManager movementManager;
         [FormerlySerializedAs("rotationInputHandler")] [SerializeField]
         PlayerRotationInputHandler playerRotationInputHandler;
 
 
         void Start()
         {
-            if (movementInputHandler == null) movementInputHandler = MovementInputHandler.Instance;
+            if (movementManager == null) movementManager = MovementManager.Instance;
 
             if (playerRotationInputHandler == null) playerRotationInputHandler = PlayerRotationInputHandler.Instance;
         }
@@ -24,31 +25,31 @@ namespace Characters.Player.Input.Scripts
             HandleInput();
         }
 
-        void HandleInput()
+        public void HandleInput()
         {
             // Handle player input for movement
-            if (UnityEngine.Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.W))
             {
-                movementInputHandler.ExecuteMoveUpCommand();
+                movementManager.ExecuteMoveUpCommand();
                 playerRotationInputHandler.ExecuteRotateUpCommand();
             }
 
-            if (UnityEngine.Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S))
             {
-                movementInputHandler.ExecuteMoveDownCommand();
+                movementManager.ExecuteMoveDownCommand();
                 playerRotationInputHandler.ExecuteRotateDownCommand();
             }
 
-            if (UnityEngine.Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A))
             {
-                movementInputHandler.ExecuteMoveLeftCommand();
+                movementManager.ExecuteMoveLeftCommand();
                 playerRotationInputHandler.ExecuteRotateLeftCommand();
             }
 
 
-            if (UnityEngine.Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D))
             {
-                movementInputHandler.ExecuteMoveRightCommand();
+                movementManager.ExecuteMoveRightCommand();
                 playerRotationInputHandler.ExecuteRotateRightCommand();
             }
         }

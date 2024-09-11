@@ -11,15 +11,6 @@ namespace Core.GameManager.Scripts
         PauseGameCommand _pauseGameCommand;
         ResumeGameCommand _resumeGameCommand;
 
-        public static GameInputHandler Instance { get; private set; }
-
-        void Awake()
-        {
-            if (Instance == null)
-                Instance = this;
-            else
-                Destroy(gameObject);
-        }
 
         void Start()
         {
