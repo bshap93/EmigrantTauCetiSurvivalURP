@@ -1,9 +1,9 @@
-﻿using LevelGeneration.Tiles.Doors.Scripts;
+﻿using Core.Utilities.Commands;
 using UnityEngine.AI;
 
 namespace Environment.LevelGeneration.Doors.Scripts.Commands.OpenClose
 {
-    public class CloseHatchCommand : IDoorCommand
+    public class CloseHatchCommand : ISimpleCommand
     {
         readonly AutoHatch _autoHatch;
 

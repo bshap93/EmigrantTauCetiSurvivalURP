@@ -4,24 +4,23 @@ using UnityEngine.Events;
 
 namespace Characters.Health.Scripts.Debugging
 {
-    public class ManuallyDamageCharacter : MonoBehaviour
+    public class CharacterDamageManager : MonoBehaviour
     {
-        // UnityEvent that the GameManager will subscribe to for dealing damage
-        public UnityEvent<float> onDebugDealDamage;
+        public UnityEvent<string, float> dealDamage;
 
         void Awake()
         {
             // Initialize the UnityEvent
-            if (onDebugDealDamage == null)
-                onDebugDealDamage = new UnityEvent<float>();
+            if (dealDamage == null)
+                dealDamage = new UnityEvent<string, float>();
         }
 
         // Button that triggers the UnityEvent
-        [Button("Deal Damage (Debug)")]
+        [Button("Manually Deal Damage (Debug)")]
         public void DebugDealDamage()
         {
             // Trigger the event, passing a damage value (e.g., 10)
-            onDebugDealDamage?.Invoke(10f);
+            dealDamage?.Invoke("Player", 10f);
         }
     }
 }

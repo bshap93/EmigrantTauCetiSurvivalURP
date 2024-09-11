@@ -37,7 +37,8 @@ namespace Core.GameManager.Scripts
         {
             _inGameConsoleManager = consoleManagerObject.GetComponent<InGameConsoleManager>();
 
-            PlayerStateController.Instance.HealthSystem = new HealthSystem(100, _inGameConsoleManager);
+            PlayerStateController.Instance.HealthSystem =
+                new HealthSystem("Player", 100, _inGameConsoleManager);
 
 
             _disableCursorCommand = new DisableCursorCommand();

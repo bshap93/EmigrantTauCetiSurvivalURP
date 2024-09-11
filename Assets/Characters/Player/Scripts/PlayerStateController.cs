@@ -12,8 +12,10 @@ namespace Characters.Player.Scripts
 {
     public class PlayerStateController : MonoBehaviour
     {
+        [FormerlySerializedAs("dealDamageToCharacter")]
+        [FormerlySerializedAs("manuallyDamageCharacter")]
         [FormerlySerializedAs("healthSystemDebug")]
-        public ManuallyDamageCharacter manuallyDamageCharacter;
+        public CharacterDamageManager characterDamageManager;
         DungenCharacter _dungenCharacter;
         Transform _initialOrientation;
 
@@ -43,8 +45,9 @@ namespace Characters.Player.Scripts
             _dungenCharacter = GetComponent<DungenCharacter>();
             _dungenCharacter.OnTileChanged += OnCharacterTileChanged;
             // This must be done before  GameManager
-            HealthSystem = new HealthSystem(100, UIManager.Instance.inGameConsoleManager);
-            manuallyDamageCharacter.onDebugDealDamage.AddListener(HandleDebugDamage);
+            HealthSystem = new HealthSystem("Player", 100, UIManager.Instance.inGameConsoleManager);
+            characterDamageManager.dealDamage.AddListener(HandleDamage);
+            UIManager.Instance.simpleTextOverlay.OnRestartCurrentLevel += ResetPlayer;
         }
 
         [Button("Reset Player")]
@@ -62,7 +65,7 @@ namespace Characters.Player.Scripts
         }
 
         // Handle debug damage
-        void HandleDebugDamage(float damage)
+        void HandleDamage(string character, float damage)
         {
             var dealDamageCommand = new DealDamageCommand();
             dealDamageCommand.Execute(Instance.HealthSystem, damage);

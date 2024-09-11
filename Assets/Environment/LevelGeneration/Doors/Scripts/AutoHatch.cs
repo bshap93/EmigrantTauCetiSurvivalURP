@@ -1,6 +1,6 @@
+using Core.Utilities.Commands;
 using DunGen;
 using Environment.LevelGeneration.Doors.Scripts.Commands.OpenClose;
-using LevelGeneration.Tiles.Doors.Scripts;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -23,7 +23,7 @@ namespace Environment.LevelGeneration.Doors.Scripts
 
         public Vector3 hatchRightOpenOffset = new(-2.5f, 0f, 0);
         public Vector3 hatchLeftOpenOffset = new(2.5f, 0f, 0);
-        IDoorCommand _closeCommand;
+        ISimpleCommand _closeCommand;
 
         float _currentFramePosition;
         DoorState _currentState = DoorState.Closed;
@@ -32,7 +32,7 @@ namespace Environment.LevelGeneration.Doors.Scripts
         Vector3 _hatchRightClosedPosition;
         NavMeshObstacle _navMeshObstacle;
 
-        IDoorCommand _openCommand;
+        ISimpleCommand _openCommand;
 
         // Start is called before the first frame update
         void Start()

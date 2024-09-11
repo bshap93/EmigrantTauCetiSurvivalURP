@@ -12,6 +12,7 @@ namespace Characters.Health.Scripts.Commands
 
             healthSystem.CurrentHealth -= value;
             healthSystem.OnHealthChanged.Invoke(healthSystem.CurrentHealth - value);
+            if (healthSystem.CurrentHealth <= 0) healthSystem.CharacterDied.Invoke(healthSystem.CharacterName);
         }
     }
 }

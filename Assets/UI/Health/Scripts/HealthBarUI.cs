@@ -18,8 +18,6 @@ namespace UI.Health.Scripts
             _healthSystem = PlayerStateController.Instance.HealthSystem; // Get the player's health system
             Debug.Log("HealthBarUI Awake");
 
-            // Subscribe to health change events
-            _healthSystem.OnHealthChanged.AddListener(UpdateHealthBar);
 
             // Initialize the health bar with the current health
             UpdateHealthBar(_healthSystem.CurrentHealth);
@@ -28,7 +26,6 @@ namespace UI.Health.Scripts
         void OnDestroy()
         {
             // Unsubscribe to avoid memory leaks
-            _healthSystem.OnHealthChanged.RemoveListener(UpdateHealthBar);
             GameManager.Instance.onSystemActivated.RemoveListener(OnSystemActivated);
         }
 

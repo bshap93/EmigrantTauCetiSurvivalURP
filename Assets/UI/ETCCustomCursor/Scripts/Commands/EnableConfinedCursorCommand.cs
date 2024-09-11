@@ -1,9 +1,9 @@
-﻿using Core.GameManager.Scripts.Commands;
+﻿using Core.Utilities.Commands;
 using UnityEngine;
 
 namespace UI.ETCCustomCursor.Scripts.Commands
 {
-    public class EnableConfinedCursorCommand : IGameManageCommand
+    public class EnableConfinedCursorCommand : ISimpleCommand
     {
         public void Execute()
         {

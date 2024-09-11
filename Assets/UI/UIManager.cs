@@ -3,17 +3,20 @@ using Core.GameManager.Scripts;
 using UI.ETCCustomCursor.Scripts;
 using UI.Health.Scripts;
 using UI.InGameConsole.Scripts;
+using UI.Menus.SimpleTextOverlay.Scripts;
 using UnityEngine;
 
 namespace UI
 {
     public class UIManager : MonoBehaviour
     {
-        public GameObject pauseOverlay;
+        [SerializeField] GameObject simpleTextOverlayGameObject;
         public GameInputHandler gameInputHandler;
         public string cursorName;
         public Vector2 cursorHotspot;
         public HealthBarUI healthBarUI;
+
+        public SimpleTextOverlay simpleTextOverlay;
 
         public InGameConsoleManager inGameConsoleManager;
         CustomCursor _customCursor;
@@ -34,6 +37,9 @@ namespace UI
 
         void Start()
         {
+            if (simpleTextOverlayGameObject == null)
+                simpleTextOverlay = simpleTextOverlayGameObject.GetComponent<SimpleTextOverlay>();
+
             // Create and set the custom cursor
             _customCursor = new CustomCursor(cursorName, cursorHotspot);
 
@@ -44,7 +50,10 @@ namespace UI
             PlayerStateController.Instance.HealthSystem.OnHealthChanged
                 .AddListener(OnHealthChanged);
 
-            pauseOverlay.SetActive(false);
+            PlayerStateController.Instance.HealthSystem.CharacterDied
+                .AddListener(OnDead);
+
+            simpleTextOverlayGameObject.SetActive(false);
         }
 
         void OnDestroy()
@@ -64,12 +73,20 @@ namespace UI
 
         void OnPauseGame()
         {
-            pauseOverlay.SetActive(true);
+            simpleTextOverlayGameObject.GetComponent<SimpleTextOverlay>()
+                .SetState(OverlayState.Paused);
         }
 
         void OnResumeGame()
         {
-            pauseOverlay.SetActive(false);
+            simpleTextOverlayGameObject.SetActive(false);
+        }
+
+        void OnDead(string character)
+        {
+            if (character != "Player") return;
+            simpleTextOverlayGameObject.GetComponent<SimpleTextOverlay>()
+                .SetState(OverlayState.Dead);
         }
     }
 }

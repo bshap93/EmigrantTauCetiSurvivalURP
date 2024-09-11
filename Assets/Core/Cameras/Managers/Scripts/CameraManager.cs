@@ -1,4 +1,7 @@
-﻿using Cinemachine;
+﻿using System;
+using Characters.Player.Scripts;
+using Cinemachine;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Core.Cameras.Managers.Scripts
@@ -31,6 +34,11 @@ namespace Core.Cameras.Managers.Scripts
             // SetActiveCamera(0);
         }
 
+        void Start()
+        {
+            PlayerStateController.Instance.characterDamageManager.dealDamage.AddListener(OnPlayerDamage);
+        }
+
         public void SetActiveCamera(CameraTypeEnum virtualCamera)
         {
             switch (virtualCamera)
@@ -46,9 +54,27 @@ namespace Core.Cameras.Managers.Scripts
                     break;
             }
         }
+
+        void OnPlayerDamage(string character, float damage)
+        {
+            // Camera shake effect
+            ShakeCamera(0.5f, 0.5f, 10, 90);
+        }
+
         public void SetActiveRoom(GameObject room)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        public void ShakeCamera(float duration, float strength, int vibrato, float randomness)
+        {
+            var cameraOffset = playerCamera.GetComponent<CinemachineCameraOffset>();
+            // Use DOTween to shake the camera offset position for a shaking effect
+            DOTween.Shake(
+                    () => cameraOffset.m_Offset,
+                    x => cameraOffset.m_Offset = x,
+                    duration, strength, vibrato, randomness)
+                .SetEase(Ease.OutQuad);
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Core.Utilities.Commands;
+using UnityEngine;
 
 namespace Core.GameManager.Scripts.Commands
 {
-    public class ResumeGameCommand : IGameManageCommand
+    public class ResumeGameCommand : ISimpleCommand
     {
         public void Execute()
         {

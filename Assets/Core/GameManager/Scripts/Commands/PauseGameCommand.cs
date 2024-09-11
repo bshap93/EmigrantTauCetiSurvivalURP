@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Core.Utilities.Commands;
+using UnityEngine;
 
 namespace Core.GameManager.Scripts.Commands
 {
-    public class PauseGameCommand : IGameManageCommand
+    public class PauseGameCommand : ISimpleCommand
     {
         public void Execute()
         {
