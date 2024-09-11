@@ -1,5 +1,5 @@
-﻿using Characters.Player.InputHandlers.Scripts;
-using Characters.Scripts.Input.Scripts.Movement.Scripts;
+﻿using Characters.InputHandlers.Scripts;
+using Characters.Player.InputHandlers.Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 

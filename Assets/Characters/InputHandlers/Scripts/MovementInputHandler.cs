@@ -1,7 +1,7 @@
 ﻿using Characters.Scripts.Commands.Move;
 using UnityEngine;
 
-namespace Characters.Scripts.Input.Scripts.Movement.Scripts
+namespace Characters.InputHandlers.Scripts
 {
     public class MovementInputHandler : MonoBehaviour
     {
