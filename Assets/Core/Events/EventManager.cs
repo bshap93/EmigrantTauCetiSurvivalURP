@@ -1,22 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Core.Events
 {
     public class EventManager : MonoBehaviour
     {
-        public static EventManager Instance { get; private set; }
+        // Pausing the game loop and entering a pause state overlay
+        public static readonly UnityEvent EPauseGame = new();
+        // Resuming the game loop and exiting the pause state overlay
+        public static readonly UnityEvent EResumeGame = new();
+        // Character has died, enter a game over state overlay
+        public static readonly UnityEvent<string> ENotifyCharacterDied = new();
+        // Health has changed for a character by a certain amount
+        public static readonly UnityEvent<float> EChangeHealth = new();
+        // Damage has been dealt to a character by name by a certain amount
+        public static readonly UnityEvent<string, float> EDealDamage = new();
 
-
-        void Awake()
-        {
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        public static readonly UnityEvent ERestartCurrentLevel = new();
     }
 }

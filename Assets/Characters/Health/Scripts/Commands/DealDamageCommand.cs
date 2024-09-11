@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Core.Events;
+using UnityEngine;
 
 namespace Characters.Health.Scripts.Commands
 {
@@ -11,8 +12,8 @@ namespace Characters.Health.Scripts.Commands
                 "Health drops from " + healthSystem.CurrentHealth + " to " + (healthSystem.CurrentHealth - value));
 
             healthSystem.CurrentHealth -= value;
-            healthSystem.OnHealthChanged.Invoke(healthSystem.CurrentHealth - value);
-            if (healthSystem.CurrentHealth <= 0) healthSystem.CharacterDied.Invoke(healthSystem.CharacterName);
+            EventManager.EChangeHealth.Invoke(healthSystem.CurrentHealth - value);
+            if (healthSystem.CurrentHealth <= 0) EventManager.ENotifyCharacterDied.Invoke(healthSystem.CharacterName);
         }
     }
 }

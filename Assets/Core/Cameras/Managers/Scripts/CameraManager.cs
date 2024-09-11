@@ -1,6 +1,6 @@
 ﻿using System;
-using Characters.Player.Scripts;
 using Cinemachine;
+using Core.Events;
 using DG.Tweening;
 using UnityEngine;
 
@@ -36,7 +36,7 @@ namespace Core.Cameras.Managers.Scripts
 
         void Start()
         {
-            PlayerStateController.Instance.characterDamageManager.dealDamage.AddListener(OnPlayerDamage);
+            EventManager.EDealDamage.AddListener(OnPlayerDamage);
         }
 
         public void SetActiveCamera(CameraTypeEnum virtualCamera)

@@ -1,5 +1,5 @@
-﻿using UI.InGameConsole.Scripts;
-using UnityEngine.Events;
+﻿using Core.Events;
+using UI.InGameConsole.Scripts;
 
 namespace Characters.Health.Scripts
 {
@@ -8,11 +8,10 @@ namespace Characters.Health.Scripts
         // Event to notify observers when health changes
 
         readonly InGameConsoleManager _inGameConsoleManager;
-        public readonly UnityEvent<string> CharacterDied;
         public readonly string CharacterName;
 
         // Event to notify all subscribers when health changes
-        public readonly UnityEvent<float> OnHealthChanged;
+
 
         // Updated constructor to include ConsoleManager
         public HealthSystem(string characterName, float maxHealth, InGameConsoleManager inGameConsoleManager)
@@ -22,18 +21,16 @@ namespace Characters.Health.Scripts
             CurrentHealth = MaxHealth;
             _inGameConsoleManager = inGameConsoleManager; // Store reference to console manager
 
-            OnHealthChanged = new UnityEvent<float>();
-            CharacterDied = new UnityEvent<string>();
 
             // Subscribe to the OnHealthChanged event
-            OnHealthChanged.AddListener(OnHealthChangedHandler);
+            EventManager.EChangeHealth.AddListener(OnHealthChangedHandler);
         }
         public float MaxHealth { get; }
         public float CurrentHealth { get; set; }
 
         void OnHealthChangedHandler(float health)
         {
-            if (CurrentHealth <= 0) CharacterDied.Invoke(CharacterName);
+            if (CurrentHealth <= 0) EventManager.ENotifyCharacterDied.Invoke(CharacterName);
         }
     }
 }

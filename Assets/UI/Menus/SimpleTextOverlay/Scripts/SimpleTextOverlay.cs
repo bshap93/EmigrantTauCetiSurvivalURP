@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Core.Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,7 +30,6 @@ namespace UI.Menus.SimpleTextOverlay.Scripts
             _buttonText = _button.GetComponentInChildren<TMP_Text>();
             _button.onClick.AddListener(OnButtonClick);
         }
-        public event Action OnRestartCurrentLevel;
 
         public void SetState(OverlayState overlayState)
         {
@@ -74,7 +73,7 @@ namespace UI.Menus.SimpleTextOverlay.Scripts
             else if (_currentOverlayState == OverlayState.Dead)
             {
                 SetState(OverlayState.Normal);
-                OnRestartCurrentLevel?.Invoke();
+                EventManager.ERestartCurrentLevel?.Invoke();
             }
         }
     }

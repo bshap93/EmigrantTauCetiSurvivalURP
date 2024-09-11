@@ -1,6 +1,7 @@
 ﻿using Characters.Health.Scripts;
 using Characters.Health.Scripts.Commands;
 using Characters.Health.Scripts.Debugging;
+using Core.Events;
 using DunGen;
 using Plugins.DunGen.Code;
 using Sirenix.OdinInspector;
@@ -12,15 +13,15 @@ namespace Characters.Player.Scripts
 {
     public class PlayerStateController : MonoBehaviour
     {
+        [FormerlySerializedAs("characterDamageManager")]
         [FormerlySerializedAs("dealDamageToCharacter")]
         [FormerlySerializedAs("manuallyDamageCharacter")]
         [FormerlySerializedAs("healthSystemDebug")]
-        public CharacterDamageManager characterDamageManager;
+        public EditorButtonDealDamage editorButtonDealDamage;
         DungenCharacter _dungenCharacter;
         Transform _initialOrientation;
 
         public HealthSystem HealthSystem;
-        // public InventorySystem InventorySystem;
 
         public static PlayerStateController Instance { get; private set; }
 
@@ -46,8 +47,8 @@ namespace Characters.Player.Scripts
             _dungenCharacter.OnTileChanged += OnCharacterTileChanged;
             // This must be done before  GameManager
             HealthSystem = new HealthSystem("Player", 100, UIManager.Instance.inGameConsoleManager);
-            characterDamageManager.dealDamage.AddListener(HandleDamage);
-            UIManager.Instance.simpleTextOverlay.OnRestartCurrentLevel += ResetPlayer;
+            EventManager.EDealDamage.AddListener(HandleDamage);
+            EventManager.ERestartCurrentLevel.AddListener(ResetPlayer);
         }
 
         [Button("Reset Player")]

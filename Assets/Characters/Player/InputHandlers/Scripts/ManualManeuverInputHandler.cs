@@ -1,16 +1,13 @@
 ﻿using Characters.InputHandlers.Scripts;
 using Core.InputHandler.Scripts;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Characters.Player.InputHandlers.Scripts
 {
     public class ManualManeuverInputHandler : MonoBehaviour, IInputHandler
     {
-        [FormerlySerializedAs("movementInputHandler")] [SerializeField]
-        MovementManager movementManager;
-        [FormerlySerializedAs("rotationInputHandler")] [SerializeField]
-        PlayerRotationInputHandler playerRotationInputHandler;
+        [SerializeField] MovementManager movementManager;
+        [SerializeField] PlayerRotationInputHandler playerRotationInputHandler;
 
 
         void Start()

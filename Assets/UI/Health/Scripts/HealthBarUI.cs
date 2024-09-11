@@ -1,5 +1,6 @@
 ﻿using Characters.Health.Scripts;
 using Characters.Player.Scripts;
+using Core.Events;
 using Core.GameManager.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,7 +38,7 @@ namespace UI.Health.Scripts
                 Debug.Log("Health system activated");
                 _healthSystem = PlayerStateController.Instance.HealthSystem; // Get the player's health system
                 // Subscribe to health change events
-                _healthSystem.OnHealthChanged.AddListener(UpdateHealthBar);
+                EventManager.EChangeHealth.AddListener(UpdateHealthBar);
 
                 // Initialize the health bar with the current health
                 UpdateHealthBar(_healthSystem.CurrentHealth);

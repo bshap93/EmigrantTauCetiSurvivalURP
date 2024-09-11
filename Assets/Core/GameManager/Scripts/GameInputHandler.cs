@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Core.Events;
 using Core.GameManager.Scripts.Commands;
 using Core.InputHandler.Scripts;
 using UnityEngine;
@@ -30,19 +30,18 @@ namespace Core.GameManager.Scripts
                 if (isPaused)
                 {
                     _resumeGameCommand.Execute();
-                    ResumeGame?.Invoke();
+                    EventManager.EResumeGame?.Invoke();
                     isPaused = false;
                 }
                 else
                 {
                     _pauseGameCommand.Execute();
-                    PauseGame?.Invoke();
+                    EventManager.EPauseGame?.Invoke();
                     isPaused = true;
                 }
             }
         }
-        public event Action ResumeGame;
-        public event Action PauseGame;
+
 
         void OnPauseGame()
         {

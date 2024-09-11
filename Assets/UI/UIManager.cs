@@ -1,4 +1,4 @@
-﻿using Characters.Player.Scripts;
+﻿using Core.Events;
 using Core.GameManager.Scripts;
 using UI.ETCCustomCursor.Scripts;
 using UI.Health.Scripts;
@@ -44,13 +44,13 @@ namespace UI
             _customCursor = new CustomCursor(cursorName, cursorHotspot);
 
 
-            gameInputHandler.PauseGame += OnPauseGame;
-            gameInputHandler.ResumeGame += OnResumeGame;
+            EventManager.EResumeGame.AddListener(OnResumeGame);
+            EventManager.EPauseGame.AddListener(OnPauseGame);
 
-            PlayerStateController.Instance.HealthSystem.OnHealthChanged
+            EventManager.EChangeHealth
                 .AddListener(OnHealthChanged);
 
-            PlayerStateController.Instance.HealthSystem.CharacterDied
+            EventManager.ENotifyCharacterDied
                 .AddListener(OnDead);
 
             simpleTextOverlayGameObject.SetActive(false);
@@ -58,10 +58,13 @@ namespace UI
 
         void OnDestroy()
         {
-            gameInputHandler.PauseGame -= OnPauseGame;
-            gameInputHandler.ResumeGame -= OnResumeGame;
+            EventManager.EResumeGame.RemoveListener(OnResumeGame);
+            EventManager.EPauseGame.RemoveListener(OnPauseGame);
 
-            PlayerStateController.Instance.HealthSystem.OnHealthChanged
+            EventManager.ENotifyCharacterDied
+                .RemoveListener(OnDead);
+
+            EventManager.EChangeHealth
                 .RemoveListener(OnHealthChanged);
         }
 
