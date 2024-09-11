@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Core.GameManager.Scripts.Commands;
+using UnityEngine;
 
-namespace Core.GameManager.Scripts.Commands
+namespace UI.ETCCustomCursor.Scripts.Commands
 {
     public class DisableCursorCommand : IGameManageCommand
     {
