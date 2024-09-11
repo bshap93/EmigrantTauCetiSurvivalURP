@@ -3,6 +3,7 @@ using Core.Cameras.Commands;
 using Core.Cameras.Commands.MoveCamera;
 using Core.Cameras.Commands.RotateCamera;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Core.Cameras.InputHandlers
 {
@@ -16,7 +17,9 @@ namespace Core.Cameras.InputHandlers
         public float deadZoneRadius = 50f;
         public float rotateYAmount = 15f;
         public float mouseSensitivity = 100f;
-        public bool invertYAxisRotation = false;
+        public bool invertYAxisRotation;
+        [FormerlySerializedAs("_isCameraLocked")] [SerializeField]
+        bool isCameraLocked;
 
         Vector2 _initialMousePosition;
 
@@ -29,6 +32,7 @@ namespace Core.Cameras.InputHandlers
             InitialXRotation = virtualCamera.transform.rotation.eulerAngles.x;
             InitialZRotation = virtualCamera.transform.rotation.eulerAngles.z;
             CurrentYRotation = virtualCamera.transform.rotation.eulerAngles.y;
+
 
             var screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
             _initialMousePosition = screenCenter;
@@ -62,13 +66,16 @@ namespace Core.Cameras.InputHandlers
 
         void HandleCameraMovement()
         {
-            Vector2 currentMousePosition = Input.mousePosition;
-            var mouseMovement = currentMousePosition - _initialMousePosition;
+            if (!isCameraLocked)
+            {
+                Vector2 currentMousePosition = Input.mousePosition;
+                var mouseMovement = currentMousePosition - _initialMousePosition;
 
-            var moveCommand = new MouseCameraMovementCommand(
-                mouseMovement, mouseInfluence, maxMouseOffset, deadZoneRadius);
+                var moveCommand = new MouseCameraMovementCommand(
+                    mouseMovement, mouseInfluence, maxMouseOffset, deadZoneRadius);
 
-            moveCommand.Execute(virtualCamera, 0);
+                moveCommand.Execute(virtualCamera, 0);
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Characters.Player.InputHandlers.Scripts;
-using UI.InGameConsole.Scripts;
+using UI;
 using UnityEngine;
 
 namespace Environment.Interactables.Scripts
@@ -37,7 +37,8 @@ namespace Environment.Interactables.Scripts
 
         public void InteractSimple()
         {
-            InGameConsoleManager.Instance.LogMessage("Interacting with object: " + objectName);
+            UIManager.Instance.inGameConsoleManager
+                .LogMessage("Interacting with object: " + objectName);
         }
     }
 }

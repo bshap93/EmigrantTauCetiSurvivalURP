@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace Characters.Health.Scripts.Debugging
 {
-    public class HealthSystemDebug : MonoBehaviour
+    public class ManuallyDamageCharacter : MonoBehaviour
     {
         // UnityEvent that the GameManager will subscribe to for dealing damage
         public UnityEvent<float> onDebugDealDamage;

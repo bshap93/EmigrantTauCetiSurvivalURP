@@ -25,7 +25,7 @@ namespace Core.GameManager.Scripts
         }
         public void HandleInput()
         {
-            if (Input.GetKey(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (isPaused)
                 {

@@ -1,11 +1,13 @@
-﻿namespace Characters.Health.Scripts.Commands
+﻿using UnityEngine;
+
+namespace Characters.Health.Scripts.Commands
 {
     public class DealDamageCommand : IHealthSystemCommand
 
     {
         public void Execute(HealthSystem healthSystem, float value)
         {
-            UnityEngine.Debug.Log(
+            Debug.Log(
                 "Health drops from " + healthSystem.CurrentHealth + " to " + (healthSystem.CurrentHealth - value));
 
             healthSystem.CurrentHealth -= value;

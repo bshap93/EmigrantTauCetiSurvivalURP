@@ -15,8 +15,8 @@ namespace UI.Health.Scripts
         void Start()
         {
             GameManager.Instance.onSystemActivated.AddListener(OnSystemActivated);
-            _healthSystem = PlayerCharacter.Instance.HealthSystem; // Get the player's health system
-            UnityEngine.Debug.Log("HealthBarUI Awake");
+            _healthSystem = PlayerStateController.Instance.HealthSystem; // Get the player's health system
+            Debug.Log("HealthBarUI Awake");
 
             // Subscribe to health change events
             _healthSystem.OnHealthChanged.AddListener(UpdateHealthBar);
@@ -37,8 +37,8 @@ namespace UI.Health.Scripts
         {
             if (systemName == "Health")
             {
-                UnityEngine.Debug.Log("Health system activated");
-                _healthSystem = PlayerCharacter.Instance.HealthSystem; // Get the player's health system
+                Debug.Log("Health system activated");
+                _healthSystem = PlayerStateController.Instance.HealthSystem; // Get the player's health system
                 // Subscribe to health change events
                 _healthSystem.OnHealthChanged.AddListener(UpdateHealthBar);
 
@@ -48,7 +48,7 @@ namespace UI.Health.Scripts
         }
 
         // Method to update the health bar fill amount
-        void UpdateHealthBar(float currentHealth)
+        public void UpdateHealthBar(float currentHealth)
         {
             // Calculate the health percentage and update the fill amount
             var healthPercent = currentHealth / _healthSystem.MaxHealth;

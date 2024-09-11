@@ -7,7 +7,7 @@ namespace Core.GameManager.Scripts.Commands
         public void Execute()
         {
             // puaseMenuUI.SetActive(true);
-            Time.timeScale = 0f;
+            Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }

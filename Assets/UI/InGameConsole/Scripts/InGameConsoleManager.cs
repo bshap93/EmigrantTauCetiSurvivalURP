@@ -1,30 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.InGameConsole.Scripts
 {
+    [Serializable]
     public class InGameConsoleManager : MonoBehaviour
     {
         const int MaxMessages = 100; // Limit the number of messages displayed
         public TMP_Text consoleText; // Reference to the UI Text element (or TMP_Text for TextMeshPro)
         public ScrollRect scrollRect; // Reference to the ScrollRect to allow scrolling through messages
         readonly Queue<string> _messageQueue = new(); // Stores messages for the console
-        public static InGameConsoleManager Instance { get; private set; } // Singleton instance of the console manager
 
-        void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
 
         // Method to add a message to the console
         public void LogMessage(string message)

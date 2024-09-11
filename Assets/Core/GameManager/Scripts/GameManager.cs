@@ -1,6 +1,4 @@
 using Characters.Health.Scripts;
-using Characters.Health.Scripts.Commands;
-using Characters.Health.Scripts.Debugging;
 using Characters.Player.Scripts;
 using Core.SaveSystem.Scripts;
 using UI.ETCCustomCursor.Scripts.Commands;
@@ -13,7 +11,6 @@ namespace Core.GameManager.Scripts
     public class GameManager : MonoBehaviour
     {
         public GameObject consoleManagerObject;
-        public HealthSystemDebug healthSystemDebug;
 
 
         public UnityEvent<string> onSystemActivated;
@@ -40,7 +37,7 @@ namespace Core.GameManager.Scripts
         {
             _inGameConsoleManager = consoleManagerObject.GetComponent<InGameConsoleManager>();
 
-            PlayerCharacter.Instance.HealthSystem = new HealthSystem(100, _inGameConsoleManager);
+            PlayerStateController.Instance.HealthSystem = new HealthSystem(100, _inGameConsoleManager);
 
 
             _disableCursorCommand = new DisableCursorCommand();
@@ -49,22 +46,7 @@ namespace Core.GameManager.Scripts
             _disableCursorCommand.Execute();
 
 
-            healthSystemDebug.onDebugDealDamage.AddListener(HandleDebugDamage);
-
             saveManager.InitializedDungeonLevel(null);
-        }
-
-
-        void UpdateUI()
-        {
-        }
-
-
-        // Handle debug damage
-        void HandleDebugDamage(float damage)
-        {
-            var dealDamageCommand = new DealDamageCommand();
-            dealDamageCommand.Execute(PlayerCharacter.Instance.HealthSystem, damage);
         }
     }
 }
