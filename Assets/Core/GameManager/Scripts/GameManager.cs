@@ -2,6 +2,7 @@ using Characters.Health.Scripts;
 using Characters.Health.Scripts.Commands;
 using Characters.Health.Scripts.Debugging;
 using Characters.Player.Scripts;
+using Core.GameManager.Scripts.Commands;
 using Core.SaveSystem.Scripts;
 using UI.InGameConsole.Scripts;
 using UnityEngine;
@@ -20,6 +21,9 @@ namespace Core.GameManager.Scripts
         public SaveManager saveManager;
 
         InGameConsoleManager _inGameConsoleManager;
+        
+        EnableCursorCommand _enableCursorCommand;
+        DisableCursorCommand _disableCursorCommand;
         public static GameManager Instance { get; private set; }
 
 
@@ -39,8 +43,13 @@ namespace Core.GameManager.Scripts
             PlayerCharacter.Instance.HealthSystem = new HealthSystem(100, _inGameConsoleManager);
 
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+             _disableCursorCommand= new DisableCursorCommand();
+             _enableCursorCommand = new EnableCursorCommand();
+             
+             _disableCursorCommand.Execute();
+            
+
+
 
             healthSystemDebug.onDebugDealDamage.AddListener(HandleDebugDamage);
 

@@ -1,5 +1,6 @@
 ﻿using Characters.Health.Scripts;
 using DunGen;
+using Plugins.DunGen.Code;
 using UI.InGameConsole.Scripts;
 using UnityEngine;
 

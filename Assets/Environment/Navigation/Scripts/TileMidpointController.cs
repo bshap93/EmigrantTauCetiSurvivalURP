@@ -1,4 +1,5 @@
 ﻿using DunGen;
+using Plugins.DunGen.Code;
 using UnityEngine;
 
 namespace Environment.Navigation.Scripts

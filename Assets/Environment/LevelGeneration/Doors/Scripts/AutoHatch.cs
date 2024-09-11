@@ -21,8 +21,8 @@ namespace Environment.LevelGeneration.Doors.Scripts
         public GameObject hatchRightHalf;
         public GameObject hatchLeftHalf;
 
-        public Vector3 hatchRightOpenOffset = new(0, 2.5f, 0);
-        public Vector3 hatchLeftOpenOffset = new(0, 2.5f, 0);
+        public Vector3 hatchRightOpenOffset = new(-2.5f, 0f, 0);
+        public Vector3 hatchLeftOpenOffset = new(2.5f, 0f, 0);
         IDoorCommand _closeCommand;
 
         float _currentFramePosition;
