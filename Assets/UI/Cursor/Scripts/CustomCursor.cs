@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 
-public class CustomCursor : MonoBehaviour
+public class CustomCursor 
 {
     // Reference to the texture for the custom cursor
     public Texture2D cursorTexture;
 
     // The point on the cursor image that will act as the "click" point (hotspot)
-    public Vector2 cursorHotspot = Vector2.zero;
+    public Vector2 cursorHotspot;
 
-    // Start is called before the first frame update
-    void Start()
+    public CustomCursor(string cursorTexturePath, Vector2 cursorHotspot)
     {
+        cursorTexture = Resources.Load<Texture2D>(cursorTexturePath);
+        this.cursorHotspot = cursorHotspot;
         SetCustomCursor();
     }
+
+
 
     void SetCustomCursor()
     {
