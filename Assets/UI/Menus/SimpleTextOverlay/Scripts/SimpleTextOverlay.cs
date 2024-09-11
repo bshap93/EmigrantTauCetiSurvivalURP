@@ -1,6 +1,7 @@
 ﻿using Core.Events;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI.Menus.SimpleTextOverlay.Scripts
@@ -14,21 +15,20 @@ namespace UI.Menus.SimpleTextOverlay.Scripts
 
     public class SimpleTextOverlay : MonoBehaviour
     {
-        Button _button;
-        TMP_Text _buttonText;
+        [FormerlySerializedAs("_overlayPanel")]
+        public Image overlayPanel;
+        public TMP_Text overlayText;
+        public Button button;
+        public TMP_Text buttonText;
         OverlayState _currentOverlayState;
-        Image _overlayPanel;
-        TMP_Text _overlayText;
 
 
         void Start()
         {
-            _overlayPanel = GetComponent<Image>();
-            _overlayText = GetComponentInChildren<TMP_Text>();
             _currentOverlayState = OverlayState.Normal;
-            _button = GetComponentInChildren<Button>();
-            _buttonText = _button.GetComponentInChildren<TMP_Text>();
-            _button.onClick.AddListener(OnButtonClick);
+            button = GetComponentInChildren<Button>();
+            buttonText = button.GetComponentInChildren<TMP_Text>();
+            button.onClick.AddListener(OnButtonClick);
         }
 
         public void SetState(OverlayState overlayState)
@@ -50,21 +50,21 @@ namespace UI.Menus.SimpleTextOverlay.Scripts
 
         void SetOverlayPause()
         {
-            _overlayPanel.color = new Color(0, 0, 0, 0.5f);
-            _overlayText.text = "Paused";
-            _buttonText.text = "Resume";
+            overlayPanel.color = new Color(0, 0, 0, 0.5f);
+            overlayText.text = "Paused";
+            buttonText.text = "Resume";
             gameObject.SetActive(true);
         }
 
         void SetOverlayDead()
         {
-            _overlayPanel.color = new Color(0, 0, 0, 0.5f);
-            _overlayText.text = "You Died";
-            _buttonText.text = "Restart";
+            overlayPanel.color = new Color(0, 0, 0, 0.5f);
+            overlayText.text = "You Died";
+            buttonText.text = "Restart";
             gameObject.SetActive(true);
         }
 
-        void OnButtonClick()
+        public void OnButtonClick()
         {
             if (_currentOverlayState == OverlayState.Paused)
             {

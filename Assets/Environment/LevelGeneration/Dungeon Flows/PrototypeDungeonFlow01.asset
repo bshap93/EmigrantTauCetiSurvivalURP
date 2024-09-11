@@ -16,7 +16,7 @@ MonoBehaviour:
   globalPropRanges_obsolete: []
   Length:
     Min: 5
-    Max: 10
+    Max: 15
   BranchMode: 0
   BranchCount:
     Min: 1
@@ -26,6 +26,18 @@ MonoBehaviour:
   DoorwayConnectionChance: 0
   RestrictConnectionToSameSection: 0
   TileInjectionRules:
+  - TileSet: {fileID: 11400000, guid: 4247d6f7512daa14ea930a215a113988, type: 2}
+    NormalizedPathDepth:
+      Min: 0
+      Max: 2
+    NormalizedBranchDepth:
+      Min: 0
+      Max: 2
+    CanAppearOnMainPath: 0
+    CanAppearOnBranchPath: 1
+    IsRequired: 1
+    IsLocked: 0
+    LockID: 0
   - TileSet: {fileID: 11400000, guid: a1874b7307b250649a0b0c9c41de732f, type: 2}
     NormalizedPathDepth:
       Min: 0
@@ -34,7 +46,7 @@ MonoBehaviour:
       Min: 0
       Max: 1
     CanAppearOnMainPath: 1
-    CanAppearOnBranchPath: 1
+    CanAppearOnBranchPath: 0
     IsRequired: 1
     IsLocked: 0
     LockID: 0
@@ -74,7 +86,7 @@ MonoBehaviour:
   Lines:
   - Graph: {fileID: 11400000}
     DungeonArchetypes:
-    - {fileID: 11400000, guid: 4e06dbd3193a8a3468ee179a88b88402, type: 2}
+    - {fileID: 11400000, guid: 96f0dfec3d0f14848b4e2c5681b83e96, type: 2}
     Position: 0
     Length: 1
     Keys: []

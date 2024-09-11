@@ -659,7 +659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoorPrefabPriority: 0
   ConnectorPrefabWeights:
-  - GameObject: {fileID: 6504750741630392634, guid: d6da48e3e62882f4daf26cc63b2fe6bc, type: 3}
+  - GameObject: {fileID: 8454859758035897599, guid: f0e784a62681b784091efe35cb2f96b1, type: 3}
     Weight: 1
   BlockerPrefabWeights: []
   AvoidRotatingDoorPrefab: 0
@@ -1379,7 +1379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoorPrefabPriority: 0
   ConnectorPrefabWeights:
-  - GameObject: {fileID: 7070999392867751107, guid: 71cb80c2bb19084448f3bb576cf63ade, type: 3}
+  - GameObject: {fileID: 8454859758035897599, guid: f0e784a62681b784091efe35cb2f96b1, type: 3}
     Weight: 1
   BlockerPrefabWeights: []
   AvoidRotatingDoorPrefab: 0
@@ -1571,6 +1571,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Bld_Wall_06 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1483115249047146, guid: 558510d06d2efb441bb5308b93053816, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4301472655502874, guid: 558510d06d2efb441bb5308b93053816, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.42
@@ -1632,6 +1636,10 @@ PrefabInstance:
     - target: {fileID: 1483115249047146, guid: 558510d06d2efb441bb5308b93053816, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Wall_06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483115249047146, guid: 558510d06d2efb441bb5308b93053816, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4301472655502874, guid: 558510d06d2efb441bb5308b93053816, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1695,6 +1703,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Bld_Wall_06 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1483115249047146, guid: 558510d06d2efb441bb5308b93053816, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4301472655502874, guid: 558510d06d2efb441bb5308b93053816, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.25
@@ -1756,6 +1768,10 @@ PrefabInstance:
     - target: {fileID: 1483115249047146, guid: 558510d06d2efb441bb5308b93053816, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Wall_06 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483115249047146, guid: 558510d06d2efb441bb5308b93053816, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4301472655502874, guid: 558510d06d2efb441bb5308b93053816, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1819,6 +1835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Bld_Wall_Corner_Pillar_Wide_02
       objectReference: {fileID: 0}
+    - target: {fileID: 1942694496232874, guid: ef060faaf19f15448a77b1693bbddacb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4722440610062964, guid: ef060faaf19f15448a77b1693bbddacb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.814002
@@ -1880,6 +1900,10 @@ PrefabInstance:
     - target: {fileID: 1483115249047146, guid: 558510d06d2efb441bb5308b93053816, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Wall_06 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483115249047146, guid: 558510d06d2efb441bb5308b93053816, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4301472655502874, guid: 558510d06d2efb441bb5308b93053816, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1943,6 +1967,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Bld_Wall_Corner_Pillar_03
       objectReference: {fileID: 0}
+    - target: {fileID: 1723804482511282, guid: 0d6e6a9e581971743976c8857bad4a6c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4817218056904648, guid: 0d6e6a9e581971743976c8857bad4a6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.359
@@ -2004,6 +2032,10 @@ PrefabInstance:
     - target: {fileID: 1483115249047146, guid: 558510d06d2efb441bb5308b93053816, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Wall_06 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483115249047146, guid: 558510d06d2efb441bb5308b93053816, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4301472655502874, guid: 558510d06d2efb441bb5308b93053816, type: 3}
       propertyPath: m_LocalPosition.x

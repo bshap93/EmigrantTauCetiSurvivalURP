@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 181393680921759605}
   - component: {fileID: 181268841088582285}
   - component: {fileID: 181280216649815141}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 597521732373462926}
   - component: {fileID: 598236863585268342}
   - component: {fileID: 597478103737066654}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,7 +718,7 @@ GameObject:
   - component: {fileID: 1145844987805187673}
   - component: {fileID: 1144288592490869665}
   - component: {fileID: 1145781280192488777}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -870,7 +870,7 @@ GameObject:
   - component: {fileID: 1337697953603386970}
   - component: {fileID: 1339815013752435618}
   - component: {fileID: 1337583114287555914}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1201,7 +1201,7 @@ GameObject:
   - component: {fileID: 8494270651198100182}
   - component: {fileID: 5730713850029321545}
   - component: {fileID: 3765143899752020177}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UpWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2319,7 +2319,7 @@ GameObject:
   - component: {fileID: 4957646785353773831}
   - component: {fileID: 4956940260918918911}
   - component: {fileID: 4957724931954452503}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2646,7 +2646,7 @@ GameObject:
   - component: {fileID: 6587883184848580461}
   - component: {fileID: 6587450421626938005}
   - component: {fileID: 6587821949429970045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2798,7 +2798,7 @@ GameObject:
   - component: {fileID: 174343155196619578}
   - component: {fileID: 8181381991902933813}
   - component: {fileID: 9130399467864477479}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2950,7 +2950,7 @@ GameObject:
   - component: {fileID: 6684223002927912049}
   - component: {fileID: 6684660108095019401}
   - component: {fileID: 6684283694236241761}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3650,7 +3650,7 @@ GameObject:
   - component: {fileID: 8066494659799139552}
   - component: {fileID: 8067774029455477016}
   - component: {fileID: 8066382155985035248}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3802,7 +3802,7 @@ GameObject:
   - component: {fileID: 353974548281984031}
   - component: {fileID: 8324665040382003577}
   - component: {fileID: 5096710403096220591}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4272,9 +4272,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3555865302520631450}
     m_Modifications:
+    - target: {fileID: 1611269573585266, guid: 2b58d0b3fe7ca6a42bc23d936b7f83bc, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1734237436760426, guid: 2b58d0b3fe7ca6a42bc23d936b7f83bc, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Wall_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734237436760426, guid: 2b58d0b3fe7ca6a42bc23d936b7f83bc, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4538084039755730, guid: 2b58d0b3fe7ca6a42bc23d936b7f83bc, type: 3}
       propertyPath: m_LocalPosition.x

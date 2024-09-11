@@ -1458,7 +1458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoorPrefabPriority: 0
   ConnectorPrefabWeights:
-  - GameObject: {fileID: 7060901288492463294, guid: cd4cd78efa3c6de4fab4719f9a403898, type: 3}
+  - GameObject: {fileID: 8454859758035897599, guid: f0e784a62681b784091efe35cb2f96b1, type: 3}
     Weight: 1
   BlockerPrefabWeights: []
   AvoidRotatingDoorPrefab: 0
@@ -2533,7 +2533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoorPrefabPriority: 0
   ConnectorPrefabWeights:
-  - GameObject: {fileID: 7060901288492463294, guid: cd4cd78efa3c6de4fab4719f9a403898, type: 3}
+  - GameObject: {fileID: 8454859758035897599, guid: f0e784a62681b784091efe35cb2f96b1, type: 3}
     Weight: 1
   BlockerPrefabWeights: []
   AvoidRotatingDoorPrefab: 0
@@ -4524,7 +4524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoorPrefabPriority: 0
   ConnectorPrefabWeights:
-  - GameObject: {fileID: 6504750741630392634, guid: d6da48e3e62882f4daf26cc63b2fe6bc, type: 3}
+  - GameObject: {fileID: 8454859758035897599, guid: f0e784a62681b784091efe35cb2f96b1, type: 3}
     Weight: 1
   BlockerPrefabWeights: []
   AvoidRotatingDoorPrefab: 0
@@ -4763,7 +4763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoorPrefabPriority: 0
   ConnectorPrefabWeights:
-  - GameObject: {fileID: 6504750741630392634, guid: d6da48e3e62882f4daf26cc63b2fe6bc, type: 3}
+  - GameObject: {fileID: 8454859758035897599, guid: f0e784a62681b784091efe35cb2f96b1, type: 3}
     Weight: 1
   BlockerPrefabWeights: []
   AvoidRotatingDoorPrefab: 0

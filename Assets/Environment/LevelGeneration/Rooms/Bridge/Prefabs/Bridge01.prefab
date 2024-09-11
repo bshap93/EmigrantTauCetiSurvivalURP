@@ -657,7 +657,7 @@ GameObject:
   - component: {fileID: 6248818303048342289}
   - component: {fileID: 1564514078372989367}
   - component: {fileID: 5418085710725012763}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1019,7 +1019,7 @@ GameObject:
   - component: {fileID: 285714794523113692}
   - component: {fileID: 2653303140558044392}
   - component: {fileID: 4444810509128644010}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Bridge_Rear_Wall_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1552,7 +1552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985add12ee4836e40b7241671b1d892c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fogWar: {fileID: 0}
+  fogOfWar: {fileID: 0}
   visibility: 0
   additionalRadius: 0
 --- !u!1 &5942607621036759151

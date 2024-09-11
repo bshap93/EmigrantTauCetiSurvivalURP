@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4db6514a2e4e194bbd1c6bdae54f388, type: 3}
-  m_Name: Engineering
+  m_Name: BranchCap
   m_EditorClassIdentifier: 
   TileWeights:
     Weights:
-    - Value: {fileID: 3661458767550621996, guid: 183c40ca7749d514a8bc34fa404b8153, type: 3}
+    - Value: {fileID: 3661458767550621996, guid: 50e17858a37c4694dbfd9e14de772910, type: 3}
       MainPathWeight: 1
       BranchPathWeight: 1
       DepthWeightScale:

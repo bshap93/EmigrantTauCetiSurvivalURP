@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 181393680921759605}
   - component: {fileID: 181268841088582285}
   - component: {fileID: 181280216649815141}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 597521732373462926}
   - component: {fileID: 598236863585268342}
   - component: {fileID: 597478103737066654}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,7 +718,7 @@ GameObject:
   - component: {fileID: 3471613148757450761}
   - component: {fileID: 6551005957593041218}
   - component: {fileID: 8220092714435921830}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1022,7 +1022,7 @@ GameObject:
   - component: {fileID: 1337697953603386970}
   - component: {fileID: 1339815013752435618}
   - component: {fileID: 1337583114287555914}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1358,7 +1358,7 @@ GameObject:
   - component: {fileID: 8494270651198100182}
   - component: {fileID: 5730713850029321545}
   - component: {fileID: 3765143899752020177}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UpWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2175,7 +2175,7 @@ GameObject:
   - component: {fileID: 4359932996033294869}
   - component: {fileID: 2497834270406923451}
   - component: {fileID: 6622763279316244591}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2744,7 +2744,7 @@ GameObject:
   - component: {fileID: 4957646785353773831}
   - component: {fileID: 4956940260918918911}
   - component: {fileID: 4957724931954452503}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3328,7 +3328,7 @@ GameObject:
   - component: {fileID: 174343155196619578}
   - component: {fileID: 8181381991902933813}
   - component: {fileID: 9130399467864477479}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3480,7 +3480,7 @@ GameObject:
   - component: {fileID: 6684223002927912049}
   - component: {fileID: 6684660108095019401}
   - component: {fileID: 6684283694236241761}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4052,7 +4052,7 @@ GameObject:
   - component: {fileID: 5018763963459519082}
   - component: {fileID: 3735793049810245123}
   - component: {fileID: 3232319892552031282}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4469,7 +4469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoorPrefabPriority: 0
   ConnectorPrefabWeights:
-  - GameObject: {fileID: 7070999392867751107, guid: 71cb80c2bb19084448f3bb576cf63ade, type: 3}
+  - GameObject: {fileID: 8454859758035897599, guid: f0e784a62681b784091efe35cb2f96b1, type: 3}
     Weight: 1
   BlockerPrefabWeights: []
   AvoidRotatingDoorPrefab: 0
@@ -4504,7 +4504,7 @@ GameObject:
   - component: {fileID: 8066494659799139552}
   - component: {fileID: 8067774029455477016}
   - component: {fileID: 8066382155985035248}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4656,7 +4656,7 @@ GameObject:
   - component: {fileID: 353974548281984031}
   - component: {fileID: 8324665040382003577}
   - component: {fileID: 5096710403096220591}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5064,7 +5064,7 @@ GameObject:
   - component: {fileID: 2943120645804847830}
   - component: {fileID: 5954659471994384762}
   - component: {fileID: 8220968780596458842}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Wall_02 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5829,6 +5829,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Bld_Wall_05 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1559522738338180, guid: df662df82e46b874b9d59f720516dd43, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4642117726106736, guid: df662df82e46b874b9d59f720516dd43, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.96993
@@ -6046,6 +6050,10 @@ PrefabInstance:
     - target: {fileID: 1559522738338180, guid: df662df82e46b874b9d59f720516dd43, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Wall_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1559522738338180, guid: df662df82e46b874b9d59f720516dd43, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4642117726106736, guid: df662df82e46b874b9d59f720516dd43, type: 3}
       propertyPath: m_LocalPosition.x
