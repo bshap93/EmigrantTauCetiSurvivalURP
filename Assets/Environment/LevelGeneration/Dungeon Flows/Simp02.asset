@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e228b45736a8cf4ea000616e628a4dd, type: 3}
-  m_Name: PrototypeDungeonFlow01
+  m_Name: Simp02
   m_EditorClassIdentifier: 
   globalPropGroupID_obsolete: 
   globalPropRanges_obsolete: []
   Length:
     Min: 5
-    Max: 15
+    Max: 10
   BranchMode: 0
   BranchCount:
     Min: 1
@@ -32,10 +32,6 @@ MonoBehaviour:
       id: 1
     TagB:
       id: 1
-  - TagA:
-      id: 2
-    TagB:
-      id: 2
   BranchTagPruneMode: 0
   BranchPruneTags:
   - id: 2
@@ -52,7 +48,7 @@ MonoBehaviour:
     LockPlacement: 0
   - Graph: {fileID: 11400000}
     TileSets:
-    - {fileID: 11400000, guid: 06b255746cc297447833278e0276e132, type: 2}
+    - {fileID: 11400000, guid: 19b8e5d29d1e8934089a5299525f8bd0, type: 2}
     NodeType: 2
     Position: 1
     Label: Goal
@@ -62,7 +58,7 @@ MonoBehaviour:
   Lines:
   - Graph: {fileID: 11400000}
     DungeonArchetypes:
-    - {fileID: 11400000, guid: 96f0dfec3d0f14848b4e2c5681b83e96, type: 2}
+    - {fileID: 11400000, guid: 2bced1effee95c9438a627e2a7e844a7, type: 2}
     Position: 0
     Length: 1
     Keys: []
