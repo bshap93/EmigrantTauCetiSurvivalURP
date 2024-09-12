@@ -9,16 +9,18 @@ namespace Core.Levels
 {
     public class LevelManager : MonoBehaviour
     {
-        public static LevelManager Instance { get; private set; }
         // UnityEvent for when the level is generated (does not require the DungeonGenerator parameter)
         public UnityEvent onLevelGenerated;
 
-        public DungeonGenerator dungeonGenerator; // Reference to DunGen's DungeonGenerator
+        public RuntimeDungeon runtimeDungeon;
         public int currentLevelID;
 
         [SerializeField] int dungeonSeed;
 
+        DungeonGenerator _dungeonGenerator; // Reference to DunGen's DungeonGenerator
+
         public List<DungeonLevel> DungeonLevels;
+        public static LevelManager Instance { get; private set; }
 
         void Awake()
         {
@@ -36,6 +38,7 @@ namespace Core.Levels
         void Start()
         {
             DungeonLevels = new List<DungeonLevel>();
+            if (runtimeDungeon != null) _dungeonGenerator = runtimeDungeon.Generator;
         }
 
         public void SetSeed(int seed)
@@ -59,17 +62,17 @@ namespace Core.Levels
             else
                 dungeonSeed = Random.Range(0, int.MaxValue); // Create new seed
 
-            dungeonGenerator.Seed = dungeonSeed; // Set the seed
+            _dungeonGenerator.Seed = dungeonSeed; // Set the seed
             currentLevelID++; // Increment the level ID
 
             DungeonLevels.Add(new DungeonLevel(currentLevelID, dungeonSeed));
 
             // Subscribe to DunGen's OnGenerationComplete event
-            dungeonGenerator.OnGenerationComplete += HandleDungeonGenerated;
+            _dungeonGenerator.OnGenerationComplete += HandleDungeonGenerated;
 
 
             // Start generating the dungeon
-            dungeonGenerator.Generate();
+            _dungeonGenerator.Generate();
 
             onLevelGenerated?.Invoke();
         }
@@ -92,7 +95,7 @@ namespace Core.Levels
         void HandleDungeonGenerated(DungeonGenerator generator)
         {
             // Unsubscribe to avoid multiple triggers
-            dungeonGenerator.OnGenerationComplete -= HandleDungeonGenerated;
+            _dungeonGenerator.OnGenerationComplete -= HandleDungeonGenerated;
 
             // Invoke the custom UnityEvent for other listeners
             onLevelGenerated?.Invoke();

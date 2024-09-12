@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Simp02A
   m_EditorClassIdentifier: 
   TileSets:
-  - {fileID: 11400000, guid: f863fa31c311b81448e768216a252513, type: 2}
+  - {fileID: 11400000, guid: 54ccef47be657e7469b1723ed0aeb678, type: 2}
+  - {fileID: 11400000, guid: cb3fb94148626c148a2b7c10c59cab27, type: 2}
   BranchStartTileSets: []
   BranchStartType: 0
-  BranchCapTileSets: []
-  BranchCapType: 0
+  BranchCapTileSets:
+  - {fileID: 11400000, guid: d26e6b0b7e138094f906a3b234e228fd, type: 2}
+  BranchCapType: 1
   BranchingDepth:
     Min: 2
     Max: 4

@@ -10,36 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e228b45736a8cf4ea000616e628a4dd, type: 3}
-  m_Name: Simp02
+  m_Name: DeadSimp01
   m_EditorClassIdentifier: 
   globalPropGroupID_obsolete: 
   globalPropRanges_obsolete: []
   Length:
-    Min: 2
-    Max: 4
-  BranchMode: 0
+    Min: 4
+    Max: 8
+  BranchMode: 1
   BranchCount:
-    Min: 1
-    Max: 5
+    Min: 2
+    Max: 3
   GlobalProps: []
   KeyManager: {fileID: 0}
-  DoorwayConnectionChance: 0
+  DoorwayConnectionChance: 0.507
   RestrictConnectionToSameSection: 0
   TileInjectionRules: []
-  TileTagConnectionMode: 1
+  TileTagConnectionMode: 0
   TileConnectionTags:
   - TagA:
       id: 1
     TagB:
-      id: 1
+      id: 0
   BranchTagPruneMode: 0
   BranchPruneTags:
-  - id: 2
   - id: 1
   Nodes:
   - Graph: {fileID: 11400000}
     TileSets:
-    - {fileID: 11400000, guid: 8234a975f769d1645a58ea1c10844486, type: 2}
+    - {fileID: 11400000, guid: a67fafc92af6e494795e4cd9c73b277b, type: 2}
     NodeType: 1
     Position: 0
     Label: Start
@@ -48,7 +47,7 @@ MonoBehaviour:
     LockPlacement: 0
   - Graph: {fileID: 11400000}
     TileSets:
-    - {fileID: 11400000, guid: 19b8e5d29d1e8934089a5299525f8bd0, type: 2}
+    - {fileID: 11400000, guid: 4247d6f7512daa14ea930a215a113988, type: 2}
     NodeType: 2
     Position: 1
     Label: Goal

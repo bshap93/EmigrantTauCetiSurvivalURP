@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 7849647533766424636}
   - component: {fileID: 7366468080636793263}
   m_Layer: 0
-  m_Name: ShortestCorridor
+  m_Name: SimpShortCorridorFirst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1637,9 +1637,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Bld_Roof_Exterior_02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1519261098859136, guid: e29a3df3f6723dd4b909931095a948ad, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4762358776938796, guid: e29a3df3f6723dd4b909931095a948ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.34
+      value: -19.09
       objectReference: {fileID: 0}
     - target: {fileID: 4762358776938796, guid: e29a3df3f6723dd4b909931095a948ad, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1699,9 +1703,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Bld_Roof_Exterior_02
       objectReference: {fileID: 0}
+    - target: {fileID: 1519261098859136, guid: e29a3df3f6723dd4b909931095a948ad, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4762358776938796, guid: e29a3df3f6723dd4b909931095a948ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.33
+      value: -9.58
       objectReference: {fileID: 0}
     - target: {fileID: 4762358776938796, guid: e29a3df3f6723dd4b909931095a948ad, type: 3}
       propertyPath: m_LocalPosition.y
