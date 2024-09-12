@@ -39,9 +39,6 @@ namespace Core.SaveSystem.Scripts
             ES3.Save("cameraTransform", _initialCameraTransform);
             ES3.Save("dungeonSeed", LevelManager.Instance.GetSeed());
             SaveDungeonLevels();
-
-
-            Debug.Log("Game saved successfully!");
         }
 
         public void InitializedDungeonLevel(int? seed)

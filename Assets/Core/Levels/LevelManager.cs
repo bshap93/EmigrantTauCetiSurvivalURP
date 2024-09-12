@@ -100,7 +100,6 @@ namespace Core.Levels
             // Invoke the custom UnityEvent for other listeners
             onLevelGenerated?.Invoke();
 
-            Debug.Log("Dungeon generated, UnityEvent triggered.");
         }
     }
 }

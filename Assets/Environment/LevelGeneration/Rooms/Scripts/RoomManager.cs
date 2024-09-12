@@ -8,7 +8,7 @@ namespace Environment.LevelGeneration.Rooms.Scripts
     {
         public Room[] rooms;
         public UnityEvent onRoomGeneration;
-        
+
 
         public static RoomManager Instance { get; set; }
         void Awake()
@@ -41,8 +41,6 @@ namespace Environment.LevelGeneration.Rooms.Scripts
             // If rooms are found, stop calling Update
             if (!rooms.IsNullOrEmpty())
             {
-                Debug.Log("Rooms found");
-
                 // Disable Update by setting the enabled property to false
                 enabled = false; // Disables the Update method from running again
                 onRoomGeneration.Invoke();

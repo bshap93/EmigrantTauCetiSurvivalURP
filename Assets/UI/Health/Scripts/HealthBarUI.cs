@@ -17,7 +17,6 @@ namespace UI.Health.Scripts
         {
             GameManager.Instance.onSystemActivated.AddListener(OnSystemActivated);
             _healthSystem = PlayerStateController.Instance.HealthSystem; // Get the player's health system
-            Debug.Log("HealthBarUI Awake");
 
 
             // Initialize the health bar with the current health

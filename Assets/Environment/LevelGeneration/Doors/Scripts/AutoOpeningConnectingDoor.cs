@@ -1,12 +1,13 @@
-using Core.Utilities.Commands;
 using DunGen;
+using Environment.Interactables.Openable.Scripts;
 using Environment.LevelGeneration.Doors.Scripts.Commands.OpenClose;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Environment.LevelGeneration.Doors.Scripts
 {
-    public class AutoHatch : MonoBehaviour
+    public class AutoOpeningConnectingDoor : OpenableObject
+
     {
         public enum DoorState
         {
@@ -17,22 +18,19 @@ namespace Environment.LevelGeneration.Doors.Scripts
         }
 
 
-        public float speed = 3.0f;
         public GameObject hatchRightHalf;
         public GameObject hatchLeftHalf;
 
-        public Vector3 hatchRightOpenOffset = new(-2.5f, 0f, 0);
-        public Vector3 hatchLeftOpenOffset = new(2.5f, 0f, 0);
-        ISimpleCommand _closeCommand;
+        public Vector3 hatchRightOpenOffset = new(-1f, 0f, 0);
+        public Vector3 hatchLeftOpenOffset = new(1f, 0f, 0);
 
         float _currentFramePosition;
-        DoorState _currentState = DoorState.Closed;
+        OpenableState _currentState = OpenableState.Closed;
         Door _doorComponent;
         Vector3 _hatchLeftClosedPosition;
         Vector3 _hatchRightClosedPosition;
         NavMeshObstacle _navMeshObstacle;
 
-        ISimpleCommand _openCommand;
 
         // Start is called before the first frame update
         void Start()
@@ -44,45 +42,44 @@ namespace Environment.LevelGeneration.Doors.Scripts
 
             _navMeshObstacle.carving = true;
 
-            _openCommand = new OpenHatchCommand(this, _navMeshObstacle);
-            _closeCommand = new CloseHatchCommand(this, _navMeshObstacle);
+            OpenCommand = new OpenHatchCommand(this, _navMeshObstacle);
+            CloseCommand = new CloseHatchCommand(this, _navMeshObstacle);
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (_currentState == DoorState.Opening || _currentState == DoorState.Closing) MoveHatch();
+            if (_currentState == OpenableState.Opening || _currentState == OpenableState.Closing) MoveObject();
         }
-
-        void OnTriggerEnter(Collider other)
+        public void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
             {
                 var playerController = other.GetComponent<CharacterController>();
                 if (playerController == null) return;
 
-                _openCommand.Execute();
+                OpenCommand.Execute();
             }
         }
-
-        void OnTriggerExit(Collider other)
+        public void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Player"))
             {
                 var playerController = other.GetComponent<CharacterController>();
                 if (playerController == null) return;
 
-                _closeCommand.Execute();
+                CloseCommand.Execute();
             }
         }
 
-        void MoveHatch()
+
+        public override void MoveObject()
         {
             var hatchLeftOpenPosition = _hatchLeftClosedPosition + hatchLeftOpenOffset;
             var hatchRightOpenPosition = _hatchRightClosedPosition + hatchRightOpenOffset;
 
             var frameOffset = speed * Time.deltaTime;
-            if (_currentState == DoorState.Closing)
+            if (_currentState == OpenableState.Closing)
                 frameOffset *= -1;
 
             _currentFramePosition += frameOffset;
@@ -97,19 +94,20 @@ namespace Environment.LevelGeneration.Doors.Scripts
             // Update state when finished
             if (Mathf.Approximately(_currentFramePosition, 1.0f))
             {
-                _currentState = DoorState.Open;
+                _currentState = OpenableState.Open;
             }
             else if (Mathf.Approximately(_currentFramePosition, 0))
             {
-                _currentState = DoorState.Closed;
+                _currentState = OpenableState.Closed;
                 _doorComponent.IsOpen = false;
             }
         }
 
-        public void SetState(DoorState newState)
+
+        public override void SetState(OpenableState newState)
         {
             _currentState = newState;
-            if (newState == DoorState.Opening) _doorComponent.IsOpen = true;
+            if (newState == OpenableState.Opening) _doorComponent.IsOpen = true;
         }
     }
 }

@@ -24,7 +24,6 @@ namespace Characters.Player.Managers.Scripts
             var startPoint = GameObject.Find(startPointName);
             if (startPoint != null)
             {
-                Debug.Log("Start point found in the generated dungeon.");
                 // Move the player to the start point's position
                 player.transform.position = startPoint.transform.position;
                 player.transform.rotation = startPoint.transform.rotation;

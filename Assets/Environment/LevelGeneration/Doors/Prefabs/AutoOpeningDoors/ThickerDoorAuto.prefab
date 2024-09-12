@@ -329,8 +329,8 @@ GameObject:
   - component: {fileID: 5692452399234985091}
   - component: {fileID: 5558814721085379494}
   - component: {fileID: 5005645422337425252}
-  - component: {fileID: 9165359578669864217}
   - component: {fileID: 8946024874601147014}
+  - component: {fileID: 7848941969696027826}
   m_Layer: 7
   m_Name: ThickerDoorAuto
   m_TagString: Untagged
@@ -396,23 +396,6 @@ MonoBehaviour:
   TileB: {fileID: 0}
   dontCullBehind: 0
   isOpen: 0
---- !u!114 &9165359578669864217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8454859758035897599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b9ce72f7e44e94bb3b79a1fcab7fb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  hatchRightHalf: {fileID: 6918261059419849087}
-  hatchLeftHalf: {fileID: 6738898161063047157}
-  hatchRightOpenOffset: {x: -1, y: 0, z: 0}
-  hatchLeftOpenOffset: {x: 1, y: 0, z: 0}
 --- !u!208 &8946024874601147014
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -423,9 +406,26 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 1.01, y: 1.23, z: 0.5}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.96, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &7848941969696027826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8454859758035897599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f755a0a9edc8d4a8076d0c7eb55f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  hatchRightHalf: {fileID: 6918261059419849087}
+  hatchLeftHalf: {fileID: 6738898161063047157}
+  hatchRightOpenOffset: {x: -1, y: 0, z: 0}
+  hatchLeftOpenOffset: {x: 1, y: 0, z: 0}
