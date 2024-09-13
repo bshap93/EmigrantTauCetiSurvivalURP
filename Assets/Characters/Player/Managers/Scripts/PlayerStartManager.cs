@@ -1,4 +1,5 @@
-﻿using Environment.LevelGeneration.Rooms.Scripts;
+﻿using Core.Events;
+using Environment.LevelGeneration.Rooms.Scripts;
 using UnityEngine;
 
 namespace Characters.Player.Managers.Scripts
@@ -12,7 +13,7 @@ namespace Characters.Player.Managers.Scripts
         void Start()
         {
             if (RoomManager.Instance != null)
-                RoomManager.Instance.onRoomGeneration.AddListener(OnRoomGenerated);
+                EventManager.EOnRoomGeneration.AddListener(OnRoomGenerated);
             else
                 Debug.LogError("Listener not added!");
         }

@@ -22,15 +22,12 @@ namespace Environment.Interactables.Chests.Scripts
         Vector3 _chestLidClosedPosition;
         Vector3 _chestLidClosedRotation;
 
-        float _currentFramePosition;
-
-        OpenableState _currentState = OpenableState.Closed;
 
         void Start()
         {
             _chestLidClosedPosition = chestLid.transform.localPosition;
             _chestLidClosedRotation = chestLid.transform.localEulerAngles;
-            _currentState = OpenableState.Closed;
+            CurrentState = OpenableState.Closed;
             OpenCommand = new OpenChestCommand(this);
             CloseCommand = new CloseChestCommand(this);
         }
@@ -38,7 +35,7 @@ namespace Environment.Interactables.Chests.Scripts
         // Update is called once per frame
         void Update()
         {
-            if (_currentState == OpenableState.Opening || _currentState == OpenableState.Closing) MoveObject();
+            if (CurrentState == OpenableState.Opening || CurrentState == OpenableState.Closing) MoveObject();
         }
 
         void OnTriggerEnter(Collider other)
@@ -71,28 +68,28 @@ namespace Environment.Interactables.Chests.Scripts
             var chestLidOpenRotation = _chestLidClosedRotation + chestLidOpenRotationOffset;
 
             var frameOffset = speed * Time.deltaTime;
-            if (_currentState == OpenableState.Closing)
+            if (CurrentState == OpenableState.Closing)
                 frameOffset *= -1;
 
-            _currentFramePosition += frameOffset;
-            _currentFramePosition = Mathf.Clamp(_currentFramePosition, 0, 1);
+            CurrentFramePosition += frameOffset;
+            CurrentFramePosition = Mathf.Clamp(CurrentFramePosition, 0, 1);
 
             chestLid.transform.localPosition = Vector3.Lerp(
-                _chestLidClosedPosition, chestLidOpenPosition, _currentFramePosition);
+                _chestLidClosedPosition, chestLidOpenPosition, CurrentFramePosition);
 
             chestLid.transform.localRotation = Quaternion.Lerp(
                 Quaternion.Euler(_chestLidClosedRotation), Quaternion.Euler(chestLidOpenRotation),
-                _currentFramePosition);
+                CurrentFramePosition);
 
 
             // Update state when finished
-            if (Mathf.Approximately(_currentFramePosition, 1.0f))
-                _currentState = OpenableState.Open;
-            else if (Mathf.Approximately(_currentFramePosition, 0)) _currentState = OpenableState.Closed;
+            if (Mathf.Approximately(CurrentFramePosition, 1.0f))
+                CurrentState = OpenableState.Open;
+            else if (Mathf.Approximately(CurrentFramePosition, 0)) CurrentState = OpenableState.Closed;
         }
         public override void SetState(OpenableState newState)
         {
-            _currentState = newState;
+            CurrentState = newState;
         }
     }
 }

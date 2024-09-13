@@ -19,7 +19,8 @@ namespace Environment.Navigation.Scripts
         {
             // Use Dotween to move the midpoint to the new tile's position
 
-            _tileMidpoint = newTile.transform;
+            // _tileMidpoint = newTile.transform;
+            Debug.Log("Character moved to a new tile!");
         }
     }
 }

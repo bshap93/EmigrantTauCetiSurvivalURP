@@ -2,7 +2,6 @@ using DunGen;
 using Environment.Interactables.Openable.Scripts;
 using Environment.LevelGeneration.Doors.Scripts.Commands.OpenClose;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Environment.LevelGeneration.Doors.Scripts
 {
@@ -29,7 +28,6 @@ namespace Environment.LevelGeneration.Doors.Scripts
         Door _doorComponent;
         Vector3 _hatchLeftClosedPosition;
         Vector3 _hatchRightClosedPosition;
-        NavMeshObstacle _navMeshObstacle;
 
 
         // Start is called before the first frame update
@@ -38,12 +36,10 @@ namespace Environment.LevelGeneration.Doors.Scripts
             _doorComponent = GetComponent<Door>();
             _hatchLeftClosedPosition = hatchLeftHalf.transform.localPosition;
             _hatchRightClosedPosition = hatchRightHalf.transform.localPosition;
-            _navMeshObstacle = GetComponent<NavMeshObstacle>();
 
-            _navMeshObstacle.carving = true;
 
-            OpenCommand = new OpenHatchCommand(this, _navMeshObstacle);
-            CloseCommand = new CloseHatchCommand(this, _navMeshObstacle);
+            OpenCommand = new OpenHatchCommand(this);
+            CloseCommand = new CloseHatchCommand(this);
         }
 
         // Update is called once per frame

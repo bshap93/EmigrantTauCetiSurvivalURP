@@ -17,5 +17,8 @@ namespace Core.Events
         public static readonly UnityEvent<string, float> EDealDamage = new();
 
         public static readonly UnityEvent ERestartCurrentLevel = new();
+
+
+        public static readonly UnityEvent EOnRoomGeneration = new();
     }
 }

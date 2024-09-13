@@ -18,10 +18,10 @@ namespace Environment.Interactables.Openable.Scripts
 
 
         Vector3[] _closedPositionsPerPart;
-
-        float _currentFramePosition;
-        OpenableState _currentState;
         protected ISimpleCommand CloseCommand;
+
+        protected float CurrentFramePosition;
+        protected OpenableState CurrentState;
         protected ISimpleCommand OpenCommand;
 
 

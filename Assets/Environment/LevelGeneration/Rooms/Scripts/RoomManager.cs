@@ -1,13 +1,12 @@
-﻿using Sirenix.Utilities;
+﻿using Core.Events;
+using Sirenix.Utilities;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Environment.LevelGeneration.Rooms.Scripts
 {
     public class RoomManager : MonoBehaviour
     {
         public Room[] rooms;
-        public UnityEvent onRoomGeneration;
 
 
         public static RoomManager Instance { get; set; }
@@ -27,11 +26,6 @@ namespace Environment.LevelGeneration.Rooms.Scripts
             rooms = FindObjectsOfType<Room>();
         }
 
-        void Start()
-        {
-            onRoomGeneration ??= new UnityEvent();
-        }
-
 
         void Update()
         {
@@ -43,7 +37,7 @@ namespace Environment.LevelGeneration.Rooms.Scripts
             {
                 // Disable Update by setting the enabled property to false
                 enabled = false; // Disables the Update method from running again
-                onRoomGeneration.Invoke();
+                EventManager.EOnRoomGeneration.Invoke();
             }
         }
     }

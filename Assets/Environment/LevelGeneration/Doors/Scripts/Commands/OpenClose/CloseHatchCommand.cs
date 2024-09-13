@@ -9,16 +9,14 @@ namespace Environment.LevelGeneration.Doors.Scripts.Commands.OpenClose
         readonly AutoOpeningConnectingDoor _autoOpeningConnectingDoor;
 
         readonly NavMeshObstacle _navMeshObstacle;
-        public CloseHatchCommand(AutoOpeningConnectingDoor autoOpeningConnectingDoor, NavMeshObstacle navMeshObstacle)
+        public CloseHatchCommand(AutoOpeningConnectingDoor autoOpeningConnectingDoor)
         {
             _autoOpeningConnectingDoor = autoOpeningConnectingDoor;
-            _navMeshObstacle = navMeshObstacle;
         }
 
         public void Execute()
         {
             _autoOpeningConnectingDoor.SetState(OpenableObject.OpenableState.Closing);
-            _navMeshObstacle.carving = true;
         }
     }
 }

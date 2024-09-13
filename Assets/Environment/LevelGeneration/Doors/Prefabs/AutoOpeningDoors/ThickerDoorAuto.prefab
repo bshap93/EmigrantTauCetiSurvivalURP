@@ -117,7 +117,6 @@ GameObject:
   - component: {fileID: 8979504456256561377}
   - component: {fileID: 5208170024266657905}
   - component: {fileID: 1337705188272763859}
-  - component: {fileID: 8115442023825011231}
   m_Layer: 7
   m_Name: scifi-door-metal_L
   m_TagString: Untagged
@@ -190,28 +189,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8115442023825011231
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6738898161063047157}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 43368efa4fdfd1449af1b7aa271849a7, type: 3}
 --- !u!1 &6918261059419849087
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +200,6 @@ GameObject:
   - component: {fileID: 6921628838046555093}
   - component: {fileID: 785096833158986226}
   - component: {fileID: 7648720187976473374}
-  - component: {fileID: 6719093403603847077}
   m_Layer: 7
   m_Name: scifi-door-metal_R
   m_TagString: Untagged
@@ -296,28 +272,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6719093403603847077
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6918261059419849087}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: 43368efa4fdfd1449af1b7aa271849a7, type: 3}
 --- !u!1 &8454859758035897599
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,8 +283,8 @@ GameObject:
   - component: {fileID: 5692452399234985091}
   - component: {fileID: 5558814721085379494}
   - component: {fileID: 5005645422337425252}
-  - component: {fileID: 8946024874601147014}
   - component: {fileID: 7848941969696027826}
+  - component: {fileID: 4891621671437872950}
   m_Layer: 7
   m_Name: ThickerDoorAuto
   m_TagString: Untagged
@@ -396,22 +350,6 @@ MonoBehaviour:
   TileB: {fileID: 0}
   dontCullBehind: 0
   isOpen: 0
---- !u!208 &8946024874601147014
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8454859758035897599}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 1.01, y: 1.23, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.96, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &7848941969696027826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,3 +367,23 @@ MonoBehaviour:
   hatchLeftHalf: {fileID: 6738898161063047157}
   hatchRightOpenOffset: {x: -1, y: 0, z: 0}
   hatchLeftOpenOffset: {x: 1, y: 0, z: 0}
+--- !u!114 &4891621671437872950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8454859758035897599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: -2.5}
+  m_EndPoint: {x: 0, y: 0, z: 2.5}
+  m_Width: 0
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
