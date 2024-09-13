@@ -26,10 +26,6 @@ namespace Environment.Interactables.Openable.Scripts
 
 
         // Update is called once per frame
-        void Update()
-        {
-            if (_currentState == OpenableState.Opening || _currentState == OpenableState.Closing) MoveObject();
-        }
 
 
         public abstract void SetState(OpenableState newState);

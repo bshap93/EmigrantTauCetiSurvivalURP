@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  chestLid: {fileID: 0}
-  chestBase: {fileID: 0}
+  chestLid: {fileID: 2327050639807259626}
+  chestBase: {fileID: 2327085431938129914}
   chestLidOpenPositionOffset: {x: 0, y: 0.3480085, z: 0.2610064}
   chestLidOpenRotationOffset: {x: -45, y: 0, z: 0}
