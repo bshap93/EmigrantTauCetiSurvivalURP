@@ -1646,7 +1646,7 @@ GameObject:
   - component: {fileID: 336208391728749533}
   - component: {fileID: 8331605549395418731}
   - component: {fileID: 7746277484695671114}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Floor_05 (6)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -1768,7 +1768,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: a9b3789b4ea4a20499a8e697ac100289, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 7e35b8ba45f583341869ee4c4194ce51, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &6844830609899336963
 GameObject:

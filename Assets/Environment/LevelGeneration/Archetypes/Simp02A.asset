@@ -17,8 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cb3fb94148626c148a2b7c10c59cab27, type: 2}
   BranchStartTileSets: []
   BranchStartType: 0
-  BranchCapTileSets:
-  - {fileID: 11400000, guid: d26e6b0b7e138094f906a3b234e228fd, type: 2}
+  BranchCapTileSets: []
   BranchCapType: 1
   BranchingDepth:
     Min: 2

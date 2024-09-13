@@ -21,7 +21,10 @@ namespace Characters.Player.Scripts
         DungenCharacter _dungenCharacter;
         Transform _initialOrientation;
 
+
         public HealthSystem HealthSystem;
+
+        public Transform Position => transform;
 
         public static PlayerStateController Instance { get; private set; }
 
@@ -49,6 +52,7 @@ namespace Characters.Player.Scripts
             HealthSystem = new HealthSystem("Player", 100, UIManager.Instance.inGameConsoleManager);
             EventManager.EDealDamage.AddListener(HandleDamage);
             EventManager.ERestartCurrentLevel.AddListener(ResetPlayer);
+            EventManager.EPlayerStateInitialized.Invoke();
         }
 
         [Button("Reset Player")]

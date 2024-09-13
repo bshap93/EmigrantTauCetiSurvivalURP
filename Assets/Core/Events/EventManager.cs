@@ -20,5 +20,7 @@ namespace Core.Events
 
 
         public static readonly UnityEvent EOnRoomGeneration = new();
+
+        public static readonly UnityEvent EPlayerStateInitialized = new();
     }
 }

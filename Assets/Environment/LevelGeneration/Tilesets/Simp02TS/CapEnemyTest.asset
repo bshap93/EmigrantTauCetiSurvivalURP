@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4db6514a2e4e194bbd1c6bdae54f388, type: 3}
-  m_Name: S02Cap
+  m_Name: CapEnemyTest
   m_EditorClassIdentifier: 
   TileWeights:
     Weights:
-    - Value: {fileID: 3661458767550621996, guid: fa2f4da43b2f8044db3b8e0a8d3bebfe, type: 3}
+    - Value: {fileID: 3661458767550621996, guid: 228f4a24ac15b044784b285d0faf764c, type: 3}
       MainPathWeight: 1
       BranchPathWeight: 1
       DepthWeightScale:
@@ -41,5 +41,5 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      TileSet: {fileID: 11400000}
+      TileSet: {fileID: 0}
   LockPrefabs: []

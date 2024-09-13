@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e228b45736a8cf4ea000616e628a4dd, type: 3}
-  m_Name: DeadSimp01
+  m_Name: 2RoomDungeon
   m_EditorClassIdentifier: 
   globalPropGroupID_obsolete: 
   globalPropRanges_obsolete: []
   Length:
-    Min: 4
-    Max: 8
+    Min: 0
+    Max: 1
   BranchMode: 1
   BranchCount:
-    Min: 2
-    Max: 3
+    Min: 0
+    Max: 0
   GlobalProps: []
   KeyManager: {fileID: 0}
   DoorwayConnectionChance: 0.507
@@ -47,7 +47,7 @@ MonoBehaviour:
     LockPlacement: 0
   - Graph: {fileID: 11400000}
     TileSets:
-    - {fileID: 11400000, guid: 21dad94d8bfefbc4d90998793d43bac7, type: 2}
+    - {fileID: 11400000, guid: cb3fb94148626c148a2b7c10c59cab27, type: 2}
     NodeType: 2
     Position: 1
     Label: Goal
