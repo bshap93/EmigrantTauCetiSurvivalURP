@@ -63,10 +63,10 @@ namespace Characters.Player.Scripts
             transform.rotation = _initialOrientation.rotation;
         }
 
-        void OnCharacterTileChanged(DungenCharacter character, Tile previousTile, Tile
+        static void OnCharacterTileChanged(DungenCharacter character, Tile previousTile, Tile
             newTile)
         {
-            Debug.Log("Character moved to a new tile!");
+            EventManager.EPlayerEnteredRoom.Invoke();
         }
 
         // Handle debug damage
