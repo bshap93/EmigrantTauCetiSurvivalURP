@@ -7,6 +7,7 @@ using Plugins.DunGen.Code;
 using Sirenix.OdinInspector;
 using UI;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Serialization;
 
 namespace Characters.Player.Scripts
@@ -18,6 +19,7 @@ namespace Characters.Player.Scripts
         [FormerlySerializedAs("manuallyDamageCharacter")]
         [FormerlySerializedAs("healthSystemDebug")]
         public EditorButtonDealDamage editorButtonDealDamage;
+        public NavMeshAgent navMeshAgent;
         DungenCharacter _dungenCharacter;
         Transform _initialOrientation;
 

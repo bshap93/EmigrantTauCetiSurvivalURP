@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Characters.Player.Scripts;
 using Core.Events;
 using DunGen;
 using Sirenix.Utilities;
@@ -48,6 +49,7 @@ namespace Environment.LevelGeneration.Rooms.Scripts
                 enabled = false; // Disables the Update method from running again
                 EventManager.EOnRoomGeneration.Invoke();
                 OnDungeonGenerated(_runtimeDungeon.Generator);
+                PlayerStateController.Instance.navMeshAgent.enabled = true;
             }
         }
 
