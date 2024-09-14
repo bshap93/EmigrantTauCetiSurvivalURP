@@ -1674,7 +1674,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ecc080b5b9646019e2a66d3d2f612a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySpawnPoints:
+  - {fileID: 0}
+  enemyPrefabs: []
+  baseEnemyCount: 2
+  hasVerticality: 0
   roomCenter: {fileID: 2721416617380887085}
+  difficultyLevel: 1
+  roomType: 0
+  roomID: 0
 --- !u!114 &7366468080636793263
 MonoBehaviour:
   m_ObjectHideFlags: 0

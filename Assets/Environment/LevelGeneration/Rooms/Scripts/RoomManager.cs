@@ -1,4 +1,6 @@
-﻿using Core.Events;
+﻿using System.Collections.Generic;
+using Core.Events;
+using DunGen;
 using Sirenix.Utilities;
 using UnityEngine;
 
@@ -7,7 +9,8 @@ namespace Environment.LevelGeneration.Rooms.Scripts
     public class RoomManager : MonoBehaviour
     {
         public Room[] rooms;
-
+        int _roomCounter;
+        RuntimeDungeon _runtimeDungeon;
 
         public static RoomManager Instance { get; set; }
         void Awake()
@@ -26,6 +29,12 @@ namespace Environment.LevelGeneration.Rooms.Scripts
             rooms = FindObjectsOfType<Room>();
         }
 
+        void Start()
+        {
+            _roomCounter = 0;
+            _runtimeDungeon = GetComponent<RuntimeDungeon>();
+        }
+
 
         void Update()
         {
@@ -38,7 +47,38 @@ namespace Environment.LevelGeneration.Rooms.Scripts
                 // Disable Update by setting the enabled property to false
                 enabled = false; // Disables the Update method from running again
                 EventManager.EOnRoomGeneration.Invoke();
+                OnDungeonGenerated(_runtimeDungeon.Generator);
             }
+        }
+
+        void OnDungeonGenerated(DungeonGenerator generator)
+        {
+            var dungeonGameObject = GameObject.Find("Dungeon");
+            var roomGameObjects = GetChildren(dungeonGameObject);
+
+
+            foreach (var roomGameObject in roomGameObjects)
+            {
+                _roomCounter++;
+                var roomId = _roomCounter;
+
+                var roomComponent = roomGameObject.GetComponent<Room>();
+                if (roomComponent != null)
+                {
+                    roomComponent.InitializeRoom(_roomCounter); // Initialize room with the counter as ID
+                    Debug.Log($"Assigned Room ID: {_roomCounter} to {roomComponent.name}");
+                }
+            }
+        }
+
+
+        List<GameObject> GetChildren(GameObject parent)
+        {
+            var children = new List<GameObject>();
+
+            foreach (Transform child in parent.transform) children.Add(child.gameObject);
+
+            return children;
         }
     }
 }

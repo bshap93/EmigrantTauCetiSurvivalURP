@@ -1,7 +1,9 @@
-﻿using Core.Events;
+﻿using System;
+using Core.Events;
 using Core.Spawning.Scripts;
 using DunGen;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Environment.LevelGeneration.Rooms.Scripts
 {
@@ -13,30 +15,30 @@ namespace Environment.LevelGeneration.Rooms.Scripts
         [SerializeField] bool hasVerticality; // If the room has verticality, enemies can spawn on different floors
 
         [SerializeField] Transform roomCenter;
-        [SerializeField] int roomID;
-        [SerializeField] Tile roomTile;
         [SerializeField] int difficultyLevel;
 
-        [SerializeField] int roomCounter;
+        [SerializeField] RoomType roomType;
+
+        [SerializeField] int roomID;
+        Tile _roomTile;
 
         void Start()
         {
-            roomTile = GetComponent<Tile>();
-            InitializeRoom();
+            _roomTile = GetComponent<Tile>();
             EventManager.EPlayerEnteredRoom.AddListener(OnPlayerEnterRoom);
         }
 
-        void InitializeRoom()
+        public void InitializeRoom(int id)
         {
-            roomCounter++;
-            roomID = roomCounter;
-            Debug.Log("Room ID: " + roomID);
+            roomID = id;
+            Debug.Log($"Room initialized with ID: {roomID}");
         }
 
 
         void OnPlayerEnterRoom()
         {
             SpawnEnemies(difficultyLevel);
+            Debug.Log($"Player entered Room ID: {roomID}");
         }
         void SpawnEnemies(int difficultyNumAddEnemies)
         {
@@ -65,6 +67,15 @@ namespace Environment.LevelGeneration.Rooms.Scripts
         public int GetRoomId()
         {
             return roomID;
+        }
+
+        [Serializable]
+        enum RoomType
+        {
+            CapRoom,
+            Corridor,
+            Room3X3,
+            Other
         }
     }
 }
