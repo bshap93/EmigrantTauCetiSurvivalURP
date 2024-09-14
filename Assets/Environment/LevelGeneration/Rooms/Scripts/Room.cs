@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Core.Events;
 using Core.Spawning.Scripts;
 using DunGen;
@@ -9,7 +10,7 @@ namespace Environment.LevelGeneration.Rooms.Scripts
 {
     public class Room : MonoBehaviour
     {
-        public SpawnPoint25D[] enemySpawnPoints; // Define where enemies can spawn in this room
+        public List<SpawnPoint25D> enemySpawnPoints = new(); // Define where enemies can spawn in this room
         public GameObject[] enemyPrefabs; // Different enemy types that can be spawned
         [SerializeField] int baseEnemyCount; // Number of enemies to spawn in this room
         [SerializeField] bool hasVerticality; // If the room has verticality, enemies can spawn on different floors
@@ -20,6 +21,10 @@ namespace Environment.LevelGeneration.Rooms.Scripts
         [SerializeField] RoomType roomType;
 
         [SerializeField] int roomID;
+
+        // Room bounds (could be defined by the room size or manually assigned)
+        public Vector3 roomSize = new(10, 1, 10); // Example room size (X, Y, Z)
+        public LayerMask obstacleLayer; // For checking spawn point validity
         Tile _roomTile;
 
         void Start()
@@ -43,7 +48,7 @@ namespace Environment.LevelGeneration.Rooms.Scripts
         void SpawnEnemies(int difficultyNumAddEnemies)
         {
             var enemyCount = Mathf.Min(
-                enemySpawnPoints.Length,
+                enemySpawnPoints.Count,
                 baseEnemyCount + difficultyNumAddEnemies); // Scale enemy count based on difficulty
 
             for (var i = 0; i < enemyCount; i++)
