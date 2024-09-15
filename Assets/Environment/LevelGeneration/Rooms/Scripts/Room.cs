@@ -11,7 +11,7 @@ namespace Environment.LevelGeneration.Rooms.Scripts
     public class Room : MonoBehaviour
     {
         public List<SpawnPoint25D> enemySpawnPoints = new(); // Define where enemies can spawn in this room
-        public GameObject[] enemyPrefabs; // Different enemy types that can be spawned
+        public List<GameObject> enemyPrefabs = new(); // Different enemy types that can be spawned
         [SerializeField] int baseEnemyCount; // Number of enemies to spawn in this room
         [SerializeField] bool hasVerticality; // If the room has verticality, enemies can spawn on different floors
 
@@ -23,7 +23,7 @@ namespace Environment.LevelGeneration.Rooms.Scripts
         [SerializeField] int roomID;
 
         // Room bounds (could be defined by the room size or manually assigned)
-        public Vector3 roomSize = new(10, 1, 10); // Example room size (X, Y, Z)
+
         public LayerMask obstacleLayer; // For checking spawn point validity
         Tile _roomTile;
 
@@ -47,6 +47,9 @@ namespace Environment.LevelGeneration.Rooms.Scripts
         }
         void SpawnEnemies(int difficultyNumAddEnemies)
         {
+            if (enemySpawnPoints.Count == 0) return;
+            if (enemyPrefabs.Count == 0) return;
+
             var enemyCount = Mathf.Min(
                 enemySpawnPoints.Count,
                 baseEnemyCount + difficultyNumAddEnemies); // Scale enemy count based on difficulty
@@ -56,7 +59,7 @@ namespace Environment.LevelGeneration.Rooms.Scripts
                 var spawnPoint = enemySpawnPoints[i];
                 if (spawnPoint.CanSpawn())
                 {
-                    var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+                    var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
                     Instantiate(enemyPrefab, spawnPoint.GetSpawnPosition(), Quaternion.identity);
                     spawnPoint.MarkOccupied();
                 }
