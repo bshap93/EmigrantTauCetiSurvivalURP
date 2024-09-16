@@ -10,7 +10,7 @@ namespace Characters.CharacterState.States
         }
         public void Update(Enemy enemy)
         {
-            enemy.SetDestination(enemy.player.position);
+            // enemy.SetDestination(enemy.player.position);
 
             if (enemy.IsPlayerInRange())
                 enemy.ChangeState(new AttackState());

@@ -11,6 +11,8 @@ namespace Characters.Scripts
         public NavMeshAgent navMeshAgent;
         public List<Transform> waypoints;
         public Transform player;
+        public LayerMask obstacleMask;
+        public float detectionRange = 10f;
         IEnemyState _currentState;
 
         void Start()
@@ -36,7 +38,7 @@ namespace Characters.Scripts
         public void SetDestination(Vector3 destination)
         {
             navMeshAgent.SetDestination(destination);
-            
+            Debug.Log("Set destination to " + destination);
         }
         public bool HasReachedDestination()
         {
@@ -49,10 +51,30 @@ namespace Characters.Scripts
 
             _currentState = newState;
             _currentState.Enter(this);
+
+            Debug.Log("Changed state to " + _currentState.GetType().Name);
         }
+        // Method to check if the enemy can see the player
         public bool CanSeePlayer()
         {
-            return Vector3.Distance(transform.position, player.position) < 10;
+            // Calculate distance to player
+            var distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+            // If the player is within detection range
+            if (distanceToPlayer <= detectionRange)
+            {
+                // Cast a ray from the enemy to the player
+                RaycastHit hit;
+                var directionToPlayer = (player.position - transform.position).normalized;
+
+                if (Physics.Raycast(transform.position, directionToPlayer, out hit, detectionRange))
+                    // Check if the ray hits the player
+                    if (hit.transform == player)
+                        return true; // The enemy can see the player
+            }
+
+            // Enemy cannot see the player
+            return false;
         }
         public bool IsPlayerInRange()
         {
@@ -62,9 +84,17 @@ namespace Characters.Scripts
         {
             navMeshAgent.isStopped = true;
         }
+        public void StartMoving()
+        {
+            navMeshAgent.isStopped = false;
+        }
         public void PerformAttack()
         {
             Debug.Log("Attacking player");
+        }
+        public Vector3 GetPlayerPosition()
+        {
+            return player.position;
         }
     }
 }
