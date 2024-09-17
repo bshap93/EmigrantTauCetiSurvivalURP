@@ -18,8 +18,11 @@ namespace Characters.Scripts
         public float timeNeededToLosePlayer = 5f;
         public float attackCooldown = 1.5f; // Cooldown duration in seconds
 
+        public float memoryDuration = 5f; // How long the enemy remembers the player after losing sight
+
         EnemyState _currentState;
         NpcVisibility _visibility;
+        float memoryTimer;
 
         void Start()
         {
@@ -65,10 +68,14 @@ namespace Characters.Scripts
         public bool CanSeePlayer()
         {
             if (_visibility.TargetIsVisible)
+            {
+                memoryTimer = Time.time + memoryDuration; // Reset memory timer when the player is visible
                 return true;
+            }
 
+            // If memory timer is still running, keep chasing
+            if (Time.time < memoryTimer) return true; // The enemy is still chasing even if they lost sight
 
-            // Enemy cannot see the player
             return false;
         }
         bool IsPlayerInRange(float range)

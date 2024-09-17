@@ -54,57 +54,42 @@ namespace Characters.NPCs.Scripts.Visiblity
             var directionToTarget = target.position - transform.position;
 
             // Calculate the number of degrees from the forward direction.
-            var degreesToTarget =
-                Vector3.Angle(transform.forward, directionToTarget);
+            var degreesToTarget = Vector3.Angle(transform.forward, directionToTarget);
 
-            // The target is within the arc if it's within half of the
-            // specified angle. If it's not within the arc, it's not visible.
+            // The target is within the arc if it's within half of the specified angle.
             var withinArc = degreesToTarget < angle / 2;
 
-            if (withinArc == false) return false;
+            if (!withinArc) return false;
 
             // Compute the distance to the point
             var distanceToTarget = directionToTarget.magnitude;
 
-            // Our ray should go as far as the target is, or the maximum
-            // distance, whichever is shorter
+            // Our ray should go as far as the target is, or the maximum distance, whichever is shorter
             var rayDistance = Mathf.Min(maxDistance, distanceToTarget);
 
             // Create a ray that fires out from our position to the target
-            var ray = new Ray(transform.position, directionToTarget);
+            var ray = new Ray(transform.position + Vector3.up, directionToTarget);
 
-            // Store information about what was hit in this variable
+            // Store information about what was hit
             RaycastHit hit;
-
-            // Records info about whether the target is in range and not
-            // occluded
             var canSee = false;
 
-            // Fire the raycast. Did it hit anything?
+            // Fire the raycast
             if (Physics.Raycast(ray, out hit, rayDistance))
             {
-                // Did the ray hit our target?
+                // If the ray hits the player, we can see it
                 if (hit.collider.transform == target)
-                    // Then we can see it (that is, the ray didn't hit an
-                    // obstacle in between us and the target)
+                {
                     canSee = true;
-
-                // Visualise the ray.
-                Debug.DrawLine(transform.position, hit.point);
-            }
-            else
-            {
-                // The ray didn't hit anything. This means that it reached the
-                // maximum distance, and stopped, which means we didn't hit our
-                // target. It must be out of range.
-
-                // Visualise the ray.
-                Debug.DrawRay(
-                    transform.position,
-                    directionToTarget.normalized * rayDistance);
+                    Debug.DrawLine(transform.position, hit.point, Color.green); // Green means we see the player
+                }
+                else
+                {
+                    Debug.Log("Ray hit an obstacle: " + hit.collider.name);
+                    Debug.DrawLine(transform.position, hit.point, Color.red); // Red means blocked by an obstacle
+                }
             }
 
-            // Is it visible?
             return canSee;
         }
     }
