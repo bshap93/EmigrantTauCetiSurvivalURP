@@ -6,7 +6,7 @@ namespace Characters.NPCs.Scripts.Visiblity
 // Detects when a given target is visible to this object. A target is
 // visible when it's both in range and in front of the target. Both the
 // range and the angle of visibility are configurable.
-    public class NpcVisibility : MonoBehaviour
+    public class EnemyVisiblity : MonoBehaviour
     {
         // If the object is more than this distance away, we can't see it.
         public float maxDistance = 10f;
@@ -35,7 +35,6 @@ namespace Characters.NPCs.Scripts.Visiblity
         {
             TargetIsVisible = CheckVisibility();
 
-            if (TargetIsVisible) Debug.Log(TargetIsVisible);
         }
 
         void FindTarget()
@@ -97,14 +96,14 @@ namespace Characters.NPCs.Scripts.Visiblity
 #if UNITY_EDITOR
 // A custom editor for the EnemyVisibility class. Visualises and allows
 // editing the visible range.
-    [CustomEditor(typeof(NpcVisibility))]
+    [CustomEditor(typeof(EnemyVisiblity))]
     public class EnemyVisibilityEditor : Editor
     {
         // Called when Unity needs to draw the Scene view. 
         void OnSceneGUI()
         {
             // Get a reference to the EnemyVisibility script we're looking at
-            var visibility = target as NpcVisibility;
+            var visibility = target as EnemyVisiblity;
 
             // Start drawing at 10% opacity
             Handles.color = new Color(1, 1, 1, 0.1f);

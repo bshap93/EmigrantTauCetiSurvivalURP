@@ -1,4 +1,4 @@
-﻿using Characters.Scripts;
+﻿using Characters.NPCs.Enemies.Scripts;
 
 namespace Characters.CharacterState.States
 {

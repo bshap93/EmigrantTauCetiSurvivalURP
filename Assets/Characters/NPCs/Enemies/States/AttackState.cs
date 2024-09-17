@@ -1,4 +1,5 @@
-﻿using Characters.Scripts;
+﻿using Characters.NPCs.Enemies.Scripts;
+using Characters.NPCs.Enemies.States;
 using UnityEngine;
 
 namespace Characters.CharacterState.States

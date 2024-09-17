@@ -1,4 +1,8 @@
-﻿using Characters.Scripts;
+﻿using Characters.NPCs.Enemies.Scripts;
+<<<<<<< Updated upstream
+using Characters.Scripts;
+=======
+>>>>>>> Stashed changes
 using JetBrains.Annotations;
 
 namespace Characters.CharacterState
