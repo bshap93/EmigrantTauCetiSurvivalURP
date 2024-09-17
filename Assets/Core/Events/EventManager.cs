@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Characters.Scripts;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Core.Events
@@ -14,7 +15,7 @@ namespace Core.Events
         // Health has changed for a character by a certain amount
         public static readonly UnityEvent<float> EChangeHealth = new();
         // Damage has been dealt to a character by name by a certain amount
-        public static readonly UnityEvent<string, float> EDealDamage = new();
+        public static readonly UnityEvent<IDamageable, float> EDealDamage = new();
 
         public static readonly UnityEvent ERestartCurrentLevel = new();
 

@@ -16,11 +16,11 @@ namespace Core.GameManager.Scripts
         public UnityEvent<string> onSystemActivated;
 
         public SaveManager saveManager;
+
+        public InGameConsoleManager inGameConsoleManager;
         DisableCursorCommand _disableCursorCommand;
 
         EnableFreeCursorCommand _enableFreeCursorCommand;
-
-        InGameConsoleManager _inGameConsoleManager;
         public static GameManager Instance { get; private set; }
 
 
@@ -35,10 +35,10 @@ namespace Core.GameManager.Scripts
 
         void Start()
         {
-            _inGameConsoleManager = consoleManagerObject.GetComponent<InGameConsoleManager>();
+            inGameConsoleManager = consoleManagerObject.GetComponent<InGameConsoleManager>();
 
             PlayerStateController.Instance.HealthSystem =
-                new HealthSystem("Player", 100, _inGameConsoleManager);
+                new HealthSystem("Player", 100);
 
 
             _disableCursorCommand = new DisableCursorCommand();

@@ -1,4 +1,5 @@
 ﻿using Core.Events;
+using Core.GameManager.Scripts;
 using UI.InGameConsole.Scripts;
 
 namespace Characters.Health.Scripts
@@ -14,12 +15,12 @@ namespace Characters.Health.Scripts
 
 
         // Updated constructor to include ConsoleManager
-        public HealthSystem(string characterName, float maxHealth, InGameConsoleManager inGameConsoleManager)
+        public HealthSystem(string characterName, float maxHealth)
         {
             CharacterName = characterName;
             MaxHealth = maxHealth;
             CurrentHealth = MaxHealth;
-            _inGameConsoleManager = inGameConsoleManager; // Store reference to console manager
+            _inGameConsoleManager = GameManager.Instance.inGameConsoleManager; // Store reference to console manager
 
 
             // Subscribe to the OnHealthChanged event

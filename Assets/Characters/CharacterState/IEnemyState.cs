@@ -1,18 +1,17 @@
-﻿using Characters.NPCs.Enemies.Scripts;
-<<<<<<< Updated upstream
-using Characters.Scripts;
-=======
->>>>>>> Stashed changes
+﻿using Characters.Enemies;
 using JetBrains.Annotations;
+using UnityEngine;
 
 namespace Characters.CharacterState
 {
     public abstract class EnemyState
     {
         [CanBeNull] EnemyState _formerState;
-        protected EnemyState([CanBeNull] EnemyState formerState)
+        [CanBeNull] protected Transform Target;
+        protected EnemyState([CanBeNull] EnemyState formerState, [CanBeNull] Transform target)
         {
             _formerState = formerState;
+            Target = target;
         }
         public abstract void Enter(Enemy enemy);
         public abstract void Update(Enemy enemy);

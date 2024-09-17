@@ -1,4 +1,6 @@
 ﻿using System;
+using Characters.Player.Scripts;
+using Characters.Scripts;
 using Cinemachine;
 using Core.Events;
 using DG.Tweening;
@@ -55,10 +57,11 @@ namespace Core.Cameras.Managers.Scripts
             }
         }
 
-        void OnPlayerDamage(string character, float damage)
+        void OnPlayerDamage(IDamageable damageable, float damage)
         {
             // Camera shake effect
-            ShakeCamera(0.5f, 0.5f, 10, 90);
+            if (damageable is PlayerStateController)
+                ShakeCamera(0.5f, 0.5f, 10, 90);
         }
 
         public void SetActiveRoom(GameObject room)

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace Characters.Movement.Scripts
+namespace Characters.NPCs.Scripts.Movement
 {
     public class MoveToPoint : MonoBehaviour
     {
