@@ -64,20 +64,10 @@ namespace Characters.Scripts
         // Method to check if the enemy can see the player
         public bool CanSeePlayer()
         {
-            // Calculate distance to player
-            var distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            if (_visibility.TargetIsVisible)
+                return true;
 
-            // If the player is within detection range
-            if (distanceToPlayer <= detectionRange)
-                // If the player is within the field of view
-                if (_visibility.TargetIsVisible)
-                    // // If the player is not behind an obstacle
-                    // if (!Physics.Linecast(transform.position, player.position, obstacleMask))
-                    // {
-                    // Enemy can see the player
-                    return true;
 
-            // }
             // Enemy cannot see the player
             return false;
         }

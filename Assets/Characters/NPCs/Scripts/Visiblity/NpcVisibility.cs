@@ -35,14 +35,7 @@ namespace Characters.NPCs.Scripts.Visiblity
         {
             TargetIsVisible = CheckVisibility();
 
-            if (visualize)
-            {
-                // Update our colour; yellow if we can see the target, white if
-                // we can't
-                var color = TargetIsVisible ? Color.yellow : Color.white;
-
-                GetComponent<Renderer>().material.color = color;
-            }
+            if (TargetIsVisible) Debug.Log(TargetIsVisible);
         }
 
         void FindTarget()
@@ -51,51 +44,6 @@ namespace Characters.NPCs.Scripts.Visiblity
         }
 
         // Returns true if this object can see the specified position.
-        public bool CheckVisibilityToPoint(Vector3 worldPoint)
-        {
-            // Calculate the direction from our location to the point
-            var directionToTarget = worldPoint - transform.position;
-
-            // Calculate the number of degrees from the forward direction.
-            var degreesToTarget =
-                Vector3.Angle(transform.forward, directionToTarget);
-
-            // The target is within the arc if it's within half of the
-            // specified angle. If it's not within the arc, it's not visible.
-            var withinArc = degreesToTarget < angle / 2;
-
-            if (withinArc == false) return false;
-
-            // Figure out the distance to the target
-            var distanceToTarget = directionToTarget.magnitude;
-
-            // Take into account our maximum distance
-            var rayDistance = Mathf.Min(maxDistance, distanceToTarget);
-
-            // Create a new ray that goes from our current location, in the 
-            // specified direction
-            var ray = new Ray(transform.position, directionToTarget);
-
-            // Stores information about anything we hit
-            RaycastHit hit;
-
-            // Perform the raycast. Did it hit anything?
-            if (Physics.Raycast(ray, out hit, rayDistance))
-            {
-                // We hit something. 
-                if (hit.collider.transform == target)
-                    // It was the target itself. We can see the target point.
-                    return true;
-
-                // It's something between us and the target. We cannot see the 
-                // target point.
-                return false;
-            }
-
-            // There's an unobstructed line of sight between us and the
-            // target point, so we can see it.
-            return true;
-        }
 
         // Returns true if a straight line can be drawn between this object and
         // the target. The target must be within range, and be within the
