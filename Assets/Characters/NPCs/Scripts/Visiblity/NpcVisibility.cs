@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
+﻿using UnityEditor;
+using UnityEngine;
 
-namespace Characters.Movement.Scripts.ETCEnemyVisiblity
+namespace Characters.NPCs.Scripts.Visiblity
 {
 // Detects when a given target is visible to this object. A target is
 // visible when it's both in range and in front of the target. Both the
@@ -28,6 +26,8 @@ namespace Characters.Movement.Scripts.ETCEnemyVisiblity
         void Start()
         {
             // If we haven't set a target, try to find one.
+            if (target == null)
+                FindTarget();
         }
 
         // Check to see if we can see the target every frame.

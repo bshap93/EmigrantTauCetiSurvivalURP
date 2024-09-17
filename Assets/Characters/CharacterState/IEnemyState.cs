@@ -1,13 +1,17 @@
 ﻿using Characters.Scripts;
+using JetBrains.Annotations;
 
 namespace Characters.CharacterState
 {
-    public interface IEnemyState
+    public abstract class EnemyState
     {
-        public void Enter(Enemy enemy);
-
-        public void Update(Enemy enemy);
-
-        public void Exit(Enemy enemy);
+        [CanBeNull] EnemyState _formerState;
+        protected EnemyState([CanBeNull] EnemyState formerState)
+        {
+            _formerState = formerState;
+        }
+        public abstract void Enter(Enemy enemy);
+        public abstract void Update(Enemy enemy);
+        public abstract void Exit(Enemy enemy);
     }
 }

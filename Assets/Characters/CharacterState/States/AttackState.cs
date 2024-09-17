@@ -3,37 +3,38 @@ using UnityEngine;
 
 namespace Characters.CharacterState.States
 {
-    public class AttackState : IEnemyState
+    public class AttackState : EnemyState
     {
-        readonly float attackCooldown = 1.5f; // Cooldown duration in seconds
-        float nextAttackTime; // Tracks when the enemy can attack next
-
-        public void Enter(Enemy enemy)
+        float _nextAttackTime; // Tracks when the enemy can attack next
+        public AttackState(EnemyState formerState) : base(formerState)
         {
-            enemy.StopMoving();
         }
 
-        public void Update(Enemy enemy)
+
+        public EnemyState FormerState { get; set; }
+        public override void Enter(Enemy enemy)
+        {
+            enemy.StopMoving();
+            _nextAttackTime = Time.time;
+        }
+
+        public override void Update(Enemy enemy)
         {
             // Check if enough time has passed since the last attack
-            if (Time.time >= nextAttackTime)
+            if (Time.time >= _nextAttackTime)
             {
                 enemy.PerformAttack();
 
                 // Set the next attack time based on the cooldown
-                nextAttackTime = Time.time + attackCooldown;
+                _nextAttackTime = Time.time + enemy.attackCooldown;
             }
 
             // Transition to chase state if player is out of range
-            if (!enemy.IsPlayerInRange())
-                enemy.ChangeState(new ChaseState());
-
-            // Transition to patrolling if the player is no longer visible
-            if (!enemy.CanSeePlayer())
-                enemy.ChangeState(new PatrollingState());
+            if (!enemy.IsPlayerInAttackRange())
+                enemy.ChangeState(new ChaseState(this));
         }
 
-        public void Exit(Enemy enemy)
+        public override void Exit(Enemy enemy)
         {
             enemy.StartMoving();
         }

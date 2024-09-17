@@ -3,49 +3,52 @@ using UnityEngine;
 
 namespace Characters.CharacterState.States
 {
-    public class PatrollingState : IEnemyState
+    public class PatrollingState : EnemyState
     {
+        readonly float _idleTime = 2f;
         int _currentWaypointIndex;
-        int currentWaypointIndex = 0;
-        readonly float idleTime = 2f;
-        float idleTimer;
+        float _idleTimer;
 
-        bool isIdle;
+        bool _isIdle;
+        public PatrollingState(EnemyState formerState) : base(formerState)
+        {
+        }
 
 
-        public void Enter(Enemy enemy)
+        public EnemyState FormerState { get; set; }
+        public override void Enter(Enemy enemy)
         {
             enemy.SetDestination(enemy.waypoints[_currentWaypointIndex].position);
-            isIdle = false;
+            _isIdle = false;
         }
-        public void Update(Enemy enemy)
+        public override void Update(Enemy enemy)
         {
-            if (!isIdle)
+            if (!_isIdle)
             {
                 if (enemy.HasReachedDestination() && enemy.waypoints.Count > 0)
                 {
-                    isIdle = true;
-                    idleTimer = 0f;
+                    _isIdle = true;
+                    _idleTimer = 0f;
                 }
             }
             else
             {
-                idleTimer += Time.deltaTime;
+                _idleTimer += Time.deltaTime;
 
-                if (idleTimer >= idleTime)
+                if (_idleTimer >= _idleTime)
                 {
                     _currentWaypointIndex = (_currentWaypointIndex + 1) % enemy.waypoints.Count;
                     enemy.SetDestination(enemy.waypoints[_currentWaypointIndex].position);
-                    isIdle = false;
+                    _isIdle = false;
                 }
             }
 
 
             if (enemy.CanSeePlayer())
-                enemy.ChangeState(new ChaseState());
+                enemy.ChangeState(new ChaseState(this));
         }
 
-        public void Exit(Enemy enemy)
+        public override void Exit(Enemy enemy)
         {
             // Nothing to do here
         }

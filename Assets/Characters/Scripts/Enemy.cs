@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Characters.CharacterState;
 using Characters.CharacterState.States;
+using Characters.NPCs.Scripts.Visiblity;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,11 +14,17 @@ namespace Characters.Scripts
         public Transform player;
         public LayerMask obstacleMask;
         public float detectionRange = 10f;
-        IEnemyState _currentState;
+        public float attackRange = 2f;
+        public float timeNeededToLosePlayer = 5f;
+        public float attackCooldown = 1.5f; // Cooldown duration in seconds
+
+        EnemyState _currentState;
+        NpcVisibility _visibility;
 
         void Start()
         {
-            _currentState = new PatrollingState();
+            _visibility = GetComponent<NpcVisibility>();
+            _currentState = new PatrollingState(null);
 
             if (player == null)
                 player = GameObject.FindWithTag("Player").transform;
@@ -44,7 +51,7 @@ namespace Characters.Scripts
         {
             return !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
         }
-        public void ChangeState(IEnemyState newState)
+        public void ChangeState(EnemyState newState)
         {
             if (_currentState != null)
                 _currentState.Exit(this);
@@ -62,24 +69,33 @@ namespace Characters.Scripts
 
             // If the player is within detection range
             if (distanceToPlayer <= detectionRange)
-            {
-                // Cast a ray from the enemy to the player
-                RaycastHit hit;
-                var directionToPlayer = (player.position - transform.position).normalized;
+                // If the player is within the field of view
+                if (_visibility.TargetIsVisible)
+                    // // If the player is not behind an obstacle
+                    // if (!Physics.Linecast(transform.position, player.position, obstacleMask))
+                    // {
+                    // Enemy can see the player
+                    return true;
 
-                if (Physics.Raycast(transform.position, directionToPlayer, out hit, detectionRange))
-                    // Check if the ray hits the player
-                    if (hit.transform == player)
-                        return true; // The enemy can see the player
-            }
-
+            // }
             // Enemy cannot see the player
             return false;
         }
-        public bool IsPlayerInRange()
+        bool IsPlayerInRange(float range)
         {
-            return Vector3.Distance(transform.position, player.position) < 2;
+            return Vector3.Distance(transform.position, player.position) < range;
         }
+
+        public bool IsPlayerInAttackRange()
+        {
+            return IsPlayerInRange(attackRange);
+        }
+
+        public bool IsPlayerInChaseRange()
+        {
+            return IsPlayerInRange(detectionRange);
+        }
+
         public void StopMoving()
         {
             navMeshAgent.isStopped = true;

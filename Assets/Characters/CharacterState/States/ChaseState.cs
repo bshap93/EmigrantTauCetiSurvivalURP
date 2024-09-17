@@ -1,24 +1,31 @@
 ﻿using Characters.Scripts;
+using UnityEngine;
 
 namespace Characters.CharacterState.States
 {
-    public class ChaseState : IEnemyState
+    public class ChaseState : EnemyState
     {
-        public void Enter(Enemy enemy)
+        public ChaseState(EnemyState formerState) : base(formerState)
+        {
+            if (formerState is AttackState) Debug.Log("Resuming chase");
+        }
+
+        public override void Enter(Enemy enemy)
         {
             enemy.SetDestination(enemy.player.position);
         }
-        public void Update(Enemy enemy)
+        public override void Update(Enemy enemy)
         {
             // enemy.SetDestination(enemy.player.position);
 
-            if (enemy.IsPlayerInRange())
-                enemy.ChangeState(new AttackState());
+            if (enemy.IsPlayerInAttackRange())
+                enemy.ChangeState(new AttackState(this));
 
-            if (!enemy.CanSeePlayer()) enemy.ChangeState(new PatrollingState());
+            if (!enemy.CanSeePlayer() && !enemy.IsPlayerInChaseRange())
+                enemy.ChangeState(new PatrollingState(this));
         }
 
-        public void Exit(Enemy enemy)
+        public override void Exit(Enemy enemy)
         {
             // Nothing to do here
         }

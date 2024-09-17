@@ -2,6 +2,6 @@
 {
     public class CharacterStateMachine
     {
-        public IEnemyState CurrentState { get; }
+        public EnemyState CurrentState { get; }
     }
 }

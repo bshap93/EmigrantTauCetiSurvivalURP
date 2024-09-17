@@ -43,7 +43,6 @@ namespace Environment.LevelGeneration.Rooms.Scripts
         void OnPlayerEnterRoom()
         {
             SpawnEnemies(difficultyLevel);
-            Debug.Log($"Player entered Room ID: {roomID}");
         }
         void SpawnEnemies(int difficultyNumAddEnemies)
         {
