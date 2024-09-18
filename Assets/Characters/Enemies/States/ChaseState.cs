@@ -9,6 +9,8 @@ namespace Characters.Enemies.States
         readonly bool _patrolWasReversed;
         readonly Transform _target;
         float _chaseTimer;
+        float _pathRecalculationDelay = 0.5f; // Half a second delay between recalculations
+        float _pathRecalculationTimer = 0f;
         public ChaseState(EnemyState formerState, Transform target) : base(formerState, target)
         {
             if (formerState is AttackState)
@@ -30,13 +32,18 @@ namespace Characters.Enemies.States
         public override void Update(Enemy enemy)
         {
             _chaseTimer += Time.deltaTime;
+            _pathRecalculationTimer += Time.deltaTime;
+
 
             if (IsPlayerInAttackRange(enemy))
                 TransitionToAttackState(enemy);
             else if (HasLostPlayer(enemy) || !IsPathValid(enemy))
                 TransitionToPatrolState(enemy);
-            else
+            else if (_pathRecalculationTimer >= _pathRecalculationDelay)
+            {
                 SetChaseDestination(enemy);
+                _pathRecalculationTimer = 0f; // Reset the timer after recalculating the path
+            }
         }
 
         public override void Exit(Enemy enemy)
