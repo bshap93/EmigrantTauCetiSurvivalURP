@@ -1,4 +1,5 @@
-﻿using Core.Utilities.Commands;
+﻿using System.Collections.Generic;
+using Core.Utilities.Commands;
 using UnityEngine;
 
 namespace Environment.Interactables.Openable.Scripts
@@ -12,6 +13,14 @@ namespace Environment.Interactables.Openable.Scripts
             Opening,
             Closing
         }
+
+        public enum OpenerAgent
+        {
+            Player,
+            Enemy
+        }
+
+        public List<OpenerAgent> agentsAllowedToOpen;
 
 
         public float speed = 3.0f;

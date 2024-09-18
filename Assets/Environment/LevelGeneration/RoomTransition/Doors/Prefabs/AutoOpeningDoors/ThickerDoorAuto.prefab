@@ -118,7 +118,8 @@ GameObject:
   - component: {fileID: 5208170024266657905}
   - component: {fileID: 1337705188272763859}
   - component: {fileID: 8778443219778348106}
-  m_Layer: 0
+  - component: {fileID: 2534374245506609444}
+  m_Layer: 7
   m_Name: scifi-door-metal_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,6 +213,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 43368efa4fdfd1449af1b7aa271849a7, type: 3}
+--- !u!208 &2534374245506609444
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6738898161063047157}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.70000005, y: 1.4000001, z: 0.13100001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.5, y: 1.4000001, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6918261059419849087
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +241,8 @@ GameObject:
   - component: {fileID: 785096833158986226}
   - component: {fileID: 7648720187976473374}
   - component: {fileID: 8565967816607452652}
-  m_Layer: 0
+  - component: {fileID: 556746185589258776}
+  m_Layer: 7
   m_Name: scifi-door-metal_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,6 +336,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 43368efa4fdfd1449af1b7aa271849a7, type: 3}
+--- !u!208 &556746185589258776
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6918261059419849087}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.6, y: 1.4000001, z: 0.101}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.6, y: 1.4000001, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7055881980016893162
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f755a0a9edc8d4a8076d0c7eb55f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agentsAllowedToOpen: 0000000001000000
   speed: 3
   hatchRightHalf: {fileID: 6918261059419849087}
   hatchLeftHalf: {fileID: 6738898161063047157}

@@ -2,9 +2,9 @@
 using Characters.CharacterState;
 using Characters.Enemies.Attacks.Commands;
 using Characters.Enemies.Scripts;
+using Characters.Enemies.States;
 using Characters.Health.Scripts;
 using Characters.Health.Scripts.Commands;
-using Characters.NPCs.Enemies.States;
 using Characters.Player.Scripts;
 using Characters.Scripts;
 using DG.Tweening;
@@ -33,6 +33,7 @@ namespace Characters.Enemies
         [SerializeField] float memoryDuration = 5f; // How long the enemy remembers the player after losing sight
 
         public GameObject weapon;
+        public double chaseDuration;
         readonly List<DOTweenAnimation> _animations = new();
         readonly List<IAttackCommand> _attacks = new();
 
@@ -58,7 +59,17 @@ namespace Characters.Enemies
             // Get the EnemyVisiblity component
             _visibility = GetComponent<EnemyVisiblity>();
             // Set the initial state to patrolling, and former state to null
-            _currentState = new PatrollingState(null);
+            if (_enemyCount % 2 == 0)
+            {
+                _currentState = new PatrollingState(null, true);
+                Debug.Log("Enemy is going one way");
+            }
+            else
+            {
+                _currentState = new PatrollingState(null, false);
+                Debug.Log("Enemy is going the other way");
+            }
+
 
             ChangeState(_currentState);
 
@@ -68,8 +79,6 @@ namespace Characters.Enemies
 
             // Get the NavMeshAgent component
             navMeshAgent = GetComponent<NavMeshAgent>();
-
-            FindWaypoints();
         }
 
         void Update()

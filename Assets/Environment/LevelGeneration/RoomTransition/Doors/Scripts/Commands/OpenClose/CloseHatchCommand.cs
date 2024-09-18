@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Commands;
 using Environment.Interactables.Openable.Scripts;
+using Environment.LevelGeneration.RoomTransition.Doors.Scripts;
 using UnityEngine.AI;
 
 namespace Environment.LevelGeneration.Doors.Scripts.Commands.OpenClose

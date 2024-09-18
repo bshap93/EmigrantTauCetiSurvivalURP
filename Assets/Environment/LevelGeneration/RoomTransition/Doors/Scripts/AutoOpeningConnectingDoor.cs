@@ -4,25 +4,17 @@ using Environment.Interactables.Openable.Scripts;
 using Environment.LevelGeneration.Doors.Scripts.Commands.OpenClose;
 using UnityEngine;
 
-namespace Environment.LevelGeneration.Doors.Scripts
+namespace Environment.LevelGeneration.RoomTransition.Doors.Scripts
 {
     public class AutoOpeningConnectingDoor : OpenableObject
 
     {
-        public enum DoorState
-        {
-            Open,
-            Closed,
-            Opening,
-            Closing
-        }
-
-
         public GameObject hatchRightHalf;
         public GameObject hatchLeftHalf;
 
         public Vector3 hatchRightOpenOffset = new(-1f, 0f, 0);
         public Vector3 hatchLeftOpenOffset = new(1f, 0f, 0);
+
 
         float _currentFramePosition;
         OpenableState _currentState = OpenableState.Closed;
@@ -50,39 +42,43 @@ namespace Environment.LevelGeneration.Doors.Scripts
         }
         public void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
-            {
-                var playerController = other.GetComponent<CharacterController>();
-                if (playerController == null) return;
+            if (agentsAllowedToOpen.Contains(OpenerAgent.Player))
+                if (other.CompareTag("Player"))
+                {
+                    var playerController = other.GetComponent<CharacterController>();
+                    if (playerController == null) return;
 
-                OpenCommand.Execute();
-            }
+                    OpenCommand.Execute();
+                }
 
-            if (other.CompareTag("Enemy"))
-            {
-                var enemyController = other.GetComponent<Enemy>();
-                if (enemyController == null) return;
+            if (agentsAllowedToOpen.Contains(OpenerAgent.Enemy))
+                if (other.CompareTag("Enemy"))
+                {
+                    var enemyController = other.GetComponent<Enemy>();
+                    if (enemyController == null) return;
 
-                OpenCommand.Execute();
-            }
+                    OpenCommand.Execute();
+                }
         }
         public void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Player"))
-            {
-                var playerController = other.GetComponent<CharacterController>();
-                if (playerController == null) return;
+            if (agentsAllowedToOpen.Contains(OpenerAgent.Player))
+                if (other.CompareTag("Player"))
+                {
+                    var playerController = other.GetComponent<CharacterController>();
+                    if (playerController == null) return;
 
-                CloseCommand.Execute();
-            }
+                    CloseCommand.Execute();
+                }
 
-            if (other.CompareTag("Enemy"))
-            {
-                var enemyController = other.GetComponent<Enemy>();
-                if (enemyController == null) return;
+            if (agentsAllowedToOpen.Contains(OpenerAgent.Enemy))
+                if (other.CompareTag("Enemy"))
+                {
+                    var enemyController = other.GetComponent<Enemy>();
+                    if (enemyController == null) return;
 
-                CloseCommand.Execute();
-            }
+                    CloseCommand.Execute();
+                }
         }
 
 

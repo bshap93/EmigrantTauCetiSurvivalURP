@@ -1,18 +1,19 @@
 ﻿using Characters.CharacterState;
-using Characters.Enemies;
 using UnityEngine;
 
-namespace Characters.NPCs.Enemies.States
+namespace Characters.Enemies.States
 {
     public class PatrollingState : EnemyState
     {
         readonly float _idleTime = 2f;
+        public readonly bool ReversedPath;
         int _currentWaypointIndex;
         float _idleTimer;
 
         bool _isIdle;
-        public PatrollingState(EnemyState formerState) : base(formerState, null)
+        public PatrollingState(EnemyState formerState, bool reversedPath) : base(formerState, null)
         {
+            ReversedPath = reversedPath;
         }
 
 
@@ -20,6 +21,11 @@ namespace Characters.NPCs.Enemies.States
         public override void Enter(Enemy enemy)
         {
             if (enemy.waypoints.Count <= 0) enemy.FindWaypoints();
+            if (ReversedPath)
+                _currentWaypointIndex = enemy.waypoints.Count - 1;
+            else
+                _currentWaypointIndex = 0;
+
             enemy.SetEnemyDestination(enemy.waypoints[_currentWaypointIndex].position);
             _isIdle = false;
         }
@@ -39,7 +45,16 @@ namespace Characters.NPCs.Enemies.States
 
                 if (_idleTimer >= _idleTime)
                 {
-                    _currentWaypointIndex = (_currentWaypointIndex + 1) % enemy.waypoints.Count;
+                    if (ReversedPath)
+                    {
+                        _currentWaypointIndex--;
+                        if (_currentWaypointIndex < 0) _currentWaypointIndex = enemy.waypoints.Count - 1;
+                    }
+                    else
+                    {
+                        _currentWaypointIndex = (_currentWaypointIndex + 1) % enemy.waypoints.Count;
+                    }
+
                     enemy.SetEnemyDestination(enemy.waypoints[_currentWaypointIndex].position);
                     _isIdle = false;
                 }
