@@ -2,6 +2,7 @@
 using Core.Cameras.Commands;
 using Core.Cameras.Commands.MoveCamera;
 using Core.Cameras.Commands.RotateCamera;
+using Core.Cameras.Commands.ZoomCamera;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -42,6 +43,7 @@ namespace Core.Cameras.InputHandlers
         {
             HandleCameraRotation();
             HandleCameraMovement();
+            HandleCameraZoom();
         }
 
         void HandleCameraRotation()
@@ -75,6 +77,20 @@ namespace Core.Cameras.InputHandlers
                     mouseMovement, mouseInfluence, maxMouseOffset, deadZoneRadius);
 
                 moveCommand.Execute(virtualCamera, 0);
+            }
+        }
+
+        void HandleCameraZoom()
+        {
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                var zoomCommand = new ZoomCommand();
+                zoomCommand.Execute(virtualCamera, 0.5f);
+            }
+            else if (Input.mouseScrollDelta.y < 0)
+            {
+                var zoomCommand = new ZoomCommand();
+                zoomCommand.Execute(virtualCamera, -0.5f);
             }
         }
     }

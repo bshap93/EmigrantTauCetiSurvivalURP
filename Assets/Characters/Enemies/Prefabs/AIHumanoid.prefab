@@ -3023,9 +3023,11 @@ GameObject:
   - component: {fileID: 935103736550382460}
   - component: {fileID: 6409747936871597657}
   - component: {fileID: 7334342996917020311}
+  - component: {fileID: 886137780336080920}
+  - component: {fileID: 2924302528575633750}
   m_Layer: 0
   m_Name: AIHumanoid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3210,6 +3212,34 @@ MonoBehaviour:
   angle: 360
   visualize: 1
   target: {fileID: 0}
+--- !u!114 &886137780336080920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8537680014172872213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 184925e581e5457ea3e0a02cfab732c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tempMeleeDamage: 10
+  tempRangedDamage: 10
+  weapon: {fileID: 4641569664322086218}
+--- !u!114 &2924302528575633750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8537680014172872213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c4716325bf463ba86e065ead20f331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navMeshAgent: {fileID: 4683960864211668843}
 --- !u!1 &8735252946991094465
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Characters.CharacterState;
 using Characters.Enemies.Attacks.Commands;
-using Characters.Enemies.Attacks.MeeleeAttacks;
 using Characters.Enemies.Scripts;
 using Characters.Health.Scripts;
 using Characters.Health.Scripts.Commands;
 using Characters.NPCs.Enemies.States;
+using Characters.Player.Scripts;
 using Characters.Scripts;
 using DG.Tweening;
 using UnityEngine;
@@ -23,6 +23,7 @@ namespace Characters.Enemies
         public NavMeshAgent navMeshAgent;
         public List<Transform> waypoints;
         public Transform player;
+
         public float attackCooldown = 1.5f; // Cooldown duration in second
 
 
@@ -32,13 +33,15 @@ namespace Characters.Enemies
         [SerializeField] float memoryDuration = 5f; // How long the enemy remembers the player after losing sight
 
         public GameObject weapon;
-        readonly List<DOTweenAnimation> Animations = new();
-        readonly List<IAttackCommand> Attacks = new();
+        readonly List<DOTweenAnimation> _animations = new();
+        readonly List<IAttackCommand> _attacks = new();
 
         EnemyState _currentState;
+        EnemyAttack _enemyAttack;
         string _enemyName;
         HealthSystem _healthSystem;
         float _memoryTimer;
+        EnemyNavigation _navigation;
         EnemyVisiblity _visibility;
 
         // Start is called before the first frame update
@@ -47,8 +50,9 @@ namespace Characters.Enemies
             _enemyCount++;
             _enemyName = "Enemy" + _enemyCount;
 
-            Animations.Add(weapon.GetComponent<DOTweenAnimation>());
-            Attacks.Add(new SimpleSlashAttack(10, Animations[0]));
+            _navigation = GetComponent<EnemyNavigation>();
+            _enemyAttack = GetComponent<EnemyAttack>();
+
 
             _healthSystem = new HealthSystem(_enemyName, 100);
             // Get the EnemyVisiblity component
@@ -93,27 +97,17 @@ namespace Characters.Enemies
             }
         }
 
-        /// <summary>
-        ///     Set the destination for the enemy to move to on the NavMesh
-        /// </summary>
-        /// <param name="destination"></param>
-        public void SetDestination(Vector3 destination)
+
+        public void SetEnemyDestination(Vector3 destination)
         {
-            navMeshAgent.SetDestination(destination);
-            Debug.Log("Set destination to " + destination);
+            _navigation.SetDestination(destination);
         }
-        /// <summary>
-        ///     Check if the enemy has reached its destination on the NavMesh
-        /// </summary>
-        /// <returns></returns>
-        public bool HasReachedDestination()
+
+        public bool HasEnemyReachedDestination()
         {
-            return !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
+            return _navigation.HasReachedDestination();
         }
-        /// <summary>
-        ///     Change the enemy's state to a new state
-        /// </summary>
-        /// <param name="newState"></param>
+
         public void ChangeState(EnemyState newState)
         {
             if (_currentState != null)
@@ -124,11 +118,7 @@ namespace Characters.Enemies
 
             Debug.Log("Changed state to " + _currentState.GetType().Name);
         }
-        /// <summary>
-        ///     Call method from EnemyVisibility to check if the player is visible
-        ///     or has seen the enemy in as much time as memoryTimer
-        /// </summary>
-        /// <returns></returns>
+
         public bool CanSeePlayer()
         {
             if (_visibility.TargetIsVisible)
@@ -170,16 +160,18 @@ namespace Characters.Enemies
 
         public void StopMoving()
         {
-            navMeshAgent.isStopped = true;
+            _navigation.StopMoving();
         }
         public void StartMoving()
         {
-            navMeshAgent.isStopped = false;
+            _navigation.StartMoving();
         }
 
 
         public void PerformAttack(IAttackCommand attackCommand)
         {
+            _enemyAttack.PerformAttack(
+                player.gameObject.GetComponent<PlayerStateController>());
         }
         public Vector3 GetPlayerPosition()
         {
@@ -187,7 +179,7 @@ namespace Characters.Enemies
         }
         public IAttackCommand GetAttack()
         {
-            return Attacks[0];
+            return _enemyAttack.GetAttack();
         }
     }
 }

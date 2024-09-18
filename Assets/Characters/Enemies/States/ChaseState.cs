@@ -58,7 +58,7 @@ namespace Characters.NPCs.Enemies.States
 
         void SetChaseDestination(Enemy enemy)
         {
-            enemy.SetDestination(enemy.GetPlayerPosition());
+            enemy.SetEnemyDestination(enemy.GetPlayerPosition());
             Debug.Log("Chasing player to: " + enemy.GetPlayerPosition());
         }
     }

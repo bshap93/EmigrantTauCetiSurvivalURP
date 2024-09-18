@@ -2177,7 +2177,6 @@ MonoBehaviour:
   difficultyLevel: 0
   roomType: 1
   roomID: 0
-  roomSize: {x: 10, y: 1, z: 10}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0

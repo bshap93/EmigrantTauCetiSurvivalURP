@@ -1,5 +1,6 @@
 ﻿using Core.Events;
 using Core.GameManager.Scripts;
+using Core.GameManager.Scripts.Commands;
 using UI.ETCCustomCursor.Scripts;
 using UI.Health.Scripts;
 using UI.InGameConsole.Scripts;
@@ -88,6 +89,8 @@ namespace UI
         void OnDead(string character)
         {
             if (character != "Player") return;
+            var playerDieCommand = new PlayerDieCommand();
+            playerDieCommand.Execute();
             simpleTextOverlayGameObject.GetComponent<SimpleTextOverlay>()
                 .SetState(OverlayState.Dead);
         }

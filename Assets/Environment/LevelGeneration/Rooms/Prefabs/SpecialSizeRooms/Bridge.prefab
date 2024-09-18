@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 4068138508451707279}
   - component: {fileID: 2838021961783360177}
   - component: {fileID: 1099451666366532753}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Bridge_Console_Corner_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1191,7 +1191,7 @@ GameObject:
   - component: {fileID: 8961037488361620070}
   - component: {fileID: 3565447022534376344}
   - component: {fileID: 3990772021910775162}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Bridge_Console_Corner_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2858,7 +2858,7 @@ GameObject:
   - component: {fileID: 424694734093230839}
   - component: {fileID: 2127452767068914145}
   - component: {fileID: 4205196011968518744}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Bridge_Console_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3368,7 +3368,7 @@ GameObject:
   - component: {fileID: 2641070228619007479}
   - component: {fileID: 6854884474295426865}
   - component: {fileID: 4699215906049908612}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_Bld_Bridge_Console_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

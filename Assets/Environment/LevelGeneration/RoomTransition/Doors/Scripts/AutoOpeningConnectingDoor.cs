@@ -1,3 +1,4 @@
+using Characters.Enemies;
 using DunGen;
 using Environment.Interactables.Openable.Scripts;
 using Environment.LevelGeneration.Doors.Scripts.Commands.OpenClose;
@@ -56,6 +57,14 @@ namespace Environment.LevelGeneration.Doors.Scripts
 
                 OpenCommand.Execute();
             }
+
+            if (other.CompareTag("Enemy"))
+            {
+                var enemyController = other.GetComponent<Enemy>();
+                if (enemyController == null) return;
+
+                OpenCommand.Execute();
+            }
         }
         public void OnTriggerExit(Collider other)
         {
@@ -63,6 +72,14 @@ namespace Environment.LevelGeneration.Doors.Scripts
             {
                 var playerController = other.GetComponent<CharacterController>();
                 if (playerController == null) return;
+
+                CloseCommand.Execute();
+            }
+
+            if (other.CompareTag("Enemy"))
+            {
+                var enemyController = other.GetComponent<Enemy>();
+                if (enemyController == null) return;
 
                 CloseCommand.Execute();
             }

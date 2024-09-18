@@ -20,14 +20,14 @@ namespace Characters.NPCs.Enemies.States
         public override void Enter(Enemy enemy)
         {
             if (enemy.waypoints.Count <= 0) enemy.FindWaypoints();
-            enemy.SetDestination(enemy.waypoints[_currentWaypointIndex].position);
+            enemy.SetEnemyDestination(enemy.waypoints[_currentWaypointIndex].position);
             _isIdle = false;
         }
         public override void Update(Enemy enemy)
         {
             if (!_isIdle)
             {
-                if (enemy.HasReachedDestination() && enemy.waypoints.Count > 0)
+                if (enemy.HasEnemyReachedDestination() && enemy.waypoints.Count > 0)
                 {
                     _isIdle = true;
                     _idleTimer = 0f;
@@ -40,7 +40,7 @@ namespace Characters.NPCs.Enemies.States
                 if (_idleTimer >= _idleTime)
                 {
                     _currentWaypointIndex = (_currentWaypointIndex + 1) % enemy.waypoints.Count;
-                    enemy.SetDestination(enemy.waypoints[_currentWaypointIndex].position);
+                    enemy.SetEnemyDestination(enemy.waypoints[_currentWaypointIndex].position);
                     _isIdle = false;
                 }
             }

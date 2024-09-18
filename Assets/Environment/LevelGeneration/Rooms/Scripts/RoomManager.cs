@@ -66,10 +66,7 @@ namespace Environment.LevelGeneration.Rooms.Scripts
 
                 var roomComponent = roomGameObject.GetComponent<Room>();
                 if (roomComponent != null)
-                {
                     roomComponent.InitializeRoom(_roomCounter); // Initialize room with the counter as ID
-                    Debug.Log($"Assigned Room ID: {_roomCounter} to {roomComponent.name}");
-                }
             }
         }
 
