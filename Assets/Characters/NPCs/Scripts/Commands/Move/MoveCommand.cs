@@ -1,7 +1,7 @@
 ﻿using Characters.Command;
 using UnityEngine;
 
-namespace Characters.Scripts.Commands.Move
+namespace Characters.NPCs.Scripts.Commands.Move
 {
     public abstract class MoveCommand : BaseCommand
     {

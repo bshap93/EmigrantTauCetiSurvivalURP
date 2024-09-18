@@ -1,3 +1,4 @@
+using Characters.NPCs.Scripts.Commands.Move;
 using UnityEngine;
 
 namespace Characters.Scripts.Commands.Move

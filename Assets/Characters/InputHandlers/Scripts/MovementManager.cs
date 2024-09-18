@@ -1,4 +1,5 @@
-﻿using Characters.Scripts.Commands.Move;
+﻿using Characters.NPCs.Scripts.Commands.Move;
+using Characters.Scripts.Commands.Move;
 using UnityEngine;
 
 namespace Characters.InputHandlers.Scripts

@@ -1,20 +1,21 @@
 ﻿using Characters.InputHandlers.Scripts;
+using Characters.Player.Scripts.Movement;
 using Core.InputHandler.Scripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Characters.Player.InputHandlers.Scripts
 {
     public class ManualManeuverInputHandler : MonoBehaviour, IInputHandler
     {
         [SerializeField] MovementManager movementManager;
-        [SerializeField] PlayerRotationInputHandler playerRotationInputHandler;
+        [FormerlySerializedAs("playerRotationInputHandler")] [SerializeField]
+        RotatePlayerDirection rotatePlayerDirection;
 
 
         void Start()
         {
             if (movementManager == null) movementManager = MovementManager.Instance;
-
-            if (playerRotationInputHandler == null) playerRotationInputHandler = PlayerRotationInputHandler.Instance;
         }
 
         void Update()
@@ -24,30 +25,31 @@ namespace Characters.Player.InputHandlers.Scripts
 
         public void HandleInput()
         {
+            if (Input.GetMouseButton(1)) Debug.Log("Player is in Firing stance");
             // Handle player input for movement
             if (Input.GetKey(KeyCode.W))
             {
                 movementManager.ExecuteMoveUpCommand();
-                playerRotationInputHandler.ExecuteRotateUpCommand();
+                rotatePlayerDirection.ExecuteRotateUpCommand();
             }
 
             if (Input.GetKey(KeyCode.S))
             {
                 movementManager.ExecuteMoveDownCommand();
-                playerRotationInputHandler.ExecuteRotateDownCommand();
+                rotatePlayerDirection.ExecuteRotateDownCommand();
             }
 
             if (Input.GetKey(KeyCode.A))
             {
                 movementManager.ExecuteMoveLeftCommand();
-                playerRotationInputHandler.ExecuteRotateLeftCommand();
+                rotatePlayerDirection.ExecuteRotateLeftCommand();
             }
 
 
             if (Input.GetKey(KeyCode.D))
             {
                 movementManager.ExecuteMoveRightCommand();
-                playerRotationInputHandler.ExecuteRotateRightCommand();
+                rotatePlayerDirection.ExecuteRotateRightCommand();
             }
         }
     }

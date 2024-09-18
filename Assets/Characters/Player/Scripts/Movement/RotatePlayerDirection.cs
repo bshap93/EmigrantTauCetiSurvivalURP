@@ -1,28 +1,14 @@
-﻿using Characters.Scripts.Commands.Rotate;
+﻿using Characters.Player.Scripts.Commands.Rotate;
 using UnityEngine;
 
-namespace Characters.Player.InputHandlers.Scripts
+namespace Characters.Player.Scripts.Movement
 {
-    public class PlayerRotationInputHandler : MonoBehaviour
+    public class RotatePlayerDirection : MonoBehaviour
     {
         public GameObject player;
         public float timeToRotate = 0.5f;
 
-        public UnityEngine.Camera mainCamera;
-        public static PlayerRotationInputHandler Instance { get; private set; }
-
-        void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
+        public Camera mainCamera;
 
 
         public void ExecuteRotateLeftCommand()

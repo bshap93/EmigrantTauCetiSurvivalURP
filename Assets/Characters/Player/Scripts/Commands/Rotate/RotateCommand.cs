@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Include DOTween namespace
 
-namespace Characters.Scripts.Commands.Rotate
+namespace Characters.Player.Scripts.Commands.Rotate
 {
     public class RotateCommand : BaseCommand
     {
