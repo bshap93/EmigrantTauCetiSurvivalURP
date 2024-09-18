@@ -1,4 +1,5 @@
-﻿using Characters.CharacterState;
+﻿using System.Collections.Generic;
+using Characters.CharacterState;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,8 +10,8 @@ namespace Characters.Enemies.States
         readonly bool _patrolWasReversed;
         readonly Transform _target;
         float _chaseTimer;
-        float _pathRecalculationDelay = 0.5f; // Half a second delay between recalculations
-        float _pathRecalculationTimer = 0f;
+        readonly float _pathRecalculationDelay = 0.5f; // Half a second delay between recalculations
+        float _pathRecalculationTimer;
         public ChaseState(EnemyState formerState, Transform target) : base(formerState, target)
         {
             if (formerState is AttackState)
@@ -36,9 +37,13 @@ namespace Characters.Enemies.States
 
 
             if (IsPlayerInAttackRange(enemy))
+            {
                 TransitionToAttackState(enemy);
+            }
             else if (HasLostPlayer(enemy) || !IsPathValid(enemy))
+            {
                 TransitionToPatrolState(enemy);
+            }
             else if (_pathRecalculationTimer >= _pathRecalculationDelay)
             {
                 SetChaseDestination(enemy);
@@ -71,6 +76,12 @@ namespace Characters.Enemies.States
 
         void TransitionToPatrolState(Enemy enemy)
         {
+            enemy.StartCoroutine(SearchBeforePatrolling(enemy));
+        }
+
+        IEnumerator<WaitForSeconds> SearchBeforePatrolling(Enemy enemy)
+        {
+            yield return new WaitForSeconds(1f); // Simulate a "searching" phase for 1 second
             enemy.ChangeState(new PatrollingState(this, _patrolWasReversed));
         }
 
