@@ -3,23 +3,21 @@ using Characters.Health.Scripts.Commands;
 using Characters.Health.Scripts.Debugging;
 using Characters.Scripts;
 using Core.Events;
+using Core.Events.EventManagers;
 using DunGen;
 using Plugins.DunGen.Code;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace Characters.Player.Scripts
 {
     public class PlayerStateController : MonoBehaviour, IDamageable
     {
-        [FormerlySerializedAs("characterDamageManager")]
-        [FormerlySerializedAs("dealDamageToCharacter")]
-        [FormerlySerializedAs("manuallyDamageCharacter")]
-        [FormerlySerializedAs("healthSystemDebug")]
         public EditorButtonDealDamage editorButtonDealDamage;
         public NavMeshAgent navMeshAgent;
+        [SerializeField] PlayerEventManager playerEventManager;
+
         DungenCharacter _dungenCharacter;
         Transform _initialOrientation;
 
@@ -51,10 +49,10 @@ namespace Characters.Player.Scripts
             _dungenCharacter = GetComponent<DungenCharacter>();
             _dungenCharacter.OnTileChanged += OnCharacterTileChanged;
             // This must be done before  GameManager
-            HealthSystem = new HealthSystem("Player", 100);
+            HealthSystem = new HealthSystem("Player", 100, playerEventManager);
             EventManager.EDealDamage.AddListener(TakeDamage);
             EventManager.ERestartCurrentLevel.AddListener(ResetPlayer);
-            EventManager.EPlayerStateInitialized.Invoke();
+            playerEventManager.TriggerCharacterStateInitialized();
         }
 
         // Handle debug damage
@@ -63,7 +61,7 @@ namespace Characters.Player.Scripts
             if ((PlayerStateController)dmgeable == this)
             {
                 var dealDamageCommand = new DealDamageCommand();
-                dealDamageCommand.Execute(Instance.HealthSystem, damage);
+                dealDamageCommand.Execute(Instance.HealthSystem, damage, playerEventManager);
             }
         }
 

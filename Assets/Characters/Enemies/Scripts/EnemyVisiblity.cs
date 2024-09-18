@@ -111,23 +111,26 @@ namespace Characters.Enemies.Scripts
             // object, so we'll take the forward direction and rotate it by
             // half the angle.
 
-            var forwardPointMinusHalfAngle =
-                // rotate around the Y axis by half the angle
-                Quaternion.Euler(0, -visibility.angle / 2, 0)
-                // rotate the forward direction by this
-                * visibility.transform.forward;
+            if (visibility != null)
+            {
+                var forwardPointMinusHalfAngle =
+                    // rotate around the Y axis by half the angle
+                    Quaternion.Euler(0, -visibility.angle / 2, 0)
+                    // rotate the forward direction by this
+                    * visibility.transform.forward;
 
-            // Draw the arc to visualise the visibility arc
-            var arcStart =
-                forwardPointMinusHalfAngle * visibility.maxDistance;
+                // Draw the arc to visualise the visibility arc
+                var arcStart =
+                    forwardPointMinusHalfAngle * visibility.maxDistance;
 
-            Handles.DrawSolidArc(
-                visibility.transform.position, // The center of the arc
-                Vector3.up, // The up-direction of the arc
-                arcStart, // The point where it begins
-                visibility.angle, // The angle of the arc
-                visibility.maxDistance // The radius of the arc
-            );
+                Handles.DrawSolidArc(
+                    visibility.transform.position, // The center of the arc
+                    Vector3.up, // The up-direction of the arc
+                    arcStart, // The point where it begins
+                    visibility.angle, // The angle of the arc
+                    visibility.maxDistance // The radius of the arc
+                );
+            }
 
 
             // Draw a scale handle at the edge of the arc; if the user drags

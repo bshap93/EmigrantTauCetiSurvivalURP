@@ -1,5 +1,6 @@
 using Characters.Health.Scripts;
 using Characters.Player.Scripts;
+using Core.Events.EventManagers;
 using Core.SaveSystem.Scripts;
 using UI.ETCCustomCursor.Scripts.Commands;
 using UI.InGameConsole.Scripts;
@@ -14,6 +15,8 @@ namespace Core.GameManager.Scripts
 
 
         public UnityEvent<string> onSystemActivated;
+
+        public PlayerEventManager playerEventManager;
 
         public SaveManager saveManager;
 
@@ -38,7 +41,7 @@ namespace Core.GameManager.Scripts
             inGameConsoleManager = consoleManagerObject.GetComponent<InGameConsoleManager>();
 
             PlayerStateController.Instance.HealthSystem =
-                new HealthSystem("Player", 100);
+                new HealthSystem("Player", 100, playerEventManager);
 
 
             _disableCursorCommand = new DisableCursorCommand();

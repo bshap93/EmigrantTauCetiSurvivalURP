@@ -1,4 +1,5 @@
 ﻿using Core.Events;
+using Core.Events.EventManagers;
 using Core.GameManager.Scripts;
 using Core.GameManager.Scripts.Commands;
 using UI.ETCCustomCursor.Scripts;
@@ -6,6 +7,7 @@ using UI.Health.Scripts;
 using UI.InGameConsole.Scripts;
 using UI.Menus.SimpleTextOverlay.Scripts;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace UI
 {
@@ -16,6 +18,8 @@ namespace UI
         public string cursorName;
         public Vector2 cursorHotspot;
         public HealthBarUI healthBarUI;
+
+        public PlayerEventManager playerEventManager;
 
         public SimpleTextOverlay simpleTextOverlay;
 
@@ -48,11 +52,12 @@ namespace UI
             EventManager.EResumeGame.AddListener(OnResumeGame);
             EventManager.EPauseGame.AddListener(OnPauseGame);
 
-            EventManager.EChangeHealth
-                .AddListener(OnHealthChanged);
+            UnityAction<float> healthChange = OnHealthChanged;
+            playerEventManager.AddListenerToCharacterEvent(healthChange);
 
-            EventManager.ENotifyCharacterDied
-                .AddListener(OnDead);
+            UnityAction<string> dead = OnDead;
+            playerEventManager.AddListenerToCharacterEvent(dead);
+
 
             simpleTextOverlayGameObject.SetActive(false);
         }
@@ -62,11 +67,11 @@ namespace UI
             EventManager.EResumeGame.RemoveListener(OnResumeGame);
             EventManager.EPauseGame.RemoveListener(OnPauseGame);
 
-            EventManager.ENotifyCharacterDied
-                .RemoveListener(OnDead);
+            UnityAction<float> healthChange = OnHealthChanged;
+            playerEventManager.RemoveListenerFromCharacterEvent(healthChange);
 
-            EventManager.EChangeHealth
-                .RemoveListener(OnHealthChanged);
+            UnityAction<string> dead = OnDead;
+            playerEventManager.RemoveListenerFromCharacterEvent(dead);
         }
 
         void OnHealthChanged(float health)

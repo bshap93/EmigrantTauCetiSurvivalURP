@@ -1,6 +1,6 @@
-﻿using Characters.Health.Scripts;
+﻿using Characters.Enemies;
+using Characters.Health.Scripts;
 using Characters.Player.Scripts;
-using Core.Events.EventManagers;
 using Core.GameManager.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,10 +8,10 @@ using UnityEngine.UI;
 
 namespace UI.Health.Scripts
 {
-    public class HealthBarUI : MonoBehaviour
+    public class EnemyHealthBar : MonoBehaviour
     {
         public Image healthBarFill; // Reference to the UI Image for the health bar fill
-        public PlayerEventManager playerEventManager;
+        public EnemyEventManager enemyEventManager;
         HealthSystem _healthSystem; // Reference to the HealthSystem
 
 
@@ -40,7 +40,7 @@ namespace UI.Health.Scripts
                 _healthSystem = PlayerStateController.Instance.HealthSystem; // Get the player's health system
                 // Subscribe to health change events
                 UnityAction<float> healthChange = UpdateHealthBar;
-                playerEventManager.AddListenerToCharacterEvent(healthChange);
+                enemyEventManager.AddListenerToCharacterEvent(healthChange);
 
                 // Initialize the health bar with the current health
                 UpdateHealthBar(_healthSystem.CurrentHealth);

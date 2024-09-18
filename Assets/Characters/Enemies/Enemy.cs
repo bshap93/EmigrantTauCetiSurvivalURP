@@ -34,15 +34,16 @@ namespace Characters.Enemies
 
         public GameObject weapon;
         public double chaseDuration;
+        [SerializeField] EnemyEventManager enemyEventManager;
         readonly List<DOTweenAnimation> _animations = new();
         readonly List<IAttackCommand> _attacks = new();
 
-        EnemyState _currentState;
         EnemyAttack _enemyAttack;
         string _enemyName;
         HealthSystem _healthSystem;
         float _memoryTimer;
         EnemyNavigation _navigation;
+        EnemyStateController _stateController;
         EnemyVisiblity _visibility;
 
         // Start is called before the first frame update
@@ -53,25 +54,20 @@ namespace Characters.Enemies
 
             _navigation = GetComponent<EnemyNavigation>();
             _enemyAttack = GetComponent<EnemyAttack>();
+            _stateController = GetComponent<EnemyStateController>();
 
 
-            _healthSystem = new HealthSystem(_enemyName, 100);
+            _healthSystem = new HealthSystem(_enemyName, 100, enemyEventManager);
             // Get the EnemyVisiblity component
             _visibility = GetComponent<EnemyVisiblity>();
             // Set the initial state to patrolling, and former state to null
             if (_enemyCount % 2 == 0)
-            {
-                _currentState = new PatrollingState(null, true);
-                Debug.Log("Enemy is going one way");
-            }
+                _stateController.Initialize(this, new PatrollingState(null, true));
             else
-            {
-                _currentState = new PatrollingState(null, false);
-                Debug.Log("Enemy is going the other way");
-            }
+                _stateController.Initialize(this, new PatrollingState(null, false));
 
 
-            ChangeState(_currentState);
+            // ChangeState(_currentState);
 
             // Find the player object
             if (player == null)
@@ -83,14 +79,14 @@ namespace Characters.Enemies
 
         void Update()
         {
-            _currentState.Update(this);
+            _stateController.Update();
         }
         public void TakeDamage(IDamageable dmgeable, float damage)
         {
             if (dmgeable is Enemy)
             {
                 var dealDamageCommand = new DealDamageCommand();
-                dealDamageCommand.Execute(_healthSystem, damage);
+                dealDamageCommand.Execute(_healthSystem, damage, enemyEventManager);
             }
         }
         public void FindWaypoints()
@@ -119,13 +115,7 @@ namespace Characters.Enemies
 
         public void ChangeState(EnemyState newState)
         {
-            if (_currentState != null)
-                _currentState.Exit(this);
-
-            _currentState = newState;
-            _currentState.Enter(this);
-
-            Debug.Log("Changed state to " + _currentState.GetType().Name);
+            _stateController.ChangeState(newState);
         }
 
         public bool CanSeePlayer()

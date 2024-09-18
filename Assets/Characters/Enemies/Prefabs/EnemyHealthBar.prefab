@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6322202614012921085}
   - component: {fileID: 6322202614012921084}
   - component: {fileID: 6322202614012921082}
-  - component: {fileID: 314935330798423221}
+  - component: {fileID: -2322285121978046707}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: EnemyHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &314935330798423221
+--- !u!114 &-2322285121978046707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,10 +108,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6322202614012921086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb1b2bd7c6b54292ace9c05931e72e47, type: 3}
+  m_Script: {fileID: 11500000, guid: d9121dcd84da441b9eb29fa60dfb9e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBarFill: {fileID: 4060424069972676892}
+  healthBarFill: {fileID: 4060424069972676892, guid: d0333a3d6f86f494ea1e50d1674d4080, type: 3}
+  enemyEventManager: {fileID: 0}
 --- !u!1 &8400727718159978512
 GameObject:
   m_ObjectHideFlags: 0
