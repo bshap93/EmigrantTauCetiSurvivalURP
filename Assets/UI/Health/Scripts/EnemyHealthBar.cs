@@ -18,7 +18,7 @@ namespace UI.Health.Scripts
         void Start()
         {
             GameManager.Instance.onSystemActivated.AddListener(OnSystemActivated);
-            _healthSystem = PlayerStateController.Instance.HealthSystem; // Get the player's health system
+            _healthSystem = PlayerCharacter.Instance.HealthSystem; // Get the player's health system
 
 
             // Initialize the health bar with the current health
@@ -37,7 +37,7 @@ namespace UI.Health.Scripts
             if (systemName == "Health")
             {
                 Debug.Log("Health system activated");
-                _healthSystem = PlayerStateController.Instance.HealthSystem; // Get the player's health system
+                _healthSystem = PlayerCharacter.Instance.HealthSystem; // Get the player's health system
                 // Subscribe to health change events
                 UnityAction<float> healthChange = UpdateHealthBar;
                 enemyEventManager.AddListenerToCharacterEvent(healthChange);

@@ -40,7 +40,7 @@ namespace Core.GameManager.Scripts
         {
             inGameConsoleManager = consoleManagerObject.GetComponent<InGameConsoleManager>();
 
-            PlayerStateController.Instance.HealthSystem =
+            PlayerCharacter.Instance.HealthSystem =
                 new HealthSystem("Player", 100, playerEventManager);
 
 

@@ -1,5 +1,4 @@
-﻿using Characters.CharacterState;
-using Characters.Scripts;
+﻿using Characters.Scripts;
 using DG.Tweening;
 using UnityEngine;
 

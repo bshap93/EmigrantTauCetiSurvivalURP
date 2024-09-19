@@ -1,5 +1,7 @@
 ﻿using Characters.InputHandlers.Scripts;
+using Characters.Player.Scripts;
 using Characters.Player.Scripts.Movement;
+using Characters.Player.Scripts.States;
 using Core.InputHandler.Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -11,6 +13,7 @@ namespace Characters.Player.InputHandlers.Scripts
         [SerializeField] MovementManager movementManager;
         [FormerlySerializedAs("playerRotationInputHandler")] [SerializeField]
         RotatePlayerDirection rotatePlayerDirection;
+        [SerializeField] PlayerCharacter playerCharacter;
 
 
         void Start()
@@ -25,8 +28,12 @@ namespace Characters.Player.InputHandlers.Scripts
 
         public void HandleInput()
         {
-            if (Input.GetMouseButton(1)) Debug.Log("Player is in Firing stance");
-            // Handle player input for movement
+            HandleMovementInput();
+            HandleCombatInput();
+        }
+
+        void HandleMovementInput()
+        {
             if (Input.GetKey(KeyCode.W))
             {
                 movementManager.ExecuteMoveUpCommand();
@@ -45,11 +52,21 @@ namespace Characters.Player.InputHandlers.Scripts
                 rotatePlayerDirection.ExecuteRotateLeftCommand();
             }
 
-
             if (Input.GetKey(KeyCode.D))
             {
                 movementManager.ExecuteMoveRightCommand();
                 rotatePlayerDirection.ExecuteRotateRightCommand();
+            }
+        }
+
+        void HandleCombatInput()
+        {
+            if (Input.GetMouseButton(1))
+            {
+                playerCharacter.ChangeState(new CombatReadyState(playerCharacter.GetCurrentState(), null));
+
+                if (Input.GetMouseButton(0))
+                    Debug.Log("Player is attacking");
             }
         }
     }

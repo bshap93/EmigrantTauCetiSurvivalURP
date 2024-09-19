@@ -1,8 +1,7 @@
-﻿using Characters.Enemies;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Characters.CharacterState
+namespace Characters.Enemies.States
 {
     public abstract class EnemyState
     {

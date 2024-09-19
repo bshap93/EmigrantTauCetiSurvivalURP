@@ -49,7 +49,7 @@ namespace Environment.LevelGeneration.Rooms.Scripts
                 enabled = false; // Disables the Update method from running again
                 EventManager.EOnRoomGeneration.Invoke();
                 OnDungeonGenerated(_runtimeDungeon.Generator);
-                PlayerStateController.Instance.navMeshAgent.enabled = true;
+                PlayerCharacter.Instance.navMeshAgent.enabled = true;
             }
         }
 

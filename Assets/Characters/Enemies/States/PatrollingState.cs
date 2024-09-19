@@ -1,5 +1,4 @@
-﻿using Characters.CharacterState;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Characters.Enemies.States
 {

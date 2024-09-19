@@ -6,8 +6,25 @@ namespace Combat.Weapons.Scripts
 {
     public abstract class Weapon : MonoBehaviour
     {
-        protected IAttackCommand attackCommand;
+        public float damage;
+        public float range;
+        protected IAttackCommand AttackCommand;
 
         public abstract void Attack(Enemy target); // Implemented by subclasses
+
+        public void SetAttackCommand(IAttackCommand attackCommand)
+        {
+            AttackCommand = attackCommand;
+        }
+
+        public IAttackCommand GetAttackCommand()
+        {
+            return AttackCommand;
+        }
+
+        public float GetDamage()
+        {
+            return damage;
+        }
     }
 }

@@ -60,7 +60,7 @@ namespace Core.Cameras.Managers.Scripts
         void OnPlayerDamage(IDamageable damageable, float damage)
         {
             // Camera shake effect
-            if (damageable is PlayerStateController)
+            if (damageable is PlayerCharacter)
                 ShakeCamera(0.5f, 0.5f, 10, 90);
         }
 

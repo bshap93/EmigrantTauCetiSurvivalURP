@@ -1,9 +1,10 @@
 ﻿using Characters.Scripts;
+using JetBrains.Annotations;
 
 namespace Characters.Enemies.Attacks.Commands
 {
     public interface IAttackCommand
     {
-        void Execute(IDamageable target, float dmgValue);
+        void Execute([CanBeNull] IDamageable target, float dmgValue);
     }
 }

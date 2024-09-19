@@ -1,6 +1,4 @@
-﻿using Characters.CharacterState;
-
-namespace Characters.Enemies.States
+﻿namespace Characters.Enemies.States
 {
     public class EnemyStartState : EnemyState
     {

@@ -1,4 +1,4 @@
-﻿using Characters.CharacterState;
+﻿using Characters.Enemies.States;
 using UnityEngine;
 
 namespace Characters.Enemies.Scripts

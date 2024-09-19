@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Characters.CharacterState;
 using Characters.Enemies.Attacks.Commands;
 using Characters.Enemies.Scripts;
 using Characters.Enemies.States;
@@ -66,8 +65,6 @@ namespace Characters.Enemies
             else
                 _stateController.Initialize(this, new PatrollingState(null, false));
 
-
-            // ChangeState(_currentState);
 
             // Find the player object
             if (player == null)
@@ -170,7 +167,7 @@ namespace Characters.Enemies
         public void PerformAttack(IAttackCommand attackCommand)
         {
             _enemyAttack.PerformAttack(
-                player.gameObject.GetComponent<PlayerStateController>());
+                player.gameObject.GetComponent<PlayerCharacter>());
         }
         public Vector3 GetPlayerPosition()
         {

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Characters.CharacterState;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,10 +6,10 @@ namespace Characters.Enemies.States
 {
     public class ChaseState : EnemyState
     {
+        readonly float _pathRecalculationDelay = 0.5f; // Half a second delay between recalculations
         readonly bool _patrolWasReversed;
         readonly Transform _target;
         float _chaseTimer;
-        readonly float _pathRecalculationDelay = 0.5f; // Half a second delay between recalculations
         float _pathRecalculationTimer;
         public ChaseState(EnemyState formerState, Transform target) : base(formerState, target)
         {
