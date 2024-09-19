@@ -6,7 +6,7 @@ namespace Characters.Player.Scripts.States
     public class AttackingState : PlayerState
     {
         public AttackingState([CanBeNull] PlayerState formerState, [CanBeNull] Transform target)
-            : base(formerState, target)
+            : base(target)
         {
         }
 
@@ -20,9 +20,6 @@ namespace Characters.Player.Scripts.States
             attackCommand.Execute(
                 null,
                 playerCharacter.GetCurrentWeapon().GetDamage());
-
-            // After attacking, transition back to CombatReadyState or ExplorationState
-            playerCharacter.ChangeState(new CombatReadyState(this, Target));
         }
 
         public override void Update(PlayerCharacter playerCharacter)

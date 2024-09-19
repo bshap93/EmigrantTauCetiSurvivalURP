@@ -22,13 +22,16 @@ namespace Characters.Player.Scripts
 
         public void ChangeState(PlayerState newState)
         {
-            if (_currentState != null)
-                _currentState.Exit(_playerCharacter);
+            if (_currentState.GetType() != newState.GetType())
+            {
+                if (_currentState != null)
+                    _currentState.Exit(_playerCharacter);
 
-            _currentState = newState;
-            _currentState.Enter(_playerCharacter);
+                _currentState = newState;
+                _currentState.Enter(_playerCharacter);
 
-            Debug.Log("Changed state to " + _currentState.GetType().Name);
+                Debug.Log("Changed state to " + _currentState.GetType().Name);
+            }
         }
         public PlayerState GetCurrentState()
         {

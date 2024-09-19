@@ -7,9 +7,9 @@ namespace Characters.Player.Scripts.States
     {
         [CanBeNull] protected readonly Transform Target;
         [CanBeNull] PlayerState _formerState;
-        protected PlayerState([CanBeNull] PlayerState formerState, [CanBeNull] Transform target)
+
+        protected PlayerState([CanBeNull] Transform target)
         {
-            _formerState = formerState;
             Target = target;
         }
         public abstract void Enter(PlayerCharacter playerCharacter);

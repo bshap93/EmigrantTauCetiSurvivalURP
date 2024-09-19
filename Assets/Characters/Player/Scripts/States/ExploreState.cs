@@ -5,8 +5,8 @@ namespace Characters.Player.Scripts.States
 {
     public class ExploreState : PlayerState
     {
-        public ExploreState([CanBeNull] PlayerState formerState, [CanBeNull] Transform target) : base(
-            formerState, target)
+        public ExploreState([CanBeNull] Transform target) : base(
+            target)
         {
         }
         public override void Enter(PlayerCharacter playerCharacter)

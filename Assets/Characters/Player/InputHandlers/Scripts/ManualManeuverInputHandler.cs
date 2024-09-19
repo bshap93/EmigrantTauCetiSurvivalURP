@@ -1,7 +1,6 @@
 ﻿using Characters.InputHandlers.Scripts;
 using Characters.Player.Scripts;
 using Characters.Player.Scripts.Movement;
-using Characters.Player.Scripts.States;
 using Core.InputHandler.Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -62,12 +61,10 @@ namespace Characters.Player.InputHandlers.Scripts
         void HandleCombatInput()
         {
             if (Input.GetMouseButton(1))
-            {
-                playerCharacter.ChangeState(new CombatReadyState(playerCharacter.GetCurrentState(), null));
+                playerCharacter.EnterCombatReadyState();
 
-                if (Input.GetMouseButton(0))
-                    Debug.Log("Player is attacking");
-            }
+            if (Input.GetMouseButton(0))
+                Debug.Log("Player is attacking");
         }
     }
 }

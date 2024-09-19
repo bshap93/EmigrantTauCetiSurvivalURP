@@ -11345,7 +11345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementManager: {fileID: 1712576934}
   rotatePlayerDirection: {fileID: 1516849233}
-  playerCharacter: {fileID: 0}
+  playerCharacter: {fileID: 1516849232}
 --- !u!114 &1540151391
 MonoBehaviour:
   m_ObjectHideFlags: 0
