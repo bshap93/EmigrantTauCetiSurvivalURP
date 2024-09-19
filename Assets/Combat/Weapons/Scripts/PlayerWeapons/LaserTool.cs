@@ -4,7 +4,7 @@ using Characters.Scripts;
 using Combat.Attacks.Commands;
 using UnityEngine;
 
-namespace Combat.Weapons.Scripts
+namespace Combat.Weapons.Scripts.PlayerWeapons
 {
     public class LaserTool : Weapon
     {
