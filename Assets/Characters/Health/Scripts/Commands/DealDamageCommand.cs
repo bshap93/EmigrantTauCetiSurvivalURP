@@ -17,7 +17,7 @@ namespace Characters.Health.Scripts.Commands
             healthSystem.CurrentHealth -= value;
 
 
-            eventManager.TriggerCharacterTakesDamage(damageable, value);
+            eventManager.TriggerCharacterChangeHealth(healthSystem.CurrentHealth);
             if (healthSystem.CurrentHealth <= 0)
                 eventManager.TriggerCharacterDied(healthSystem.CharacterName);
         }

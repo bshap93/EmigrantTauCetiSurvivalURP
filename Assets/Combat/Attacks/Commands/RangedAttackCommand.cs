@@ -7,10 +7,10 @@ namespace Combat.Attacks.Commands
 {
     public class RangedAttackCommand : IAttackCommand
     {
-        float _damage;
+        readonly Weapon _weapon;
+        readonly float _damage;
         Transform _firePoint;
         float _range;
-        readonly Weapon _weapon;
 
         public RangedAttackCommand(Weapon weapon, float range, Transform firePoint)
         {
@@ -22,10 +22,11 @@ namespace Combat.Attacks.Commands
 
         public void Execute(IDamageable target, float dmgValue)
         {
-            if (target == null)
-            {
-                _weapon.Attack(null);
-            }
+            if (target == null) _weapon.Attack(null);
+        }
+        public float GetDamage()
+        {
+            return _damage;
         }
     }
 }

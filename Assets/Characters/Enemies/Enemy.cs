@@ -93,6 +93,9 @@ namespace Characters.Enemies
         }
         public HealthSystem GetHealthSystem()
         {
+            if (_healthSystem == null)
+                _healthSystem = new HealthSystem(_enemyName, 100, enemyEventManager);
+
             return _healthSystem;
         }
         public void FindWaypoints()

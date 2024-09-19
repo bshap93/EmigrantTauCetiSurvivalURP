@@ -1,12 +1,13 @@
-﻿using Characters.Scripts;
+﻿using Characters.Enemies.Attacks.Commands;
+using Characters.Scripts;
 using UnityEngine;
 
-namespace Combat.Weapons.Attacks.Commands
+namespace Combat.Attacks.Commands
 {
-    public class MeleeAttackCommand : Characters.Enemies.Attacks.Commands.IAttackCommand
+    public class MeleeAttackCommand : IAttackCommand
     {
+        readonly float _damage;
         Transform _attackPoint;
-        float _damage;
         float _range;
 
         public MeleeAttackCommand(float damage, float range, Transform attackPoint)
@@ -19,6 +20,10 @@ namespace Combat.Weapons.Attacks.Commands
 
         public void Execute(IDamageable target, float dmgValue)
         {
+        }
+        public float GetDamage()
+        {
+            return _damage;
         }
     }
 }

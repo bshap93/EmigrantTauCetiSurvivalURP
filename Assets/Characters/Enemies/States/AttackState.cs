@@ -28,7 +28,7 @@ namespace Characters.Enemies.States
             {
                 var attack = enemy.GetAttack();
                 enemy.PerformAttack(attack);
-                attack.Execute(_target.gameObject.GetComponent<IDamageable>(), 10);
+                attack.Execute(_target.gameObject.GetComponent<IDamageable>(), attack.GetDamage());
 
                 // Set the next attack time based on the cooldown
                 _nextAttackTime = Time.time + enemy.attackCooldown;

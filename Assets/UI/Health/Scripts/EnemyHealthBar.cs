@@ -12,13 +12,17 @@ namespace UI.Health.Scripts
     {
         public Image healthBarFill; // Reference to the UI Image for the health bar fill
         public EnemyEventManager enemyEventManager;
+        public Enemy enemy;
         HealthSystem _healthSystem; // Reference to the HealthSystem
 
 
         void Start()
         {
             GameManager.Instance.onSystemActivated.AddListener(OnSystemActivated);
-            _healthSystem = PlayerCharacter.Instance.HealthSystem; // Get the player's health system
+            UnityAction<float> healthChange = UpdateHealthBar;
+            enemyEventManager.AddListenerToHealthChangedEvent(healthChange);
+
+            _healthSystem = enemy.GetHealthSystem(); // Get the player's health system
 
 
             // Initialize the health bar with the current health
@@ -34,7 +38,7 @@ namespace UI.Health.Scripts
                 _healthSystem = PlayerCharacter.Instance.HealthSystem; // Get the player's health system
                 // Subscribe to health change events
                 UnityAction<float> healthChange = UpdateHealthBar;
-                enemyEventManager.AddListenerToCharacterEvent(healthChange);
+                enemyEventManager.AddListenerToHealthChangedEvent(healthChange);
 
                 // Initialize the health bar with the current health
                 UpdateHealthBar(_healthSystem.CurrentHealth);
@@ -42,7 +46,7 @@ namespace UI.Health.Scripts
         }
 
         // Method to update the health bar fill amount
-        public void UpdateHealthBar(float currentHealth)
+        void UpdateHealthBar(float currentHealth)
         {
             // Calculate the health percentage and update the fill amount
             var healthPercent = currentHealth / _healthSystem.MaxHealth;

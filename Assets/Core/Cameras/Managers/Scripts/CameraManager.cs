@@ -1,6 +1,5 @@
 ﻿using System;
 using Characters.Player.Scripts;
-using Characters.Scripts;
 using Cinemachine;
 using DG.Tweening;
 using UnityEngine;
@@ -40,7 +39,7 @@ namespace Core.Cameras.Managers.Scripts
         void Start()
         {
             // Subscribe to the player damage event
-            player.playerEventManager.AddListenerToPlayerTakesDamageEvent(OnPlayerDamage);
+            player.playerEventManager.AddListenerToHealthChangedEvent(OnPlayerDamage);
         }
 
         public void SetActiveCamera(CameraTypeEnum virtualCamera)
@@ -59,7 +58,7 @@ namespace Core.Cameras.Managers.Scripts
             }
         }
 
-        void OnPlayerDamage(IDamageable damageable, float damage)
+        void OnPlayerDamage(float damage)
         {
             ShakeCamera(0.5f, 0.5f, 10, 90);
         }

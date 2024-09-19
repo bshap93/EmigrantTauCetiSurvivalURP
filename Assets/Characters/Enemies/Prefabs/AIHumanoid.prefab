@@ -3339,7 +3339,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistance: 10
   angle: 210
-  visualize: 1
   target: {fileID: 0}
 --- !u!114 &886137780336080920
 MonoBehaviour:
@@ -3829,6 +3828,9 @@ MonoBehaviour:
   enemyDiedEvent:
     m_PersistentCalls:
       m_Calls: []
+  enemyTakesDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9210162796253324233
 GameObject:
   m_ObjectHideFlags: 0
@@ -4064,9 +4066,33 @@ PrefabInstance:
     m_TransformParent: {fileID: 8002743644658305670}
     m_Modifications:
     - target: {fileID: -2322285121978046707, guid: 16f3393f53e6af941a5240e842851dd6, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 935103736550382460}
+    - target: {fileID: -2322285121978046707, guid: 16f3393f53e6af941a5240e842851dd6, type: 3}
+      propertyPath: healthBarFill
+      value: 
+      objectReference: {fileID: 7445379209403265680}
+    - target: {fileID: -2322285121978046707, guid: 16f3393f53e6af941a5240e842851dd6, type: 3}
       propertyPath: enemyEventManager
       value: 
       objectReference: {fileID: 394211107382900262}
+    - target: {fileID: 4060424069972676892, guid: 16f3393f53e6af941a5240e842851dd6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f8e0ffc054c25d49b334c52c6f29739, type: 3}
+    - target: {fileID: 4060424069972676892, guid: 16f3393f53e6af941a5240e842851dd6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060424069972676892, guid: 16f3393f53e6af941a5240e842851dd6, type: 3}
+      propertyPath: m_Color.g
+      value: 0.49999988
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060424069972676892, guid: 16f3393f53e6af941a5240e842851dd6, type: 3}
+      propertyPath: m_Color.r
+      value: 0.51184
+      objectReference: {fileID: 0}
     - target: {fileID: 6322202614012921086, guid: 16f3393f53e6af941a5240e842851dd6, type: 3}
       propertyPath: m_Name
       value: EnemyHealthBar
@@ -4163,6 +4189,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8400727718159978512, guid: 16f3393f53e6af941a5240e842851dd6, type: 3}
+      propertyPath: m_Name
+      value: EnemyHealthBarFill
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4173,3 +4203,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6322202614012921087, guid: 16f3393f53e6af941a5240e842851dd6, type: 3}
   m_PrefabInstance: {fileID: 6848509230327374732}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7445379209403265680 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4060424069972676892, guid: 16f3393f53e6af941a5240e842851dd6, type: 3}
+  m_PrefabInstance: {fileID: 6848509230327374732}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

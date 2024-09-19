@@ -29,7 +29,7 @@ namespace Characters.Health.Scripts
 
             // Subscribe to the OnHealthChanged event
             UnityAction<float> healthChange = OnHealthChangedHandler;
-            _characterEventManager.AddListenerToCharacterEvent(healthChange);
+            _characterEventManager.AddListenerToHealthChangedEvent(healthChange);
         }
         public float MaxHealth { get; }
         public float CurrentHealth { get; set; }

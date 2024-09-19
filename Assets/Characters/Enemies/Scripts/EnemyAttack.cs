@@ -9,8 +9,8 @@ namespace Characters.Enemies.Scripts
 {
     public class EnemyAttack : MonoBehaviour
     {
-        public float tempMeleeDamage = 10;
-        public float tempRangedDamage = 10;
+        public float tempMeleeDamage = 1;
+        public float tempRangedDamage = 1;
 
         public GameObject weapon;
 
@@ -21,13 +21,13 @@ namespace Characters.Enemies.Scripts
             _animations = new List<DOTweenAnimation>();
             _attacks = new List<IAttackCommand>();
             _animations.Add(weapon.GetComponent<DOTweenAnimation>());
-            _attacks.Add(new SimpleSlashAttack(10, _animations[0]));
+            _attacks.Add(new SimpleSlashAttack(tempMeleeDamage, _animations[0]));
             InitializeAttacks(weapon.transform);
         }
         void InitializeAttacks(Transform enemyWeapon)
         {
             var doTweenAnimation = enemyWeapon.GetComponent<DOTweenAnimation>();
-            _attacks.Add(new SimpleSlashAttack(10, doTweenAnimation));
+            _attacks.Add(new SimpleSlashAttack(tempMeleeDamage, doTweenAnimation));
         }
 
         public IAttackCommand GetAttack()

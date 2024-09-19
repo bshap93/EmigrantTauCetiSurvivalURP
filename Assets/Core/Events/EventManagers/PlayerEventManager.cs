@@ -36,7 +36,7 @@ namespace Core.Events.EventManagers
             playerStateInitializedEvent.RemoveListener(listener);
         }
 
-        public void AddListenerToCharacterEvent(UnityAction<float> listener)
+        public void AddListenerToHealthChangedEvent(UnityAction<float> listener)
         {
             playerHealthChangedEvent.AddListener(listener);
         }

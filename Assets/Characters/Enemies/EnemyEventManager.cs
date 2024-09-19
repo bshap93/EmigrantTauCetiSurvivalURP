@@ -39,7 +39,7 @@ namespace Characters.Enemies
         {
             enemyStateInitializedEvent.RemoveListener(listener);
         }
-        public void AddListenerToCharacterEvent(UnityAction<float> listener)
+        public void AddListenerToHealthChangedEvent(UnityAction<float> listener)
         {
             enemyChangeHealthEvent.AddListener(listener);
         }

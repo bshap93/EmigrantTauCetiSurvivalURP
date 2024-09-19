@@ -9,9 +9,9 @@ namespace Characters.Enemies.Attacks.MeeleeAttacks
     public class SimpleSlashAttack : IAttackCommand
     {
         static readonly int SwordSlash = Animator.StringToHash("SwordSlash");
-        readonly int _damage;
+        readonly float _damage;
         readonly DOTweenAnimation _dotweenAnimation;
-        public SimpleSlashAttack(int damage, DOTweenAnimation swordSlash)
+        public SimpleSlashAttack(float damage, DOTweenAnimation swordSlash)
         {
             _damage = damage;
             _dotweenAnimation = swordSlash;
@@ -20,7 +20,11 @@ namespace Characters.Enemies.Attacks.MeeleeAttacks
         {
             _dotweenAnimation.DORestart();
             _dotweenAnimation.DOPlay();
-            target.TakeDamage(target, dmgValue);
+            if (target != null) target.TakeDamage(target, dmgValue);
+        }
+        public float GetDamage()
+        {
+            return _damage;
         }
 
         IEnumerator<WaitForSeconds>

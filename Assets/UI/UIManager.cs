@@ -53,7 +53,7 @@ namespace UI
             EventManager.EPauseGame.AddListener(OnPauseGame);
 
             UnityAction<float> healthChange = OnHealthChanged;
-            playerEventManager.AddListenerToCharacterEvent(healthChange);
+            playerEventManager.AddListenerToHealthChangedEvent(healthChange);
 
             UnityAction<string> dead = OnDead;
             playerEventManager.AddListenerToCharacterEvent(dead);

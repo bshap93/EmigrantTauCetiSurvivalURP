@@ -26,7 +26,7 @@ namespace Core.Events.EventManagers
 
         public void RemoveListenerFromCharacterEvent(UnityAction listener);
 
-        public void AddListenerToCharacterEvent(UnityAction<float> listener);
+        public void AddListenerToHealthChangedEvent(UnityAction<float> listener);
 
         public void RemoveListenerFromCharacterEvent(UnityAction<float> listener);
 

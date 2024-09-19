@@ -34,7 +34,7 @@ namespace UI.Health.Scripts
                 _healthSystem = PlayerCharacter.Instance.HealthSystem; // Get the player's health system
                 // Subscribe to health change events
                 UnityAction<float> healthChange = UpdateHealthBar;
-                playerEventManager.AddListenerToCharacterEvent(healthChange);
+                playerEventManager.AddListenerToHealthChangedEvent(healthChange);
 
                 // Initialize the health bar with the current health
                 UpdateHealthBar(_healthSystem.CurrentHealth);
