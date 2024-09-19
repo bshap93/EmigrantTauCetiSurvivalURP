@@ -57,7 +57,7 @@ namespace Characters.Player.Scripts
             _dungenCharacter.OnTileChanged += OnCharacterTileChanged;
             // This must be done before  GameManager
             HealthSystem = new HealthSystem("Player", 100, playerEventManager);
-            playerStateController.Initialize(this, new ExploreState(null));
+            playerStateController.Initialize(this, new ExploreState(null, mainPlayerAnimator));
             EventManager.EDealDamage.AddListener(TakeDamage);
             EventManager.ERestartCurrentLevel.AddListener(ResetPlayer);
             playerEventManager.TriggerCharacterStateInitialized();
@@ -118,7 +118,14 @@ namespace Characters.Player.Scripts
             if (playerStateController.GetCurrentState() is ExploreState)
                 return;
 
-            playerStateController.ChangeState(new ExploreState(null));
+            playerStateController.ChangeState(new ExploreState(null, mainPlayerAnimator));
+        }
+        public void PerformAttack()
+        {
+            if (playerStateController.GetCurrentState() is PlayerAttackingState) return;
+
+            playerStateController.ChangeState(
+                new PlayerAttackingState(null, mainPlayerAnimator));
         }
     }
 }

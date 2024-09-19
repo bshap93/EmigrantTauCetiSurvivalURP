@@ -5,12 +5,16 @@ namespace Characters.Player.Scripts.States
 {
     public class ExploreState : PlayerState
     {
-        public ExploreState([CanBeNull] Transform target) : base(
+        static readonly int CombatStance = Animator.StringToHash("CombatStance");
+        readonly Animator _animator;
+        public ExploreState([CanBeNull] Transform target, Animator animator) : base(
             target)
         {
+            _animator = animator;
         }
         public override void Enter(PlayerCharacter playerCharacter)
         {
+            _animator.SetBool(CombatStance, false);
         }
         public override void Update(PlayerCharacter playerCharacter)
         {

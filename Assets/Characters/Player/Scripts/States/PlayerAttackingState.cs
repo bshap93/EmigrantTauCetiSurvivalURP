@@ -3,17 +3,19 @@ using UnityEngine;
 
 namespace Characters.Player.Scripts.States
 {
-    public class AttackingState : PlayerState
+    public class PlayerAttackingState : PlayerState
     {
-        public AttackingState([CanBeNull] PlayerState formerState, [CanBeNull] Transform target)
+        static readonly int CombatStance = Animator.StringToHash("CombatStance");
+        readonly Animator _animator;
+        public PlayerAttackingState([CanBeNull] Transform target, Animator animator)
             : base(target)
         {
+            _animator = animator;
         }
 
         public override void Enter(PlayerCharacter playerCharacter)
         {
-            // Begin attack sequence
-            Debug.Log("Player is attacking.");
+            _animator.SetBool(CombatStance, true);
 
             // Execute the attack command (could be melee or ranged)
             var attackCommand = playerCharacter.GetAttackCommand();

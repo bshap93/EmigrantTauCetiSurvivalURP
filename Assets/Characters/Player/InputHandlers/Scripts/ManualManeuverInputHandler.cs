@@ -60,18 +60,13 @@ namespace Characters.Player.InputHandlers.Scripts
 
         void HandleCombatInput()
         {
-            if (Input.GetMouseButton(1))
-            {
+            if (Input.GetMouseButton(1) && Input.GetMouseButton(0))
+                playerCharacter.PerformAttack();
+            else if (Input.GetMouseButton(1))
                 playerCharacter.EnterCombatReadyState();
 
-
-                if (Input.GetMouseButton(0))
-                    Debug.Log("Player is attacking");
-            }
             else
-            {
                 playerCharacter.ReturnToExploreState();
-            }
         }
     }
 }

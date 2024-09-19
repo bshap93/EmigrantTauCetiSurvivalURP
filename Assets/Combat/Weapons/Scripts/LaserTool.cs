@@ -18,6 +18,7 @@ namespace Combat.Weapons.Scripts
         public override void Attack(Enemy target)
         {
             AttackCommand.Execute(target, damage);
+            Debug.Log("LaserTool: Attack");
         }
     }
 }

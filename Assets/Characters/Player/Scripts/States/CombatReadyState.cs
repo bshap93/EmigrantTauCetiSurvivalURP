@@ -16,7 +16,6 @@ namespace Characters.Player.Scripts.States
         public override void Enter(PlayerCharacter playerCharacter)
         {
             // Player is now ready for combat
-            Debug.Log("Player is combat ready.");
             _animator.SetBool(CombatStance, true);
         }
         public override void Update(PlayerCharacter playerCharacter)

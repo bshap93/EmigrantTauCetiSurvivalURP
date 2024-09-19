@@ -13,8 +13,6 @@ namespace Characters.Enemies.Scripts
         // The angle of our arc of visibility.
         [Range(0f, 360f)] public float angle = 45f;
 
-        // If true, visualise changes in visilibity by changing material colour
-        [SerializeField] bool visualize = true;
         // The object we're looking for.
         [SerializeField] Transform target;
 
