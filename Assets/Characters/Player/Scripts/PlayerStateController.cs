@@ -29,8 +29,6 @@ namespace Characters.Player.Scripts
 
                 _currentState = newState;
                 _currentState.Enter(_playerCharacter);
-
-                Debug.Log("Changed state to " + _currentState.GetType().Name);
             }
         }
         public PlayerState GetCurrentState()

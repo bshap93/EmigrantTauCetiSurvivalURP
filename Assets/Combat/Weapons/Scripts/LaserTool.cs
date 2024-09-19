@@ -1,5 +1,5 @@
 ﻿using Characters.Enemies;
-using Combat.Weapons.Attacks.Commands;
+using Combat.Attacks.Commands;
 using UnityEngine;
 
 namespace Combat.Weapons.Scripts
@@ -12,12 +12,11 @@ namespace Combat.Weapons.Scripts
         {
             damage = 10f;
             range = 50f;
-            AttackCommand = new RangedAttackCommand(damage, range, firePoint);
+            AttackCommand = new RangedAttackCommand(this, range, firePoint);
         }
 
         public override void Attack(Enemy target)
         {
-            AttackCommand.Execute(target, damage);
             Debug.Log("LaserTool: Attack");
         }
     }
