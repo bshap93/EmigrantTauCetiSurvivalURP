@@ -3151,7 +3151,7 @@ GameObject:
   - component: {fileID: 2924302528575633750}
   - component: {fileID: 46254008607859254}
   m_Layer: 0
-  m_Name: AIHumanoid
+  m_Name: AIHumanoidOld
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
