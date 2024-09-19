@@ -5,9 +5,9 @@ namespace Characters.Enemies.Attacks.RangedAttacks
 {
     public class BasicRangedAttackCommand : IAttackCommand
     {
-        public void Execute(IDamageable target, float damage)
+        public void Execute(IDamageable target, float dmgValue)
         {
-            target.TakeDamage(target, damage);
+            target.TakeDamage(target, dmgValue);
         }
     }
 }

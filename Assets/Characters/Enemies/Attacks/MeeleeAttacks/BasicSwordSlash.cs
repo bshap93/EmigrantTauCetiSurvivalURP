@@ -16,12 +16,12 @@ namespace Characters.Enemies.Attacks.MeeleeAttacks
             _damage = damage;
             _dotweenAnimation = swordSlash;
         }
-        public void Execute(IDamageable target, float damage)
+        public void Execute(IDamageable target, float dmgValue)
         {
             _dotweenAnimation.DORestart();
             _dotweenAnimation.DOPlay();
-            target.TakeDamage(target, damage);
-            Debug.Log("Melee attack: dealt " + damage + " damage");
+            target.TakeDamage(target, dmgValue);
+            Debug.Log("Melee attack: dealt " + dmgValue + " damage");
         }
 
         IEnumerator<WaitForSeconds>
