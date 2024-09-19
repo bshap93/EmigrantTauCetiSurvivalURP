@@ -36,7 +36,6 @@ namespace Environment.LevelGeneration.Rooms.Scripts
         public void InitializeRoom(int id)
         {
             roomID = id;
-            Debug.Log($"Room initialized with ID: {roomID}");
         }
 
 

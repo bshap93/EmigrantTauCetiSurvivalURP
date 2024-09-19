@@ -1,5 +1,4 @@
 ﻿using Cinemachine;
-using Core.Cameras.Commands;
 using Core.Cameras.Commands.MoveCamera;
 using Core.Cameras.Commands.RotateCamera;
 using Core.Cameras.Commands.ZoomCamera;
@@ -18,7 +17,7 @@ namespace Core.Cameras.InputHandlers
         public float deadZoneRadius = 50f;
         public float rotateYAmount = 15f;
         public float mouseSensitivity = 100f;
-        public bool invertYAxisRotation;
+        public float timeBetweenAdjustments = 0.033f;
         [FormerlySerializedAs("_isCameraLocked")] [SerializeField]
         bool isCameraLocked;
 
@@ -48,7 +47,7 @@ namespace Core.Cameras.InputHandlers
 
         void HandleCameraRotation()
         {
-            ICameraCommand rotateCommand = null;
+            IRotateCommand rotateCommand = null;
 
             if (Input.GetKey(KeyCode.E))
                 rotateCommand = new RotateClockwiseCommand();
@@ -63,7 +62,7 @@ namespace Core.Cameras.InputHandlers
                 else if (mouseX < 0) rotateCommand = new RotateCounterClockwiseCommand();
             }
 
-            rotateCommand?.Execute(virtualCamera, rotateYAmount);
+            rotateCommand?.Execute(virtualCamera, rotateYAmount, timeBetweenAdjustments);
         }
 
         void HandleCameraMovement()

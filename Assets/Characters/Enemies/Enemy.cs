@@ -51,6 +51,11 @@ namespace Characters.Enemies
             _enemyCount++;
             _enemyName = "Enemy" + _enemyCount;
 
+            if (enemyEventManager == null)
+                // Enemy event manager should be attached to same object
+                // as the enemy script
+                enemyEventManager = GetComponent<EnemyEventManager>();
+
             _navigation = GetComponent<EnemyNavigation>();
             _enemyAttack = GetComponent<EnemyAttack>();
             _stateController = GetComponent<EnemyStateController>();
@@ -83,8 +88,12 @@ namespace Characters.Enemies
             if (dmgeable is Enemy)
             {
                 var dealDamageCommand = new DealDamageCommand();
-                dealDamageCommand.Execute(_healthSystem, damage, enemyEventManager);
+                dealDamageCommand.Execute(dmgeable, damage, enemyEventManager);
             }
+        }
+        public HealthSystem GetHealthSystem()
+        {
+            return _healthSystem;
         }
         public void FindWaypoints()
         {

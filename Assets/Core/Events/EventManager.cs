@@ -1,5 +1,4 @@
-﻿using Characters.Scripts;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 namespace Core.Events
@@ -13,7 +12,6 @@ namespace Core.Events
         // Character has died, enter a game over state overlay
 
         // Damage has been dealt to a character by name by a certain amount
-        public static readonly UnityEvent<IDamageable, float> EDealDamage = new();
 
         public static readonly UnityEvent ERestartCurrentLevel = new();
 

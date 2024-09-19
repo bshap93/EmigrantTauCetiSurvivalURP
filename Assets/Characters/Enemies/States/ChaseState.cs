@@ -87,7 +87,6 @@ namespace Characters.Enemies.States
         void SetChaseDestination(Enemy enemy)
         {
             enemy.SetEnemyDestination(enemy.GetPlayerPosition());
-            Debug.Log("Chasing player to: " + enemy.GetPlayerPosition());
         }
 
         bool IsPathValid(Enemy enemy)

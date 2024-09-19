@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Characters.Enemies;
+using Characters.Scripts;
 using Combat.Attacks.Commands;
 using UnityEngine;
 
@@ -9,8 +10,8 @@ namespace Combat.Weapons.Scripts
     {
         public LineRenderer lineRenderer;
         public Transform firePoint;
-        public float laserWidth = 0.1f;
         public float laserRange = 10f;
+        public float laserDuration = 0.1f;
 
         void Start()
         {
@@ -21,19 +22,43 @@ namespace Combat.Weapons.Scripts
 
         public override void Attack(Enemy target)
         {
-            Debug.Log("LaserTool: Attack");
             FireLaserTool();
         }
-        
+
         void FireLaserTool()
         {
+            StartCoroutine(LaserEffect());
 
+            RaycastHit hit;
+            if (Physics.Raycast(
+                    firePoint.position,
+                    firePoint.forward, out hit, laserRange,
+                    ~0, QueryTriggerInteraction.Ignore))
+            {
+                var damageable = hit.transform.GetComponent<IDamageable>();
+                if (damageable != null)
+                    Debug.Log("Hit: " + hit.transform.name);
+
+                if (damageable != null) damageable.TakeDamage(damageable, damage);
+
+                // Set the Line Renderer positions (from the fire point to the hit point)
+                lineRenderer.SetPosition(0, firePoint.position);
+                lineRenderer.SetPosition(1, hit.point);
+            }
+            else
+            {
+                // If the laser doesn't hit anything, set the line to max range
+                lineRenderer.SetPosition(0, firePoint.position);
+                lineRenderer.SetPosition(1, firePoint.position + firePoint.forward * laserRange);
+            }
         }
-        
+
         IEnumerator<WaitForSeconds> LaserEffect()
         {
-            
-            yield return new WaitForSeconds(0.1f);
+            lineRenderer.widthMultiplier = 0.1f;
+            lineRenderer.enabled = true;
+            yield return new WaitForSeconds(laserDuration);
+            lineRenderer.enabled = false;
         }
     }
 }

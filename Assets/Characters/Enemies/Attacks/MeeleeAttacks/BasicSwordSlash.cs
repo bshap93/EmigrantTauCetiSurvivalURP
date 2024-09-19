@@ -21,7 +21,6 @@ namespace Characters.Enemies.Attacks.MeeleeAttacks
             _dotweenAnimation.DORestart();
             _dotweenAnimation.DOPlay();
             target.TakeDamage(target, dmgValue);
-            Debug.Log("Melee attack: dealt " + dmgValue + " damage");
         }
 
         IEnumerator<WaitForSeconds>

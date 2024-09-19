@@ -27,8 +27,6 @@ namespace Characters.Enemies.Scripts
 
             _currentState = newState;
             _currentState.Enter(_enemy);
-
-            Debug.Log("Changed state to " + _currentState.GetType().Name);
         }
     }
 }

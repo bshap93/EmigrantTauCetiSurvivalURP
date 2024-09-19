@@ -22,8 +22,6 @@ namespace Characters.Player.Scripts.States
             attackCommand.Execute(
                 null,
                 playerCharacter.GetCurrentWeapon().GetDamage());
-
-            Debug.Log("Player is attacking with " + playerCharacter.GetCurrentWeapon().name);
         }
 
         public override void Update(PlayerCharacter playerCharacter)

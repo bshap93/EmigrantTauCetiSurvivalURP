@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Characters.Player.Scripts;
+using Characters.Scripts;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Core.Events.EventManagers
@@ -10,8 +12,15 @@ namespace Core.Events.EventManagers
         public UnityEvent playerStateInitializedEvent = new();
 
         public UnityEvent<string> playerDiedEvent = new();
+        public UnityEvent<IDamageable, float> playerTakesDamageEvent = new();
+
+        public PlayerCharacter player;
 
         // Encapsulate AddListener logic
+        public void TriggerCharacterTakesDamage(IDamageable damageable, float damage)
+        {
+            playerTakesDamageEvent.Invoke(damageable, damage);
+        }
         public void TriggerCharacterStateInitialized()
         {
             playerStateInitializedEvent.Invoke();
@@ -54,6 +63,17 @@ namespace Core.Events.EventManagers
         public void TriggerCharacterDied(string characterName)
         {
             playerDiedEvent.Invoke(characterName);
+        }
+
+        public void AddListenerToPlayerTakesDamageEvent(UnityAction<IDamageable, float> listener)
+        {
+            playerTakesDamageEvent.AddListener(listener);
+        }
+
+        public void RemoveListenerFromPlayerTakesDamageEvent(UnityAction<IDamageable, float> listener)
+
+        {
+            playerTakesDamageEvent.RemoveListener(listener);
         }
     }
 }

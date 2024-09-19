@@ -25,12 +25,6 @@ namespace UI.Health.Scripts
             UpdateHealthBar(_healthSystem.CurrentHealth);
         }
 
-        void OnDestroy()
-        {
-            // Unsubscribe to avoid memory leaks
-            GameManager.Instance.onSystemActivated.RemoveListener(OnSystemActivated);
-        }
-
 
         void OnSystemActivated(string systemName)
         {

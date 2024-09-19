@@ -19,7 +19,7 @@ namespace Characters.Player.Scripts
     {
         public EditorButtonDealDamage editorButtonDealDamage;
         public NavMeshAgent navMeshAgent;
-        [SerializeField] PlayerEventManager playerEventManager;
+        public PlayerEventManager playerEventManager;
         [SerializeField] PlayerStateController playerStateController;
         public Weapon currentWeapon;
 
@@ -58,9 +58,15 @@ namespace Characters.Player.Scripts
             // This must be done before  GameManager
             HealthSystem = new HealthSystem("Player", 100, playerEventManager);
             playerStateController.Initialize(this, new ExploreState(null, mainPlayerAnimator));
-            EventManager.EDealDamage.AddListener(TakeDamage);
+            playerEventManager.AddListenerToPlayerTakesDamageEvent(TakeDamage);
             EventManager.ERestartCurrentLevel.AddListener(ResetPlayer);
             playerEventManager.TriggerCharacterStateInitialized();
+        }
+
+        void OnDestroy()
+        {
+            _dungenCharacter.OnTileChanged -= OnCharacterTileChanged;
+            playerEventManager.RemoveListenerFromPlayerTakesDamageEvent(TakeDamage);
         }
 
         // Handle debug damage
@@ -69,8 +75,12 @@ namespace Characters.Player.Scripts
             if ((PlayerCharacter)dmgeable == this)
             {
                 var dealDamageCommand = new DealDamageCommand();
-                dealDamageCommand.Execute(Instance.HealthSystem, damage, playerEventManager);
+                dealDamageCommand.Execute(this, damage, playerEventManager);
             }
+        }
+        public HealthSystem GetHealthSystem()
+        {
+            return HealthSystem;
         }
 
         [Button("Reset Player")]

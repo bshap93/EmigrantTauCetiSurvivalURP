@@ -1,4 +1,5 @@
-﻿using Core.Events.EventManagers;
+﻿using Characters.Scripts;
+using Core.Events.EventManagers;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +13,8 @@ namespace Characters.Enemies
         public UnityEvent enemyStateInitializedEvent = new();
 
         public UnityEvent<string> enemyDiedEvent = new();
+
+        public UnityEvent<IDamageable, float> enemyTakesDamageEvent = new();
         public void TriggerCharacterChangeHealth(float health)
         {
             enemyChangeHealthEvent.Invoke(health);
@@ -19,6 +22,10 @@ namespace Characters.Enemies
         public void TriggerCharacterDied(string characterName)
         {
             enemyDiedEvent.Invoke(characterName);
+        }
+        public void TriggerCharacterTakesDamage(IDamageable damageable, float damage)
+        {
+            enemyTakesDamageEvent.Invoke(damageable, damage);
         }
         public void TriggerCharacterStateInitialized()
         {

@@ -1,4 +1,5 @@
-﻿using UnityEngine.Events;
+﻿using Characters.Scripts;
+using UnityEngine.Events;
 
 namespace Core.Events.EventManagers
 {
@@ -11,6 +12,8 @@ namespace Core.Events.EventManagers
         public void TriggerCharacterChangeHealth(float health);
 
         public void TriggerCharacterDied(string characterName);
+
+        public void TriggerCharacterTakesDamage(IDamageable damageable, float damage);
 
         public void TriggerCharacterStateInitialized();
 
