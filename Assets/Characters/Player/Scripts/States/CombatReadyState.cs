@@ -5,20 +5,26 @@ namespace Characters.Player.Scripts.States
 {
     public class CombatReadyState : PlayerState
     {
-        public CombatReadyState([CanBeNull] Transform target) : base(
+        static readonly int CombatStance = Animator.StringToHash("CombatStance");
+        readonly Animator _animator;
+        PlayerCharacter _playerCharacter;
+        public CombatReadyState([CanBeNull] Transform target, Animator animator) : base(
             target)
         {
-            // Player is now ready for combat
-            Debug.Log("Player is combat ready.");
+            _animator = animator;
         }
         public override void Enter(PlayerCharacter playerCharacter)
         {
+            // Player is now ready for combat
+            Debug.Log("Player is combat ready.");
+            _animator.SetBool(CombatStance, true);
         }
         public override void Update(PlayerCharacter playerCharacter)
         {
         }
         public override void Exit(PlayerCharacter playerCharacter)
         {
+            _animator.SetBool(CombatStance, false);
         }
     }
 }

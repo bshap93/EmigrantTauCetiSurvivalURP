@@ -23,6 +23,8 @@ namespace Characters.Player.Scripts
         [SerializeField] PlayerStateController playerStateController;
         public Weapon currentWeapon;
 
+        [SerializeField] Animator mainPlayerAnimator;
+
         DungenCharacter _dungenCharacter;
         Transform _initialOrientation;
 
@@ -108,7 +110,15 @@ namespace Characters.Player.Scripts
             if (playerStateController.GetCurrentState() is CombatReadyState)
                 return;
 
-            playerStateController.ChangeState(new CombatReadyState(null));
+            playerStateController.ChangeState(
+                new CombatReadyState(null, mainPlayerAnimator));
+        }
+        public void ReturnToExploreState()
+        {
+            if (playerStateController.GetCurrentState() is ExploreState)
+                return;
+
+            playerStateController.ChangeState(new ExploreState(null));
         }
     }
 }
