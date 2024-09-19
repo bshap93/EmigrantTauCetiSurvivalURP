@@ -32,7 +32,6 @@ namespace Characters.Enemies.Attacks.MeeleeAttacks
         {
             yield return new WaitForSeconds(delay); // Wait for the specified delay
             target.TakeDamage(target, _damage); // Apply the damage
-            Debug.Log("Melee attack: dealt " + _damage + " damage after delay");
         }
     }
 }

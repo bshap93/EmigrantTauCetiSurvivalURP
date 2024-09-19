@@ -13,6 +13,11 @@ namespace Characters.Enemies.Scripts
             if (_currentState != null) _currentState.Update(_enemy);
         }
 
+        public EnemyState GetCurrentState()
+        {
+            return _currentState;
+        }
+
         public void Initialize(Enemy enemy, EnemyState initialState)
         {
             _enemy = enemy;
@@ -26,6 +31,7 @@ namespace Characters.Enemies.Scripts
                 _currentState.Exit(_enemy);
 
             _currentState = newState;
+            if (_currentState is StaggeredState) Debug.Log("Staggered state entered.");
             _currentState.Enter(_enemy);
         }
     }

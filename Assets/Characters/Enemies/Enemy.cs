@@ -18,16 +18,27 @@ namespace Characters.Enemies
     /// </summary>
     public class Enemy : MonoBehaviour, IDamageable
     {
+        public enum AttackType
+        {
+            Melee,
+            Ranged
+        }
+
+
         static int _enemyCount;
+        public AttackType attackType;
         public NavMeshAgent navMeshAgent;
         public List<Transform> waypoints;
         public Transform player;
+        public Animator enemyAnimator;
+
 
         public float attackCooldown = 1.5f; // Cooldown duration in second
 
 
         [SerializeField] float detectionRange = 10f;
         [SerializeField] float attackRange = 2f;
+        [SerializeField] float staggerTime = 5f;
 
         [SerializeField] float memoryDuration = 5f; // How long the enemy remembers the player after losing sight
 
@@ -89,6 +100,8 @@ namespace Characters.Enemies
             {
                 var dealDamageCommand = new DealDamageCommand();
                 dealDamageCommand.Execute(dmgeable, damage, enemyEventManager);
+                ChangeState(new StaggeredState(enemyAnimator, 
+                    _stateController.GetCurrentState(), staggerTime, null));
             }
         }
         public HealthSystem GetHealthSystem()

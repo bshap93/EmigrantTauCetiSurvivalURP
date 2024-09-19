@@ -1128,7 +1128,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3091926474116334137}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 76fb04e3599741345b075939395a028e, type: 3}
+  m_Avatar: {fileID: 9000000, guid: e26ce446750904e46b079111348962e2, type: 3}
   m_Controller: {fileID: 9100000, guid: b4831b5b85f6bda46810424227ce0e2e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -1981,9 +1981,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f305c642cf435f40a900269b8774f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 0
   navMeshAgent: {fileID: 6208150618806256931}
   waypoints: []
   player: {fileID: 0}
+  enemyAnimator: {fileID: 8615104473845923421}
   attackCooldown: 1.5
   detectionRange: 50
   attackRange: 2

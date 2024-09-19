@@ -1,4 +1,5 @@
-﻿using Characters.Scripts;
+﻿using Characters.Enemies;
+using Characters.Scripts;
 using Core.Events.EventManagers;
 using UnityEngine;
 
@@ -10,9 +11,10 @@ namespace Characters.Health.Scripts.Commands
         public void Execute(IDamageable damageable, float value, ICharacterEventManager eventManager)
         {
             var healthSystem = damageable.GetHealthSystem();
-            Debug.Log(
-                healthSystem.CharacterName + "'s Health drops from " + healthSystem.CurrentHealth + " to " +
-                (healthSystem.CurrentHealth - value));
+            if (damageable is Enemy)
+                Debug.Log(
+                    healthSystem.CharacterName + "'s Health drops from " + healthSystem.CurrentHealth + " to " +
+                    (healthSystem.CurrentHealth - value));
 
             healthSystem.CurrentHealth -= value;
 
