@@ -1845,7 +1845,7 @@ MonoBehaviour:
   - {fileID: 5810817284587446310}
   - {fileID: 2824638887960180033}
   enemyPrefabs:
-  - {fileID: 3972678643464228258, guid: 033fb7d2e779bc9498abfed47022b0f8, type: 3}
+  - {fileID: 1814846774995447090, guid: c07a552c282c3cf4aa618a92afc366dd, type: 3}
   baseEnemyCount: 2
   hasVerticality: 0
   roomCenter: {fileID: 2721416617380887085}

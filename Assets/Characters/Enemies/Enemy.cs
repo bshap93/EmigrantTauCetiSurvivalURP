@@ -100,8 +100,14 @@ namespace Characters.Enemies
             {
                 var dealDamageCommand = new DealDamageCommand();
                 dealDamageCommand.Execute(dmgeable, damage, enemyEventManager);
-                ChangeState(new StaggeredState(enemyAnimator, 
-                    _stateController.GetCurrentState(), staggerTime, null));
+                var healthSystem = dmgeable.GetHealthSystem();
+                if (healthSystem.CurrentHealth <= 0)
+                    ChangeState(new DeadState(enemyAnimator, _stateController.GetCurrentState()));
+                else
+                    ChangeState(
+                        new StaggeredState(
+                            enemyAnimator,
+                            _stateController.GetCurrentState(), staggerTime, null));
             }
         }
         public HealthSystem GetHealthSystem()
