@@ -19,7 +19,6 @@ namespace UI
         public string cursorName;
         public Vector2 cursorHotspot;
         public HealthBarUI healthBarUI;
-        public GameObject CursorPrefab;
 
         public PlayerEventManager playerEventManager;
 

@@ -1,12 +1,24 @@
 ﻿using Characters.Player.InputHandlers.Scripts;
 using UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Environment.Interactables.Scripts
 {
     public class InteractableObject : MonoBehaviour, IInteractable
     {
+        public enum InteractableType
+        {
+            Container,
+            Door
+        }
+
+        [FormerlySerializedAs("InteractionUI")]
+        public GameObject interactionUI;
+
         public string objectName;
+
+        public InteractableType interactableType;
         Collider _zoneCollider;
 
         void Start()
@@ -31,14 +43,33 @@ namespace Environment.Interactables.Scripts
         void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Player"))
+            {
                 // Clear the reference when the player leaves the range
                 SimpleInteractInputHandler.Instance.ClearInteractable();
+                EndInteractionSimple();
+            }
         }
 
         public void InteractSimple()
         {
             UIManager.Instance.inGameConsoleManager
                 .LogMessage("Interacting with object: " + objectName);
+
+            if (interactableType == InteractableType.Container)
+            {
+                interactionUI.SetActive(true);
+            }
+        }
+        
+        public void EndInteractionSimple()
+        {
+
+
+            if (interactableType == InteractableType.Container)
+            {
+                interactionUI.SetActive(false);
+                Debug.Log("End interaction with container");
+            }
         }
     }
 }
