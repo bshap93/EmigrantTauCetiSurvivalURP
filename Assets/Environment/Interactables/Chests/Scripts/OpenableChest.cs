@@ -6,16 +6,7 @@ namespace Environment.Interactables.Chests.Scripts
 {
     public class OpenableChest : OpenableObject
     {
-        public enum ChestState
-        {
-            Open,
-            Closed,
-            Opening,
-            Closing
-        }
-
         public GameObject chestLid;
-        public GameObject chestBase;
 
         public Vector3 chestLidOpenPositionOffset = new(0, 0.5f, 0);
         public Vector3 chestLidOpenRotationOffset = new(0, 0, 0);
@@ -30,6 +21,7 @@ namespace Environment.Interactables.Chests.Scripts
             CurrentState = OpenableState.Closed;
             OpenCommand = new OpenChestCommand(this);
             CloseCommand = new CloseChestCommand(this);
+            openingMechanism = OpeningMechanism.Button;
         }
 
         // Update is called once per frame

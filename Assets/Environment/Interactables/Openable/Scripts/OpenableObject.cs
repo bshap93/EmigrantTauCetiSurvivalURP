@@ -20,6 +20,12 @@ namespace Environment.Interactables.Openable.Scripts
             Enemy
         }
 
+        public enum OpeningMechanism
+        {
+            Button,
+            Proximity
+        }
+
         public List<OpenerAgent> agentsAllowedToOpen;
 
 
@@ -32,6 +38,8 @@ namespace Environment.Interactables.Openable.Scripts
         protected float CurrentFramePosition;
         protected OpenableState CurrentState;
         protected ISimpleCommand OpenCommand;
+        
+        protected OpeningMechanism openingMechanism;
 
 
         // Update is called once per frame

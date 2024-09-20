@@ -16,6 +16,9 @@ namespace Characters.Enemies.Scripts
         // The object we're looking for.
         [SerializeField] Transform target;
 
+        readonly float checkInterval = 0.1f; // Check every 0.2 seconds
+        float nextCheckTime;
+
         // A property that other classes can access to determine if we can 
         // currently see our target.
         public bool TargetIsVisible { get; private set; }
@@ -30,7 +33,11 @@ namespace Characters.Enemies.Scripts
         // Check to see if we can see the target every frame.
         void Update()
         {
-            TargetIsVisible = CheckVisibility();
+            if (Time.time >= nextCheckTime)
+            {
+                TargetIsVisible = CheckVisibility();
+                nextCheckTime = Time.time + checkInterval;
+            }
         }
 
         void FindTarget()
