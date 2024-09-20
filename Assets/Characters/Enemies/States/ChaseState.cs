@@ -13,9 +13,6 @@ namespace Characters.Enemies.States
         float _pathRecalculationTimer;
         public ChaseState(EnemyState formerState, Transform target) : base(formerState, target)
         {
-            if (formerState is AttackState)
-                Debug.Log("Resuming chase from attack.");
-
             _target = target;
 
             _chaseTimer = 0f;
