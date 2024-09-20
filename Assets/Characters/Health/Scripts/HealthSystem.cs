@@ -38,5 +38,11 @@ namespace Characters.Health.Scripts
         {
             if (CurrentHealth <= 0) _characterEventManager.TriggerCharacterDied(CharacterName);
         }
+        public void Heal(float value)
+        {
+            CurrentHealth += value;
+            if (CurrentHealth > MaxHealth) CurrentHealth = MaxHealth;
+            _characterEventManager.TriggerCharacterChangeHealth(CurrentHealth);
+        }
     }
 }

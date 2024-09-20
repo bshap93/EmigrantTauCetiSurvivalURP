@@ -82,6 +82,10 @@ namespace Characters.Player.Scripts
         {
             return HealthSystem;
         }
+        public void Heal(float value)
+        {
+            HealthSystem.Heal(value);
+        }
 
         [Button("Reset Player")]
         public void ResetPlayer()

@@ -117,6 +117,10 @@ namespace Characters.Enemies
 
             return _healthSystem;
         }
+        public void Heal(float value)
+        {
+            _healthSystem.Heal(value);
+        }
         public void FindWaypoints()
         {
             var waypointParent = GameObject.Find("Waypoints");

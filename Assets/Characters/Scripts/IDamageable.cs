@@ -6,5 +6,6 @@ namespace Characters.Scripts
     {
         void TakeDamage(IDamageable dmgeable, float damage);
         HealthSystem GetHealthSystem();
+        void Heal(float value);
     }
 }
