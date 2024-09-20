@@ -18,6 +18,7 @@ namespace UI
         public string cursorName;
         public Vector2 cursorHotspot;
         public HealthBarUI healthBarUI;
+        public GameObject CursorPrefab;
 
         public PlayerEventManager playerEventManager;
 
@@ -73,6 +74,7 @@ namespace UI
             UnityAction<string> dead = OnDead;
             playerEventManager.RemoveListenerFromCharacterEvent(dead);
         }
+
 
         void OnHealthChanged(float health)
         {

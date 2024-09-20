@@ -125,7 +125,6 @@ GameObject:
   - component: {fileID: 2751857395565338091}
   - component: {fileID: 556781646401931944}
   - component: {fileID: 5275870211556969836}
-  - component: {fileID: 301870278123868353}
   - component: {fileID: 6003724478859277553}
   m_Layer: 0
   m_Name: Player
@@ -246,20 +245,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &301870278123868353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4153839185403758724}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff9c75271dd942b7a94407e9bec36648, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpeedParameter: ForwardSpeed
-  SpeedDivider: 1
 --- !u!114 &6003724478859277553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,8 +261,8 @@ MonoBehaviour:
   navMeshAgent: {fileID: 5275870211556969836}
   playerEventManager: {fileID: 0}
   playerStateController: {fileID: 0}
-  currentWeapon: {fileID: 0}
-  mainPlayerAnimator: {fileID: 0}
+  currentWeapon: {fileID: 2083981048869151059}
+  mainPlayerAnimator: {fileID: 6507832232235188738}
 --- !u!1 &4553751637349729115
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +601,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb1718d6f8e9ed549aa9a33aec85a453, type: 3}
+--- !u!114 &2083981048869151059 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6891019287150115975, guid: eb1718d6f8e9ed549aa9a33aec85a453, type: 3}
+  m_PrefabInstance: {fileID: 4848714547391847892}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294691aef1d046b4b5fa5d1385b99d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2911486744285731157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7723028997195924609, guid: eb1718d6f8e9ed549aa9a33aec85a453, type: 3}
