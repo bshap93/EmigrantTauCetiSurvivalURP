@@ -7,6 +7,7 @@ namespace Characters.Enemies.Scripts
 // range and the angle of visibility are configurable.
     public class EnemyVisiblity : MonoBehaviour
     {
+        const float CheckInterval = 0.1f; // Check every 0.2 seconds
         // If the object is more than this distance away, we can't see it.
         public float maxDistance = 10f;
 
@@ -15,9 +16,7 @@ namespace Characters.Enemies.Scripts
 
         // The object we're looking for.
         [SerializeField] Transform target;
-
-        readonly float checkInterval = 0.1f; // Check every 0.2 seconds
-        float nextCheckTime;
+        float _nextCheckTime;
 
         // A property that other classes can access to determine if we can 
         // currently see our target.
@@ -33,10 +32,10 @@ namespace Characters.Enemies.Scripts
         // Check to see if we can see the target every frame.
         void Update()
         {
-            if (Time.time >= nextCheckTime)
+            if (Time.time >= _nextCheckTime)
             {
                 TargetIsVisible = CheckVisibility();
-                nextCheckTime = Time.time + checkInterval;
+                _nextCheckTime = Time.time + CheckInterval;
             }
         }
 

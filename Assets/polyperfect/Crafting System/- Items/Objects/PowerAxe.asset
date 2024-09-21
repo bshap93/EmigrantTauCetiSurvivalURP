@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37d1d15d29554f74adc015bc9e54d16e, type: 3}
-  m_Name: EnergeticRod
+  m_Name: PowerAxe
   m_EditorClassIdentifier: 
   id:
     val: -887126763460391309

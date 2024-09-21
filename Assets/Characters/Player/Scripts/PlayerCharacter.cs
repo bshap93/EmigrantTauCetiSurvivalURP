@@ -1,4 +1,5 @@
-﻿using Characters.Enemies.Attacks.Commands;
+﻿using System;
+using Characters.Enemies.Attacks.Commands;
 using Characters.Health.Scripts;
 using Characters.Health.Scripts.Commands;
 using Characters.Health.Scripts.Debugging;
@@ -22,6 +23,7 @@ namespace Characters.Player.Scripts
         public PlayerEventManager playerEventManager;
         [SerializeField] PlayerStateController playerStateController;
         public Weapon currentWeapon;
+
 
         [SerializeField] Animator mainPlayerAnimator;
 
@@ -140,6 +142,13 @@ namespace Characters.Player.Scripts
 
             playerStateController.ChangeState(
                 new PlayerAttackingState(null, mainPlayerAnimator));
+        }
+        public void StartTurn()
+        {
+        }
+        public bool HasCompletedAction()
+        {
+            throw new NotImplementedException();
         }
     }
 }

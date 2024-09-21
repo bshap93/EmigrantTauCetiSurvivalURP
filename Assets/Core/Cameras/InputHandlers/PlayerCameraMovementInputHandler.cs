@@ -57,9 +57,12 @@ namespace Core.Cameras.InputHandlers
             {
                 var mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
 
-                if (mouseX > 0)
-                    rotateCommand = new RotateClockwiseCommand();
-                else if (mouseX < 0) rotateCommand = new RotateCounterClockwiseCommand();
+                rotateCommand = mouseX switch
+                {
+                    > 0 => new RotateClockwiseCommand(),
+                    < 0 => new RotateCounterClockwiseCommand(),
+                    _ => rotateCommand
+                };
             }
 
             rotateCommand?.Execute(virtualCamera, rotateYAmount, timeBetweenAdjustments);
@@ -67,29 +70,33 @@ namespace Core.Cameras.InputHandlers
 
         void HandleCameraMovement()
         {
-            if (!isCameraLocked)
-            {
-                Vector2 currentMousePosition = Input.mousePosition;
-                var mouseMovement = currentMousePosition - _initialMousePosition;
+            if (isCameraLocked) return;
+            Vector2 currentMousePosition = Input.mousePosition;
+            var mouseMovement = currentMousePosition - _initialMousePosition;
 
-                var moveCommand = new MouseCameraMovementCommand(
-                    mouseMovement, mouseInfluence, maxMouseOffset, deadZoneRadius);
+            var moveCommand = new MouseCameraMovementCommand(
+                mouseMovement, mouseInfluence, maxMouseOffset, deadZoneRadius);
 
-                moveCommand.Execute(virtualCamera, 0);
-            }
+            moveCommand.Execute(virtualCamera, 0);
         }
 
         void HandleCameraZoom()
         {
-            if (Input.mouseScrollDelta.y > 0)
+            if (isCameraLocked) return;
+            switch (Input.mouseScrollDelta.y)
             {
-                var zoomCommand = new ZoomCommand();
-                zoomCommand.Execute(virtualCamera, 0.5f);
-            }
-            else if (Input.mouseScrollDelta.y < 0)
-            {
-                var zoomCommand = new ZoomCommand();
-                zoomCommand.Execute(virtualCamera, -0.5f);
+                case > 0:
+                {
+                    var zoomCommand = new ZoomCommand();
+                    zoomCommand.Execute(virtualCamera, 0.5f);
+                    break;
+                }
+                case < 0:
+                {
+                    var zoomCommand = new ZoomCommand();
+                    zoomCommand.Execute(virtualCamera, -0.5f);
+                    break;
+                }
             }
         }
     }

@@ -4244,16 +4244,28 @@ PrefabInstance:
       value: OpenableChest02
       objectReference: {fileID: 0}
     - target: {fileID: 17537202173809163, guid: 5339a407035fdd143977c84d1b0a9afc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.0607543
+      objectReference: {fileID: 0}
+    - target: {fileID: 17537202173809163, guid: 5339a407035fdd143977c84d1b0a9afc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.0607543
+      objectReference: {fileID: 0}
+    - target: {fileID: 17537202173809163, guid: 5339a407035fdd143977c84d1b0a9afc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.0607543
+      objectReference: {fileID: 0}
+    - target: {fileID: 17537202173809163, guid: 5339a407035fdd143977c84d1b0a9afc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.8612475
+      value: -7.9097
       objectReference: {fileID: 0}
     - target: {fileID: 17537202173809163, guid: 5339a407035fdd143977c84d1b0a9afc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.15056515
+      value: 0.09862
       objectReference: {fileID: 0}
     - target: {fileID: 17537202173809163, guid: 5339a407035fdd143977c84d1b0a9afc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.6969242
+      value: 1.9724
       objectReference: {fileID: 0}
     - target: {fileID: 17537202173809163, guid: 5339a407035fdd143977c84d1b0a9afc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4593,6 +4605,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -50
       objectReference: {fileID: 0}
+    - target: {fileID: 5685787887252305535, guid: f0b939cc48745cf44879df62ca8b58bb, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 1015
+      objectReference: {fileID: 0}
     - target: {fileID: 5713104077077540528, guid: f0b939cc48745cf44879df62ca8b58bb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -4674,7 +4690,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3368030392528800922, guid: f0b939cc48745cf44879df62ca8b58bb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6503534171351450710, guid: f0b939cc48745cf44879df62ca8b58bb, type: 3}

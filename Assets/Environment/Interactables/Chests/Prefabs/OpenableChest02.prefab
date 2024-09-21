@@ -189,7 +189,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 43881338687351010, guid: 230e54622c6a6764fa831732b6170349, type: 2}
 --- !u!114 &6241284877198057181
@@ -204,10 +204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 810bb2fdde584a0ebd807618785ce85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentsAllowedToOpen: 
+  agentsAllowedToOpen: 00000000
   speed: 3
   chestLid: {fileID: 14368970070924557}
-  chestBase: {fileID: 14394137029353757}
   chestLidOpenPositionOffset: {x: 0, y: 0.3480085, z: 0.2610064}
   chestLidOpenRotationOffset: {x: -45, y: 0, z: 0}
 --- !u!65 &1640158956378651794

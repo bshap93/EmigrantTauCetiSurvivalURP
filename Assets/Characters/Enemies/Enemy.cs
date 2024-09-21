@@ -7,6 +7,7 @@ using Characters.Health.Scripts.Commands;
 using Characters.Player.Scripts;
 using Characters.Scripts;
 using DG.Tweening;
+using UI.Health.Scripts;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -45,6 +46,7 @@ namespace Characters.Enemies
         public GameObject weapon;
         public double chaseDuration;
         [SerializeField] EnemyEventManager enemyEventManager;
+        public bool isDead;
         readonly List<DOTweenAnimation> _animations = new();
         readonly List<IAttackCommand> _attacks = new();
 
@@ -147,7 +149,8 @@ namespace Characters.Enemies
 
         public void ChangeState(EnemyState newState)
         {
-            _stateController.ChangeState(newState);
+            if (!isDead)
+                _stateController.ChangeState(newState);
         }
 
         public bool CanSeePlayer()
@@ -211,6 +214,15 @@ namespace Characters.Enemies
         public IAttackCommand GetAttack()
         {
             return _enemyAttack.GetAttack();
+        }
+        public void SetDead()
+        {
+            isDead = true;
+            GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<NavMeshAgent>().enabled = false;
+            weapon.SetActive(false);
+            GetComponentInChildren<EnemyHealthBar>().gameObject.SetActive(false);
+            GetComponent<Collider>().enabled = false;
         }
     }
 }
