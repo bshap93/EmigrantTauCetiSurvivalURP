@@ -17,6 +17,7 @@ namespace Characters.Player.Scripts.States
         {
             // Player is now ready for combat
             _animator.SetBool(CombatStance, true);
+            
         }
         public override void Update(PlayerCharacter playerCharacter)
         {
