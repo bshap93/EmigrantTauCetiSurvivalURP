@@ -18,6 +18,9 @@ namespace Characters.Player.InputHandlers.Scripts
         void Start()
         {
             if (movementManager == null) movementManager = MovementManager.Instance;
+            if (playerCharacter == null) playerCharacter = PlayerCharacter.Instance;
+            if (rotatePlayerDirection == null)
+                rotatePlayerDirection = playerCharacter.GetComponent<RotatePlayerDirection>();
         }
 
         void Update()

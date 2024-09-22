@@ -19,6 +19,7 @@ namespace UI.Health.Scripts
         {
             GameManager.Instance.onSystemActivated.AddListener(OnSystemActivated);
             _healthSystem = PlayerCharacter.Instance.HealthSystem; // Get the player's health system
+            if (playerEventManager == null) playerEventManager = GameManager.Instance.playerEventManager;
 
 
             // Initialize the health bar with the current health
