@@ -22,6 +22,8 @@ namespace Environment.LevelGeneration.Rooms.Scripts
 
         [SerializeField] int roomID;
 
+        [SerializeField] Tile roomTile; // The tile that represents this room
+
         // Room bounds (could be defined by the room size or manually assigned)
 
         public LayerMask obstacleLayer; // For checking spawn point validity
@@ -59,6 +61,7 @@ namespace Environment.LevelGeneration.Rooms.Scripts
                 {
                     var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
                     Instantiate(enemyPrefab, spawnPoint.GetSpawnPosition(), Quaternion.identity);
+                    Debug.Log("Spawned enemy");
                     spawnPoint.MarkOccupied();
                 }
             }

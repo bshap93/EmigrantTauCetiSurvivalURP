@@ -2,7 +2,6 @@
 using Core.Events.EventManagers;
 using Core.GameManager.Scripts;
 using Core.GameManager.Scripts.Commands;
-using Items.ItemContainer.UI.Scripts;
 using UI.ETCCustomCursor.Scripts;
 using UI.Health.Scripts;
 using UI.InGameConsole.Scripts;
@@ -25,7 +24,6 @@ namespace UI
         public SimpleTextOverlay simpleTextOverlay;
 
         public InGameConsoleManager inGameConsoleManager;
-        public ContainerUI containerUI;
         CustomCursor _customCursor;
         public static UIManager Instance { get; private set; }
 
