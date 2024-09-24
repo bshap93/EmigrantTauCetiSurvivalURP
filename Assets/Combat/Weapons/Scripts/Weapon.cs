@@ -1,36 +1,41 @@
-﻿using Characters.Enemies;
-using Characters.Enemies.Attacks.Commands;
+﻿using Characters.Enemies.Attacks.Commands;
 using Characters.Scripts;
 using Items.Scripts;
+using JetBrains.Annotations;
+using Polyperfect.Crafting.Integration;
 using UnityEngine;
 
 namespace Combat.Weapons.Scripts
 {
-    public abstract class Weapon : MonoBehaviour, IEquippableItem
+    public abstract class Weapon : BaseItemObject, IEquippableItem
     {
         public float damage;
         public float range;
         protected IAttackCommand AttackCommand;
 
-        public void Equip(IDamageable equipper)
+        public void Equip(IEquippableItem item, IDamageable equipper)
         {
-            Debug.Log("Equipping weapon");
+            Debug.Log($"Equipped weapon: {name}");
         }
-        public void Unequip(IDamageable equipper)
+        public void Unequip(IEquippableItem item, IDamageable equipper)
         {
-            Debug.Log("Unequipping weapon");
+            Debug.Log($"Unequipped weapon: {name}");
         }
 
-        public abstract void Attack(Enemy target); // Implemented by subclasses
 
-        public void SetAttackCommand(IAttackCommand attackCommand)
-        {
-            AttackCommand = attackCommand;
-        }
+        protected abstract void InitializeAttackCommand(WeaponHandler weaponHandler);
+
+        public abstract void
+            Attack([CanBeNull] IDamageable target, WeaponHandler weaponHandler); // Implemented by subclasses
 
         public IAttackCommand GetAttackCommand()
         {
             return AttackCommand;
+        }
+
+        public void SetAttackCommand(IAttackCommand command)
+        {
+            AttackCommand = command;
         }
 
         public float GetDamage()

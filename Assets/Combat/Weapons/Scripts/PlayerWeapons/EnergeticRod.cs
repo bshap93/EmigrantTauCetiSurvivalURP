@@ -1,8 +1,9 @@
-﻿using Characters.Enemies;
+﻿using System;
+using Characters.Scripts;
 using Combat.Attacks.Commands;
 using UnityEngine;
 
-namespace Combat.Weapons.Scripts
+namespace Combat.Weapons.Scripts.PlayerWeapons
 {
     public class EnergeticRod : Weapon
     {
@@ -15,7 +16,11 @@ namespace Combat.Weapons.Scripts
             AttackCommand = new MeleeAttackCommand(damage, range, attackPoint);
         }
 
-        public override void Attack(Enemy target)
+        protected override void InitializeAttackCommand(WeaponHandler weaponHandler)
+        {
+            throw new NotImplementedException();
+        }
+        public override void Attack(IDamageable target, WeaponHandler handler)
         {
             AttackCommand.Execute(target, damage);
         }

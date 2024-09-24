@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4761571464237228459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1161207201430085166}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1161207201430085166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4761571464237228459}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7120042, y: -0.15450007, z: 0.16204521, w: 0.6655233}
+  m_LocalPosition: {x: -0.004, y: 0.129, z: 0.222}
+  m_LocalScale: {x: 1, y: 0.99999976, z: 0.99999964}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5561062684457453245}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6582556631104215581
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,8 +42,8 @@ GameObject:
   - component: {fileID: 5561062684457453245}
   - component: {fileID: 5738954545411570492}
   - component: {fileID: 9016043565441449037}
-  - component: {fileID: 545019251698091949}
   - component: {fileID: 5215035974055078627}
+  - component: {fileID: 4753821494336376202}
   m_Layer: 0
   m_Name: LaserToolnstance
   m_TagString: Untagged
@@ -32,7 +63,8 @@ Transform:
   m_LocalPosition: {x: 0.013, y: 0.116, z: 0.065}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1161207201430085166}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -116.151, y: -81.95999, z: 81.333}
 --- !u!33 &5738954545411570492
@@ -85,24 +117,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &545019251698091949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6582556631104215581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 294691aef1d046b4b5fa5d1385b99d60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  range: 10
-  lineRenderer: {fileID: 5215035974055078627}
-  firePoint: {fileID: 5561062684457453245}
-  laserRange: 10
-  laserDuration: 0.1
 --- !u!120 &5215035974055078627
 LineRenderer:
   serializedVersion: 2
@@ -207,3 +221,18 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &4753821494336376202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6582556631104215581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11dffee02cf040568b4384a513309586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeapon: {fileID: 11400000, guid: a998a8e37c2f63e489a99333f64cdad3, type: 2}
+  lineRenderer: {fileID: 5215035974055078627}
+  firePoint: {fileID: 1161207201430085166}

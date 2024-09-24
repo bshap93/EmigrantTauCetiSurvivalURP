@@ -64,7 +64,7 @@ namespace Characters.Player.InputHandlers.Scripts
         void HandleCombatInput()
         {
             if (Input.GetMouseButton(1) && Input.GetMouseButton(0))
-                playerCharacter.PerformAttack();
+                playerCharacter.PerformAttack(null);
             else if (Input.GetMouseButton(1))
                 playerCharacter.EnterCombatReadyState();
 

@@ -1,13 +1,15 @@
 ﻿using Polyperfect.Crafting.Demo;
 using Polyperfect.Crafting.Integration;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Items.Inventory.Scripts
 {
     public class EquippedItemListener : MonoBehaviour
     {
         public EquippedSlot equippedSlot;
-        public ItemWorldFragmentManager ItemWorldFragmentManager;
+        [FormerlySerializedAs("ItemWorldFragmentManager")]
+        public ItemWorldFragmentManager itemWorldFragmentManager;
 
 
         void Start()
@@ -26,17 +28,9 @@ namespace Items.Inventory.Scripts
             if (newItemStack.ID != default)
             {
                 // Fetch the item using the itemWorldFragmentManager
-                var item = ItemWorldFragmentManager.GetItemByID(newItemStack.ID);
+                var item = itemWorldFragmentManager.GetItemByID(newItemStack.ID);
 
-                if (item != null)
-                {
-                    Debug.Log("Equipped item changed: " + item.name);
-
-                    // Perform custom logic for specific items
-                    if (item.name == "Laser Gun")
-                        Debug.Log("Laser Gun equipped.");
-                    else if (item.name == "Health Potion") Debug.Log("Health Potion equipped.");
-                }
+                if (item != null) Debug.Log("Equipped item changed: " + item.name);
             }
             else
             {

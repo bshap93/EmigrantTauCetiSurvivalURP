@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 9201813336436541806}
   - component: {fileID: 9023922506261230831}
   - component: {fileID: 5728823570601194398}
-  - component: {fileID: 3823548846386055294}
   - component: {fileID: 8845125620228384048}
+  - component: {fileID: 3364235906989221829}
   m_Layer: 0
   m_Name: LaserTool
   m_TagString: Untagged
@@ -85,24 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3823548846386055294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7621855374020122062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 294691aef1d046b4b5fa5d1385b99d60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  range: 10
-  lineRenderer: {fileID: 8845125620228384048}
-  firePoint: {fileID: 9201813336436541806}
-  laserRange: 10
-  laserDuration: 0.1
 --- !u!120 &8845125620228384048
 LineRenderer:
   serializedVersion: 2
@@ -207,3 +189,18 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &3364235906989221829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621855374020122062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11dffee02cf040568b4384a513309586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeapon: {fileID: 0}
+  lineRenderer: {fileID: 0}
+  firePoint: {fileID: 0}

@@ -17,6 +17,7 @@ namespace Characters.Player.Scripts.States
         {
             _animator.SetBool(CombatStance, true);
 
+
             // Execute the attack command (could be melee or ranged)
             var attackCommand = playerCharacter.GetAttackCommand();
             attackCommand.Execute(

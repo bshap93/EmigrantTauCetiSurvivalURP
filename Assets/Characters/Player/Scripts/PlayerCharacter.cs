@@ -1,18 +1,21 @@
-﻿using System;
-using Characters.Enemies.Attacks.Commands;
+﻿using Characters.Enemies.Attacks.Commands;
 using Characters.Health.Scripts;
 using Characters.Health.Scripts.Commands;
 using Characters.Health.Scripts.Debugging;
 using Characters.Player.Scripts.States;
 using Characters.Scripts;
+using Combat.Weapons;
 using Combat.Weapons.Scripts;
 using Core.Events;
 using Core.Events.EventManagers;
 using DunGen;
+using Items.Equipment;
+using JetBrains.Annotations;
 using Plugins.DunGen.Code;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace Characters.Player.Scripts
 {
@@ -23,6 +26,8 @@ namespace Characters.Player.Scripts
         public PlayerEventManager playerEventManager;
         [SerializeField] PlayerStateController playerStateController;
         public Weapon currentWeapon;
+        [FormerlySerializedAs("weaponHandler")]
+        public EquippableHandler equippableHandler;
 
 
         [SerializeField] Animator mainPlayerAnimator;
@@ -123,32 +128,30 @@ namespace Characters.Player.Scripts
         }
         public void EnterCombatReadyState()
         {
-            if (playerStateController.GetCurrentState() is CombatReadyState)
-                return;
-
-            playerStateController.ChangeState(
-                new CombatReadyState(null, mainPlayerAnimator));
+            if (!(playerStateController.GetCurrentState() is RangedCombatReadyState))
+                playerStateController.ChangeState(
+                    new RangedCombatReadyState(null, mainPlayerAnimator)); // Placeholder for animation
         }
+
+
         public void ReturnToExploreState()
         {
-            if (playerStateController.GetCurrentState() is ExploreState)
-                return;
+            if (!(playerStateController.GetCurrentState() is ExploreState))
+                playerStateController.ChangeState(
+                    new ExploreState(null, mainPlayerAnimator)); // Placeholder for animation
+        }
+        public void PerformAttack([CanBeNull] IDamageable target)
+        {
+            if (equippableHandler is WeaponHandler weaponHandler)
+            {
+                Debug.Log("Performing attack");
+                if (playerStateController.GetCurrentState() is PlayerAttackingState) return;
 
-            playerStateController.ChangeState(new ExploreState(null, mainPlayerAnimator));
-        }
-        public void PerformAttack()
-        {
-            if (playerStateController.GetCurrentState() is PlayerAttackingState) return;
+                playerStateController.ChangeState(
+                    new PlayerAttackingState(null, mainPlayerAnimator));
 
-            playerStateController.ChangeState(
-                new PlayerAttackingState(null, mainPlayerAnimator));
-        }
-        public void StartTurn()
-        {
-        }
-        public bool HasCompletedAction()
-        {
-            throw new NotImplementedException();
+                weaponHandler.PerformAttack(target);
+            }
         }
     }
 }

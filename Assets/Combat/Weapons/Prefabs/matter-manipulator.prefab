@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7723028997195924609}
   - component: {fileID: 125568477713352032}
   - component: {fileID: 6759504736275533998}
-  - component: {fileID: 6891019287150115975}
   - component: {fileID: 5273149003138823422}
   m_Layer: 0
   m_Name: matter-manipulator
@@ -85,24 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6891019287150115975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4195182892560380917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 294691aef1d046b4b5fa5d1385b99d60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  range: 10
-  lineRenderer: {fileID: 5273149003138823422}
-  firePoint: {fileID: 7723028997195924609}
-  laserWidth: 0.1
-  laserRange: 10
 --- !u!120 &5273149003138823422
 LineRenderer:
   serializedVersion: 2
