@@ -67,13 +67,6 @@ namespace Combat.Weapons
         }
 
 
-        public void PerformAttack(IDamageable target)
-        {
-            if (currentEquippableItemObject != null && currentEquippableItemObject is Weapon weapon)
-                // Pass the WeaponHandler to the weapon's attack method
-                weapon.Attack(target, this);
-        }
-
         // Starts the laser effect coroutine
         public void StartLaserEffect(float duration)
         {

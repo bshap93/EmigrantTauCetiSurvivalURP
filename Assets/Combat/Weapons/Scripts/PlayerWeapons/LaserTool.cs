@@ -13,7 +13,7 @@ namespace Combat.Weapons.Scripts.PlayerWeapons
 
         public override void InitializeAttackCommand(WeaponHandler weaponHandler)
         {
-            AttackCommand = new RangedAttackCommand(this, laserRange, weaponHandler.firePoint);
+            AttackCommand = new RangedAttackCommand(this, laserRange, weaponHandler);
         }
         public override void Attack(IDamageable target, WeaponHandler handler)
         {

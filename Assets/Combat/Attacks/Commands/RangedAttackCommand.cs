@@ -11,14 +11,15 @@ namespace Combat.Attacks.Commands
     {
         readonly float _damage;
         readonly EquippableItemObject _equippableItemObject;
+        readonly WeaponHandler _weaponHandler;
         Transform _firePoint;
         float _range;
-        WeaponHandler _weaponHandler;
 
-        public RangedAttackCommand(EquippableItemObject equippableItemObject, float range, Transform firePoint)
+        public RangedAttackCommand(EquippableItemObject equippableItemObject, float range, WeaponHandler weaponHandler)
         {
             _range = range;
-            _firePoint = firePoint;
+            _weaponHandler = weaponHandler;
+            _firePoint = weaponHandler.firePoint;
             _equippableItemObject = equippableItemObject;
             _damage = equippableItemObject.GetDamage();
         }

@@ -125,10 +125,7 @@ namespace Characters.Player.Scripts
 
         public IAttackCommand GetAttackCommand()
         {
-            if (equippedItem is Weapon weapon)
-            {
-                return weapon.GetAttackCommand();
-            }
+            if (equippedItem is Weapon weapon) return weapon.GetAttackCommand();
 
             Debug.LogError("No attack command found");
             return null;
@@ -155,6 +152,8 @@ namespace Characters.Player.Scripts
 
                 if (equippedItem is Weapon weapon)
                     weapon.InitializeUseCommand(weaponHandler);
+
+                playerStateController.ChangeState(new PlayerAttackingState(null, mainPlayerAnimator));
             }
         }
     }
