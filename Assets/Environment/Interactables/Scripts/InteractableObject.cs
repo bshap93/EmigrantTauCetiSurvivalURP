@@ -24,7 +24,7 @@ namespace Environment.Interactables.Scripts
         void Start()
         {
             // Get the Collider from the child zone (assuming there's a single child collider)
-            _zoneCollider = GetComponent<Collider>();
+            _zoneCollider = GetComponent<BoxCollider>();
 
             // Ensure it's marked as a trigger
             if (_zoneCollider != null)
@@ -55,16 +55,11 @@ namespace Environment.Interactables.Scripts
             UIManager.Instance.inGameConsoleManager
                 .LogMessage("Interacting with object: " + objectName);
 
-            if (interactableType == InteractableType.Container)
-            {
-                interactionUI.SetActive(true);
-            }
+            if (interactableType == InteractableType.Container) interactionUI.SetActive(true);
         }
-        
+
         public void EndInteractionSimple()
         {
-
-
             if (interactableType == InteractableType.Container)
             {
                 interactionUI.SetActive(false);

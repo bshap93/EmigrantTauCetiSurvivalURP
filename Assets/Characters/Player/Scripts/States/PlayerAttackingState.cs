@@ -1,11 +1,12 @@
-﻿using JetBrains.Annotations;
+﻿using Combat.Weapons.Scripts;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Characters.Player.Scripts.States
 {
     public class PlayerAttackingState : PlayerState
     {
-        static readonly int CombatStance = Animator.StringToHash("CombatStance");
+        static readonly int CombatStance = Animator.StringToHash("RangedCombatStance");
         readonly Animator _animator;
         public PlayerAttackingState([CanBeNull] Transform target, Animator animator)
             : base(target)
@@ -20,9 +21,12 @@ namespace Characters.Player.Scripts.States
 
             // Execute the attack command (could be melee or ranged)
             var attackCommand = playerCharacter.GetAttackCommand();
-            attackCommand.Execute(
-                null,
-                playerCharacter.GetCurrentWeapon().GetDamage());
+            if (playerCharacter.GetEquippedItem() is Weapon weapon)
+                attackCommand.Execute(
+                    null,
+                    weapon.GetDamage());
+            else // No weapon equipped
+                Debug.LogError("No weapon equipped");
         }
 
         public override void Update(PlayerCharacter playerCharacter)

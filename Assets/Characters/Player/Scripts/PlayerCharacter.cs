@@ -12,6 +12,7 @@ using DunGen;
 using Items.Equipment;
 using JetBrains.Annotations;
 using Plugins.DunGen.Code;
+using Polyperfect.Crafting.Integration;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
@@ -25,12 +26,12 @@ namespace Characters.Player.Scripts
         public NavMeshAgent navMeshAgent;
         public PlayerEventManager playerEventManager;
         [SerializeField] PlayerStateController playerStateController;
-        public Weapon currentWeapon;
         [FormerlySerializedAs("weaponHandler")]
         public EquippableHandler equippableHandler;
 
 
         [SerializeField] Animator mainPlayerAnimator;
+        public BaseItemObject equippedItem;
 
         DungenCharacter _dungenCharacter;
         Transform _initialOrientation;
@@ -117,14 +118,20 @@ namespace Characters.Player.Scripts
         {
             return playerStateController.GetCurrentState();
         }
-        public Weapon GetCurrentWeapon()
+        public BaseItemObject GetEquippedItem()
         {
-            return currentWeapon;
+            return equippedItem;
         }
 
         public IAttackCommand GetAttackCommand()
         {
-            return currentWeapon.GetAttackCommand();
+            if (equippedItem is Weapon weapon)
+            {
+                return weapon.GetAttackCommand();
+            }
+
+            Debug.LogError("No attack command found");
+            return null;
         }
         public void EnterCombatReadyState()
         {
@@ -144,16 +151,10 @@ namespace Characters.Player.Scripts
         {
             if (equippableHandler is WeaponHandler weaponHandler)
             {
-                Debug.Log("Performing attack");
                 if (playerStateController.GetCurrentState() is PlayerAttackingState) return;
 
-                currentWeapon.InitializeAttackCommand(weaponHandler);
-
-
-                playerStateController.ChangeState(
-                    new PlayerAttackingState(null, mainPlayerAnimator));
-
-                weaponHandler.PerformAttack(target);
+                if (equippedItem is Weapon weapon)
+                    weapon.InitializeUseCommand(weaponHandler);
             }
         }
     }

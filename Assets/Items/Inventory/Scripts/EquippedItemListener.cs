@@ -31,6 +31,8 @@ namespace Items.Inventory.Scripts
                 var item = itemWorldFragmentManager.GetItemByID(newItemStack.ID);
 
                 if (item != null) Debug.Log("Equipped item changed: " + item.name);
+
+                // if (item.name == "LaserTool")
             }
             else
             {

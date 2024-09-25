@@ -7,12 +7,14 @@ using Combat.Weapons.Scripts.PlayerWeapons;
 using Items.Equipment;
 using Items.Scripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Combat.Weapons
 {
     public class WeaponHandler : EquippableHandler
     {
-        public Weapon currentWeapon;
+        [FormerlySerializedAs("currentWeapon")]
+        public EquippableItemObject currentEquippableItemObject;
         public LineRenderer lineRenderer;
         public Transform firePoint;
 
@@ -20,10 +22,12 @@ namespace Combat.Weapons
         {
             if (item is Weapon weapon)
             {
-                if (currentWeapon != null) currentWeapon.Unequip(currentWeapon, equipper); // Unequip the current weapon
+                if (currentEquippableItemObject != null)
+                    currentEquippableItemObject.Unequip(
+                        currentEquippableItemObject, equipper); // Unequip the current weapon
 
-                currentWeapon = weapon;
-                currentWeapon.Equip(weapon, equipper); // Equip the new weapon
+                currentEquippableItemObject = weapon;
+                currentEquippableItemObject.Equip(weapon, equipper); // Equip the new weapon
 
 
                 if (equipper is PlayerCharacter character)
@@ -50,10 +54,10 @@ namespace Combat.Weapons
         }
         public override void Unequip(IEquippableItem item, IDamageable equipper)
         {
-            if (item is Weapon weapon && currentWeapon == weapon)
+            if (item is EquippableItemObject weapon && currentEquippableItemObject == weapon)
             {
                 weapon.Unequip(weapon, equipper);
-                currentWeapon = null;
+                currentEquippableItemObject = null;
                 if (equipper is PlayerCharacter character)
                 {
                     lineRenderer.enabled = false;
@@ -65,9 +69,9 @@ namespace Combat.Weapons
 
         public void PerformAttack(IDamageable target)
         {
-            if (currentWeapon != null)
+            if (currentEquippableItemObject != null && currentEquippableItemObject is Weapon weapon)
                 // Pass the WeaponHandler to the weapon's attack method
-                currentWeapon.Attack(target, this);
+                weapon.Attack(target, this);
         }
 
         // Starts the laser effect coroutine

@@ -5,7 +5,7 @@ namespace Characters.Player.Scripts.States
 {
     public class ExploreState : PlayerState
     {
-        static readonly int CombatStance = Animator.StringToHash("CombatStance");
+        static readonly int CombatStance = Animator.StringToHash("RangedCombatStance");
         readonly Animator _animator;
         public ExploreState([CanBeNull] Transform target, Animator animator) : base(
             target)
