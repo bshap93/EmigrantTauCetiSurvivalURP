@@ -11,7 +11,7 @@ namespace Combat.Weapons.Scripts.PlayerWeapons
         public float laserDuration = 0.1f;
 
 
-        protected override void InitializeAttackCommand(WeaponHandler weaponHandler)
+        public override void InitializeAttackCommand(WeaponHandler weaponHandler)
         {
             AttackCommand = new RangedAttackCommand(this, laserRange, weaponHandler.firePoint);
         }

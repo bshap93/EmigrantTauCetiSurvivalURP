@@ -147,6 +147,9 @@ namespace Characters.Player.Scripts
                 Debug.Log("Performing attack");
                 if (playerStateController.GetCurrentState() is PlayerAttackingState) return;
 
+                currentWeapon.InitializeAttackCommand(weaponHandler);
+
+
                 playerStateController.ChangeState(
                     new PlayerAttackingState(null, mainPlayerAnimator));
 

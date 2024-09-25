@@ -13,6 +13,7 @@ namespace Combat.Weapons.Scripts
         public float range;
         protected IAttackCommand AttackCommand;
 
+
         public void Equip(IEquippableItem item, IDamageable equipper)
         {
             Debug.Log($"Equipped weapon: {name}");
@@ -23,7 +24,7 @@ namespace Combat.Weapons.Scripts
         }
 
 
-        protected abstract void InitializeAttackCommand(WeaponHandler weaponHandler);
+        public abstract void InitializeAttackCommand(WeaponHandler weaponHandler);
 
         public abstract void
             Attack([CanBeNull] IDamageable target, WeaponHandler weaponHandler); // Implemented by subclasses

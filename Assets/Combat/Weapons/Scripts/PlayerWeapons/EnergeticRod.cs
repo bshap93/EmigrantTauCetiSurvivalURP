@@ -16,7 +16,7 @@ namespace Combat.Weapons.Scripts.PlayerWeapons
             AttackCommand = new MeleeAttackCommand(damage, range, attackPoint);
         }
 
-        protected override void InitializeAttackCommand(WeaponHandler weaponHandler)
+        public override void InitializeAttackCommand(WeaponHandler weaponHandler)
         {
             throw new NotImplementedException();
         }
