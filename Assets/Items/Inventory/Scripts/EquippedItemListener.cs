@@ -29,14 +29,6 @@ namespace Items.Inventory.Scripts
             {
                 // Fetch the item using the itemWorldFragmentManager
                 var item = itemWorldFragmentManager.GetItemByID(newItemStack.ID);
-
-                if (item != null) Debug.Log("Equipped item changed: " + item.name);
-
-                // if (item.name == "LaserTool")
-            }
-            else
-            {
-                Debug.Log("No item equipped.");
             }
         }
     }

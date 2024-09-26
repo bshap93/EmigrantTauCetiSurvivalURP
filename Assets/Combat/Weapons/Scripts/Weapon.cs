@@ -2,11 +2,11 @@
 using Characters.Enemies.Attacks.Commands;
 using Characters.Scripts;
 using Items.Equipment;
-using Items.Scripts;
+using Polyperfect.Crafting.Integration;
 
 namespace Combat.Weapons.Scripts
 {
-    public abstract class Weapon : EquippableItemObject
+    public abstract class Weapon : BaseItemObject
     {
         public IAttackCommand AttackCommand;
 
@@ -28,7 +28,7 @@ namespace Combat.Weapons.Scripts
             AttackCommand = command;
         }
 
-        public override void InitializeUseCommand(EquippableHandler equippableHandler)
+        public void InitializeUseCommand(EquippableHandler equippableHandler)
         {
             if (equippableHandler is WeaponHandler handler)
                 InitializeAttackCommand(handler);

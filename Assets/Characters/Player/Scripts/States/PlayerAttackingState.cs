@@ -1,5 +1,4 @@
-﻿using Combat.Weapons.Scripts;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Characters.Player.Scripts.States
@@ -17,16 +16,6 @@ namespace Characters.Player.Scripts.States
         public override void Enter(PlayerCharacter playerCharacter)
         {
             _animator.SetBool(CombatStance, true);
-
-
-            // Execute the attack command (could be melee or ranged)
-            var attackCommand = playerCharacter.GetAttackCommand();
-            if (playerCharacter.GetEquippedItem() is Weapon weapon)
-                attackCommand.Execute(
-                    null,
-                    weapon.GetDamage());
-            else // No weapon equipped
-                Debug.LogError("No weapon equipped");
         }
 
         public override void Update(PlayerCharacter playerCharacter)
