@@ -26,7 +26,7 @@ namespace Combat.Weapons
         }
         void OnEquippedItemChanged(ItemStack arg0)
         {
-            if (arg0.ID != default)
+            if (arg0.ID != default && arg0.ID == currentItemObejct.ID)
             {
                 if (weaponCategory.Contains(arg0.ID))
                 {
