@@ -1,5 +1,6 @@
 ﻿using Characters.Player.Scripts;
 using Characters.Scripts;
+using Core.GameManager.Scripts;
 using Items.Equipment;
 using Items.Inventory.Scripts;
 using Polyperfect.Crafting.Demo;
@@ -9,9 +10,8 @@ using UnityEngine.Serialization;
 
 namespace Combat.Weapons
 {
-    public class WeaponHandler : EquippableHandler
+    public abstract class WeaponHandler : EquippableHandler
     {
-        public LineRenderer lineRenderer;
         public Transform firePoint;
         public EquippedSlot equippedSlot;
         public ItemWorldFragmentManager itemWorldFragmentManager;
@@ -23,6 +23,8 @@ namespace Combat.Weapons
         void Start()
         {
             if (equippedSlot != null) equippedSlot.OnContentsChanged.AddListener(OnEquippedItemChanged);
+            equippedSlot = PlayerCharacter.Instance.gameObject.GetComponentInChildren<EquippedSlot>();
+            itemWorldFragmentManager = GameManager.Instance.itemWorldFragmentManager;
         }
         void OnEquippedItemChanged(ItemStack arg0)
         {
@@ -51,5 +53,6 @@ namespace Combat.Weapons
             Debug.Log("Unequipping weapon: " + item.name);
             gameObject.SetActive(false);
         }
+        public abstract void Use(IDamageable target);
     }
 }

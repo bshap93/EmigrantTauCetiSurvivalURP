@@ -154,6 +154,8 @@ namespace Characters.Player.Scripts
                     weapon.InitializeUseCommand(weaponHandler);
 
                 playerStateController.ChangeState(new PlayerAttackingState(null, mainPlayerAnimator));
+
+                weaponHandler.Use(target);
             }
         }
     }

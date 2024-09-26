@@ -16,6 +16,7 @@ namespace Characters.Player.Scripts.States
         public override void Enter(PlayerCharacter playerCharacter)
         {
             _animator.SetBool(CombatStance, true);
+            Debug.Log("Player is attacking");
         }
 
         public override void Update(PlayerCharacter playerCharacter)

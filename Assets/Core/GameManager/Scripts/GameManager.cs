@@ -2,6 +2,8 @@ using Characters.Health.Scripts;
 using Characters.Player.Scripts;
 using Core.Events.EventManagers;
 using Core.SaveSystem.Scripts;
+using Items.Inventory.Scripts;
+using JetBrains.Annotations;
 using UI.ETCCustomCursor.Scripts.Commands;
 using UI.InGameConsole.Scripts;
 using UnityEngine;
@@ -18,9 +20,11 @@ namespace Core.GameManager.Scripts
 
         public PlayerEventManager playerEventManager;
 
-        public SaveManager saveManager;
+        [CanBeNull] public SaveManager saveManager;
 
         public InGameConsoleManager inGameConsoleManager;
+
+        public ItemWorldFragmentManager itemWorldFragmentManager;
         DisableCursorCommand _disableCursorCommand;
 
         EnableFreeCursorCommand _enableFreeCursorCommand;
@@ -50,7 +54,7 @@ namespace Core.GameManager.Scripts
             _disableCursorCommand.Execute();
 
 
-            saveManager.InitializedDungeonLevel(null);
+            if (saveManager != null) saveManager.InitializedDungeonLevel(null);
         }
     }
 }
