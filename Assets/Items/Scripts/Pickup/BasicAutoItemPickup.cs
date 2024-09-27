@@ -10,7 +10,11 @@ namespace Items.Scripts.Pickup
         void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out GatherInteractable gatherable))
+            {
+                
                 gatherable.BeginInteract(interactor);
+            }
+            
         }
     }
 }
