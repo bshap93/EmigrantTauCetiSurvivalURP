@@ -460,8 +460,8 @@ MonoBehaviour:
     item: {fileID: 11400000, guid: cbe00b42be85a3c449f1286130b9f0ea, type: 2}
     count: 1
   AllowInsert: 1
-  AllowExtract: 1
-  ConstraintCollection: {fileID: 0}
+  AllowExtract: 0
+  ConstraintCollection: {fileID: 11400000, guid: bcf7601ee56978d40a8847fe4503ab41, type: 2}
   OnChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -538,7 +538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxSize: 0.5
-  DataSource: {fileID: 11400000, guid: 593260ac77dd3664c91efea222c9d3b4, type: 2}
+  DataSource: {fileID: 11400000, guid: 162b619c5ad351f44a622c2d07c71a75, type: 2}
   ModelParent: {fileID: 7816546377405009338}
   OnModelSucceeded:
     m_PersistentCalls:
