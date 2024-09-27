@@ -146,17 +146,11 @@ namespace Characters.Player.Scripts
         }
         public void PerformAttack([CanBeNull] IDamageable target)
         {
-            if (equippableHandler is WeaponHandler weaponHandler)
-            {
-                if (playerStateController.GetCurrentState() is PlayerAttackingState) return;
-
-                if (equippedItem is Weapon weapon)
-                    weapon.InitializeUseCommand(weaponHandler);
-
-                playerStateController.ChangeState(new PlayerAttackingState(null, mainPlayerAnimator));
-
-                weaponHandler.Use(target);
-            }
+            equippableHandler.Use(target);
+        }
+        public void CeaseUsing()
+        {
+            equippableHandler.CeaseUsing();
         }
     }
 }

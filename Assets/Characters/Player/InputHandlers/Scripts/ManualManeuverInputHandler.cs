@@ -65,6 +65,7 @@ namespace Characters.Player.InputHandlers.Scripts
         {
             if (Input.GetMouseButton(1) && Input.GetMouseButton(0))
                 playerCharacter.PerformAttack(null);
+            else if (Input.GetMouseButtonUp(0)) playerCharacter.CeaseUsing();
             else if (Input.GetMouseButton(1))
                 playerCharacter.EnterCombatReadyState();
 

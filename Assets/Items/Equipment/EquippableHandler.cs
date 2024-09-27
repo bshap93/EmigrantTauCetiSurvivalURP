@@ -8,5 +8,9 @@ namespace Items.Equipment
     {
         public abstract void Equip(BaseItemObject item, IDamageable equipper);
         public abstract void Unequip(BaseItemObject item, IDamageable equipper);
+
+        public abstract void Use(IDamageable target);
+
+        public abstract void CeaseUsing();
     }
 }

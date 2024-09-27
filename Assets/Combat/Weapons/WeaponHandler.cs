@@ -17,8 +17,11 @@ namespace Combat.Weapons
         public ItemWorldFragmentManager itemWorldFragmentManager;
         [FormerlySerializedAs("objectCategory")]
         public CategoryObject weaponCategory;
+        public CategoryWithFloat damageCategory;
         [FormerlySerializedAs("currentEquippableItemObject")] [FormerlySerializedAs("currentWeapon")]
         public BaseItemObject currentItemObejct;
+
+        float _dmaage;
 
         void Start()
         {
@@ -53,6 +56,5 @@ namespace Combat.Weapons
             Debug.Log("Unequipping weapon: " + item.name);
             gameObject.SetActive(false);
         }
-        public abstract void Use(IDamageable target);
     }
 }
