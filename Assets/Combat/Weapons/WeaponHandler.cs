@@ -20,6 +20,8 @@ namespace Combat.Weapons
         public CategoryWithFloat damageCategory;
         [FormerlySerializedAs("currentEquippableItemObject")] [FormerlySerializedAs("currentWeapon")]
         public BaseItemObject currentItemObejct;
+        [FormerlySerializedAs("_weaponObject")]
+        public GameObject weaponObject;
 
         float _dmaage;
 
@@ -49,12 +51,12 @@ namespace Combat.Weapons
         public override void Equip(BaseItemObject item, IDamageable equipper)
         {
             Debug.Log("Equipping weapon: " + item.name);
-            gameObject.SetActive(true);
+            weaponObject.SetActive(true);
         }
         public override void Unequip(BaseItemObject item, IDamageable equipper)
         {
             Debug.Log("Unequipping weapon: " + item.name);
-            gameObject.SetActive(false);
+            weaponObject.SetActive(false);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Combat.Weapons
     {
         public GameObject hitEffect;
         public GameObject cutEffect;
+        public LineRenderer lineRenderer;
         public override void Use(IDamageable target)
         {
             FireLaserCutter();
@@ -26,7 +27,6 @@ namespace Combat.Weapons
             // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
             // layerMask = ~layerMask;
 
-            var lineRenderer = GetComponent<LineRenderer>();
 
             RaycastHit hit;
             // Does the ray intersect any objects excluding the player layer
@@ -71,7 +71,7 @@ namespace Combat.Weapons
         IEnumerator<WaitForSeconds> DisableLineRenderer()
         {
             yield return new WaitForSeconds(0.1f);
-            GetComponent<LineRenderer>().enabled = false;
+            lineRenderer.enabled = false;
             hitEffect.SetActive(false);
         }
 
