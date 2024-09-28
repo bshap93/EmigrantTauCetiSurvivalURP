@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: RetrieveLaserCutter
   m_EditorClassIdentifier: 
   isCompleted: 0
-  objectiveText: 
+  objectiveText: Retrieve the Laser Cutter from the Chest
