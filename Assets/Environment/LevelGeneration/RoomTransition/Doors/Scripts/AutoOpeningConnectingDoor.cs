@@ -1,3 +1,4 @@
+using System;
 using Characters.Enemies;
 using DunGen;
 using Environment.Interactables.Openable.Scripts;
@@ -110,6 +111,14 @@ namespace Environment.LevelGeneration.RoomTransition.Doors.Scripts
                 _currentState = OpenableState.Closed;
                 _doorComponent.IsOpen = false;
             }
+        }
+        public override void Open()
+        {
+            throw new NotImplementedException();
+        }
+        public override void Close()
+        {
+            throw new NotImplementedException();
         }
 
 

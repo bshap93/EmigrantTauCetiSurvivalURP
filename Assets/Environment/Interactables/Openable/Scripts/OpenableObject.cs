@@ -28,7 +28,6 @@ namespace Environment.Interactables.Openable.Scripts
 
         public List<OpenerAgent> agentsAllowedToOpen;
 
-
         public float speed = 3.0f;
 
 
@@ -38,8 +37,12 @@ namespace Environment.Interactables.Openable.Scripts
         protected float CurrentFramePosition;
         protected OpenableState CurrentState;
         protected ISimpleCommand OpenCommand;
-        
+
         protected OpeningMechanism openingMechanism;
+
+        public bool IsOpen => CurrentState == OpenableState.Open || CurrentState == OpenableState.Opening;
+
+        public bool IsClosed => CurrentState == OpenableState.Closed || CurrentState == OpenableState.Closing;
 
 
         // Update is called once per frame
@@ -48,5 +51,9 @@ namespace Environment.Interactables.Openable.Scripts
         public abstract void SetState(OpenableState newState);
 
         public abstract void MoveObject();
+
+        public abstract void Open();
+
+        public abstract void Close();
     }
 }

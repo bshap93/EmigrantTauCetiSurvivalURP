@@ -30,28 +30,19 @@ namespace Environment.Interactables.Chests.Scripts
             if (CurrentState == OpenableState.Opening || CurrentState == OpenableState.Closing) MoveObject();
         }
 
-        void OnTriggerEnter(Collider other)
+        public override void Close()
         {
-            if (other.CompareTag("Player"))
-            {
-                var playerController = other.GetComponent<CharacterController>();
-                if (playerController == null) return;
-
-                Debug.Log("Player entered chest trigger");
-
-                OpenCommand.Execute();
-            }
+            // if (CurrentState == OpenableState.Open || CurrentState == OpenableState.Opening)
+            CloseCommand.Execute();
         }
 
-        void OnTriggerExit(Collider other)
+        public override void Open()
         {
-            if (other.CompareTag("Player"))
-            {
-                var playerController = other.GetComponent<CharacterController>();
-                if (playerController == null) return;
+            Debug.Log("Player entered chest trigger");
 
-                CloseCommand.Execute();
-            }
+            // if (CurrentState == OpenableState.Closed || CurrentState == OpenableState.Closing)
+
+            OpenCommand.Execute();
         }
 
         public override void MoveObject()

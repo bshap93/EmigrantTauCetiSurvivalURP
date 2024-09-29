@@ -1,4 +1,6 @@
 ﻿using Characters.Player.InputHandlers.Scripts;
+using Environment.Interactables.Openable.Scripts;
+using JetBrains.Annotations;
 using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -14,6 +16,8 @@ namespace Environment.Interactables.Scripts
             Display,
             Panel
         }
+
+        [SerializeField] [CanBeNull] OpenableObject openableObject;
 
         [FormerlySerializedAs("InteractionUI")]
         public GameObject interactionUI;
@@ -57,8 +61,21 @@ namespace Environment.Interactables.Scripts
             {
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    InteractSimple();
-                    HideTooltip();
+                    if (openableObject != null && openableObject.IsClosed)
+                    {
+                        if (openableObject != null)
+                            openableObject.Open();
+
+                        InteractSimple();
+                        HideTooltip();
+                    }
+                    else
+                    {
+                        if (openableObject != null)
+                            openableObject.Close();
+
+                        EndInteractionSimple();
+                    }
                 }
 
                 UpdateTooltipPosition();
@@ -88,6 +105,8 @@ namespace Environment.Interactables.Scripts
                 EndInteractionSimple();
                 playerInRange = false;
                 HideTooltip();
+
+                if (openableObject != null) openableObject.Close();
             }
         }
 
