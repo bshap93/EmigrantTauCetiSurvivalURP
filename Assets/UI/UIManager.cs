@@ -24,6 +24,8 @@ namespace UI
         public SimpleTextOverlay simpleTextOverlay;
 
         public InGameConsoleManager inGameConsoleManager;
+
+        public Canvas uiCanvas;
         CustomCursor _customCursor;
         public static UIManager Instance { get; private set; }
 
