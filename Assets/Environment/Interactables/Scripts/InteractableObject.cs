@@ -11,7 +11,8 @@ namespace Environment.Interactables.Scripts
         {
             Container,
             Door,
-            Display
+            Display,
+            Panel
         }
 
         [FormerlySerializedAs("InteractionUI")]
