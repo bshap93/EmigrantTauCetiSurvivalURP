@@ -4,17 +4,28 @@ namespace Characters.Health.Scripts.States.OxygenState
 {
     public class OxygenLeakingState : IOxygenState
     {
+        HealthSystem _healthSystem;
+
+        public OxygenLeakingState(HealthSystem healthSystem)
+        {
+            _healthSystem = healthSystem;
+        }
         public void Update()
         {
-            throw new NotImplementedException();
+            
         }
         public void Enter()
         {
-            throw new NotImplementedException();
+            
         }
         public void Exit()
         {
             throw new NotImplementedException();
+        }
+
+        public HealthSystem.OxygenState GetState()
+        {
+            return HealthSystem.OxygenState.Leaking;
         }
     }
 }

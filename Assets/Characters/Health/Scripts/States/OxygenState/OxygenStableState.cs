@@ -16,5 +16,10 @@
         public void Exit()
         {
         }
+
+        public HealthSystem.OxygenState GetState()
+        {
+            return HealthSystem.OxygenState.Stable;
+        }
     }
 }

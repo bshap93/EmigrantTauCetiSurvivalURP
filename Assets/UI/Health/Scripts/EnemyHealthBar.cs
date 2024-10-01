@@ -26,7 +26,7 @@ namespace UI.Health.Scripts
 
 
             // Initialize the health bar with the current health
-            UpdateHealthBar(_healthSystem.CurrentSuitIntegrity);
+            UpdateHealthBar(_healthSystem.currentSuitIntegrity);
         }
 
 
@@ -41,7 +41,7 @@ namespace UI.Health.Scripts
                 enemyEventManager.AddListenerToHealthChangedEvent(healthChange);
 
                 // Initialize the health bar with the current health
-                UpdateHealthBar(_healthSystem.CurrentSuitIntegrity);
+                UpdateHealthBar(_healthSystem.currentSuitIntegrity);
             }
         }
 
@@ -49,7 +49,7 @@ namespace UI.Health.Scripts
         void UpdateHealthBar(float currentHealth)
         {
             // Calculate the health percentage and update the fill amount
-            var healthPercent = currentHealth / _healthSystem.MaxSuitIntegrity;
+            var healthPercent = currentHealth / _healthSystem.maxSuitIntegrity;
             healthBarFill.fillAmount = healthPercent;
         }
     }

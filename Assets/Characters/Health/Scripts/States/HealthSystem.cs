@@ -1,32 +1,37 @@
-﻿using Characters.Health.Scripts.States.OxygenState;
+﻿using System;
+using Characters.Health.Scripts.States.OxygenState;
 using Core.Events.EventManagers;
 using UI.InGameConsole.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Characters.Health.Scripts.States
 {
     public class HealthSystem : MonoBehaviour
     {
-        // Event to notify observers when health changes
-
-        readonly InGameConsoleManager _inGameConsoleManager;
-        public readonly string CharacterName;
-        ICharacterEventManager _characterEventManager;
-
-        [SerializeField] IOxygenState _oxygenState;
-        [SerializeField] IOxygenState initialOxygenState;
-        public HealthSystem(float maxOxygen)
+        [Serializable]
+        public enum OxygenState
         {
-            MaxOxygen = maxOxygen;
+            Stable,
+            Leaking
         }
 
+        public string characterName;
 
-        public float MaxOxygen { get; }
-        public float MaxSuitIntegrity { get; }
 
-        public float CurrentSuitIntegrity { get; set; }
-        public float CurrentOxygen { get; set; }
+        public float maxOxygen;
+        [SerializeField] public float maxSuitIntegrity;
+
+        public float currentSuitIntegrity;
+        public float currentOxygen;
+        [FormerlySerializedAs("oxygenState")] public OxygenState oxygenStateInitial;
+        ICharacterEventManager _characterEventManager;
+        // Event to notify observers when health changes
+
+        InGameConsoleManager _inGameConsoleManager;
+
+        IOxygenState _oxygenState;
 
 
         void Start()
@@ -39,11 +44,28 @@ namespace Characters.Health.Scripts.States
 
             UnityAction<float> oxygenChange = OnOxygenChangedHandler;
             _characterEventManager.AddListenerToOxygenChangedEvent(oxygenChange);
+
+            switch (oxygenStateInitial)
+            {
+                case OxygenState.Stable:
+                    var oxygenStableState = new OxygenStableState(this);
+                    ChangeOxygenState(oxygenStableState);
+                    break;
+                case OxygenState.Leaking:
+                    var oxygenLeakingState = new OxygenLeakingState(this);
+                    ChangeOxygenState(oxygenLeakingState);
+                    break;
+            }
+        }
+
+        public IOxygenState GetOxygenState()
+        {
+            return _oxygenState;
         }
 
         public void ChangeOxygenState(IOxygenState oxygenState)
         {
-            _oxygenState.Exit();
+            if (_oxygenState != null) _oxygenState.Exit();
             _oxygenState = oxygenState;
             _oxygenState.Enter();
         }
@@ -51,25 +73,25 @@ namespace Characters.Health.Scripts.States
 
         void OnHealthChangedHandler(float health)
         {
-            if (CurrentSuitIntegrity <= 0) _characterEventManager.TriggerCharacterDied(CharacterName);
+            if (currentSuitIntegrity <= 0) _characterEventManager.TriggerCharacterDied(characterName);
         }
 
         void OnOxygenChangedHandler(float oxygen)
         {
-            if (CurrentOxygen <= 0) _characterEventManager.TriggerCharacterDied(CharacterName);
+            if (currentOxygen <= 0) _characterEventManager.TriggerCharacterDied(characterName);
         }
         public void HealSuitIntegrity(float value)
         {
-            CurrentSuitIntegrity += value;
-            if (CurrentSuitIntegrity > MaxSuitIntegrity) CurrentSuitIntegrity = MaxSuitIntegrity;
-            _characterEventManager.TriggerCharacterChangeHealth(CurrentSuitIntegrity);
+            currentSuitIntegrity += value;
+            if (currentSuitIntegrity > maxSuitIntegrity) currentSuitIntegrity = maxSuitIntegrity;
+            _characterEventManager.TriggerCharacterChangeHealth(currentSuitIntegrity);
         }
 
         public void HealOxygen(float value)
         {
-            CurrentOxygen += value;
-            if (CurrentOxygen > MaxOxygen) CurrentOxygen = MaxOxygen;
-            _characterEventManager.TriggerCharacterChangeHealth(CurrentOxygen);
+            currentOxygen += value;
+            if (currentOxygen > maxOxygen) currentOxygen = maxOxygen;
+            _characterEventManager.TriggerCharacterChangeHealth(currentOxygen);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Characters.Player.Scripts
 
         public static PlayerCharacter Instance { get; private set; }
 
-        public float CurrentHealth => _healthSystem.CurrentSuitIntegrity;
+        public float CurrentHealth => _healthSystem.currentSuitIntegrity;
 
 
         void Awake()
@@ -97,7 +97,7 @@ namespace Characters.Player.Scripts
         [Button("Reset Player")]
         public void ResetPlayer()
         {
-            _healthSystem.CurrentSuitIntegrity = _healthSystem.MaxSuitIntegrity;
+            _healthSystem.currentSuitIntegrity = _healthSystem.maxSuitIntegrity;
             transform.position = _initialOrientation.position;
             transform.rotation = _initialOrientation.rotation;
         }

@@ -105,7 +105,7 @@ namespace Characters.Enemies
                 var dealDamageCommand = new DealDamageCommand();
                 dealDamageCommand.Execute(dmgeable, damage, enemyEventManager);
                 var healthSystem = dmgeable.GetHealthSystem();
-                if (healthSystem.CurrentSuitIntegrity <= 0)
+                if (healthSystem.currentSuitIntegrity <= 0)
                     ChangeState(new DeadState(enemyAnimator, _stateController.GetCurrentState()));
                 else
                     ChangeState(

@@ -5,6 +5,7 @@ using Core.Events.EventManagers;
 using Core.GameManager.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI.Health.Scripts
@@ -21,21 +22,22 @@ namespace UI.Health.Scripts
         public StatType statType; // The type of stat to display
         public Image healthBarFill; // Reference to the UI Image for the health bar fill
         public PlayerEventManager playerEventManager;
-        HealthSystem _healthSystem; // Reference to the HealthSystem
+        [FormerlySerializedAs("_healthSystem")] [SerializeField]
+        HealthSystem healthSystem; // Reference to the HealthSystem
 
 
         void Start()
         {
             GameManager.Instance.onSystemActivated.AddListener(OnSystemActivated);
-            _healthSystem = PlayerCharacter.Instance.GetHealthSystem(); // Get the player's health system
+            healthSystem = PlayerCharacter.Instance.GetHealthSystem(); // Get the player's health system
             if (playerEventManager == null) playerEventManager = GameManager.Instance.playerEventManager;
 
 
             // Initialize the health bar with the current health
             if (statType == StatType.SuitIntegrity)
-                UpdateStatsBar(_healthSystem.CurrentSuitIntegrity);
+                UpdateStatsBar(healthSystem.currentSuitIntegrity);
             else if (statType == StatType.Oxygen)
-                UpdateStatsBar(_healthSystem.CurrentOxygen);
+                UpdateStatsBar(healthSystem.currentOxygen);
         }
 
 
@@ -44,13 +46,13 @@ namespace UI.Health.Scripts
             if (systemName == "Health")
             {
                 Debug.Log("Health system activated");
-                _healthSystem = PlayerCharacter.Instance.GetHealthSystem(); // Get the player's health system
+                healthSystem = PlayerCharacter.Instance.GetHealthSystem(); // Get the player's health system
                 // Subscribe to health change events
                 UnityAction<float> healthChange = currentHealth => UpdateStatsBar(currentHealth);
                 playerEventManager.AddListenerToHealthChangedEvent(healthChange);
 
                 // Initialize the health bar with the current health
-                UpdateStatsBar(_healthSystem.CurrentSuitIntegrity);
+                UpdateStatsBar(healthSystem.currentSuitIntegrity);
             }
         }
 
@@ -58,7 +60,7 @@ namespace UI.Health.Scripts
         public void UpdateStatsBar(float value)
         {
             // Calculate the health percentage and update the fill amount
-            var healthPercent = value / _healthSystem.MaxSuitIntegrity;
+            var healthPercent = value / healthSystem.maxSuitIntegrity;
             healthBarFill.fillAmount = healthPercent;
         }
     }

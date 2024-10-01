@@ -23,7 +23,7 @@ namespace UI.Oxygen.Scripts
 
 
             // Initialize the health bar with the current health
-            UpdateHealthBar(_healthSystem.CurrentSuitIntegrity);
+            UpdateHealthBar(_healthSystem.currentSuitIntegrity);
         }
 
 
@@ -38,7 +38,7 @@ namespace UI.Oxygen.Scripts
                 playerEventManager.AddListenerToHealthChangedEvent(healthChange);
 
                 // Initialize the health bar with the current health
-                UpdateHealthBar(_healthSystem.CurrentSuitIntegrity);
+                UpdateHealthBar(_healthSystem.currentSuitIntegrity);
             }
         }
 
@@ -46,7 +46,7 @@ namespace UI.Oxygen.Scripts
         public void UpdateHealthBar(float currentHealth)
         {
             // Calculate the health percentage and update the fill amount
-            var healthPercent = currentHealth / _healthSystem.MaxSuitIntegrity;
+            var healthPercent = currentHealth / _healthSystem.maxSuitIntegrity;
             oxygenBar.fillAmount = healthPercent;
         }
     }
