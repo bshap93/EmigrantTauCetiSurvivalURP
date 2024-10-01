@@ -26,10 +26,12 @@ namespace Characters.Health.Scripts.States
         public float currentSuitIntegrity;
         public float currentOxygen;
         [FormerlySerializedAs("oxygenState")] public OxygenState oxygenStateInitial;
-        ICharacterEventManager _characterEventManager;
+        public float oxygenDepletionRate;
         // Event to notify observers when health changes
 
-        InGameConsoleManager _inGameConsoleManager;
+        [FormerlySerializedAs("_inGameConsoleManager")]
+        public InGameConsoleManager inGameConsoleManager;
+        ICharacterEventManager _characterEventManager;
 
         IOxygenState _oxygenState;
 

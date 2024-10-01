@@ -1,6 +1,5 @@
 ﻿using System;
 using Characters.Player.Scripts;
-using DG.Tweening;
 using UnityEngine;
 
 namespace Characters.Health.Scripts.States.OxygenState
@@ -17,12 +16,13 @@ namespace Characters.Health.Scripts.States.OxygenState
         }
         public void Update()
         {
+            _healthSystem.currentOxygen -= Time.deltaTime * _healthSystem.oxygenDepletionRate;
             _playerCharacter.playerEventManager.TriggerCharacterChangeOxygen(_healthSystem.currentOxygen);
             Debug.Log("Oxygen is at " + _healthSystem.currentOxygen);
         }
         public void Enter()
         {
-            DOTween.To(() => _healthSystem.currentOxygen, x => _healthSystem.currentOxygen = x, 0, 5);
+            _healthSystem.inGameConsoleManager.LogMessage("Oxygen is leaking!");
         }
         public void Exit()
         {
