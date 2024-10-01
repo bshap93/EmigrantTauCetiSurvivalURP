@@ -57,6 +57,10 @@ namespace Characters.Health.Scripts.States
                     break;
             }
         }
+        void Update()
+        {
+            _oxygenState.Update();
+        }
 
         public IOxygenState GetOxygenState()
         {

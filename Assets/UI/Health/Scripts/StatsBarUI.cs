@@ -35,9 +35,17 @@ namespace UI.Health.Scripts
 
             // Initialize the health bar with the current health
             if (statType == StatType.SuitIntegrity)
-                UpdateStatsBar(healthSystem.currentSuitIntegrity);
+                UpdateSuitIntegrityBar(healthSystem.currentSuitIntegrity);
             else if (statType == StatType.Oxygen)
-                UpdateStatsBar(healthSystem.currentOxygen);
+                UpdateOxygenBar(healthSystem.currentOxygen);
+        }
+
+        void Update()
+        {
+            if (statType == StatType.SuitIntegrity)
+                UpdateSuitIntegrityBar(healthSystem.currentSuitIntegrity);
+            else if (statType == StatType.Oxygen)
+                UpdateOxygenBar(healthSystem.currentOxygen);
         }
 
 
@@ -48,19 +56,34 @@ namespace UI.Health.Scripts
                 Debug.Log("Health system activated");
                 healthSystem = PlayerCharacter.Instance.GetHealthSystem(); // Get the player's health system
                 // Subscribe to health change events
-                UnityAction<float> healthChange = currentHealth => UpdateStatsBar(currentHealth);
-                playerEventManager.AddListenerToHealthChangedEvent(healthChange);
-
-                // Initialize the health bar with the current health
-                UpdateStatsBar(healthSystem.currentSuitIntegrity);
+                if (statType == StatType.SuitIntegrity)
+                {
+                    UnityAction<float> healthChange = currentHealth => UpdateSuitIntegrityBar(currentHealth);
+                    playerEventManager.AddListenerToHealthChangedEvent(healthChange);
+                    // Initialize the health bar with the current health
+                    UpdateSuitIntegrityBar(healthSystem.currentSuitIntegrity);
+                }
+                else if (statType == StatType.Oxygen)
+                {
+                    UnityAction<float> oxygenChange = currentOxygen => UpdateOxygenBar(currentOxygen);
+                    playerEventManager.AddListenerToOxygenChangedEvent(oxygenChange);
+                    UpdateOxygenBar(healthSystem.currentOxygen);
+                }
             }
         }
 
         // Method to update the health bar fill amount
-        public void UpdateStatsBar(float value)
+        public void UpdateSuitIntegrityBar(float value)
         {
             // Calculate the health percentage and update the fill amount
             var healthPercent = value / healthSystem.maxSuitIntegrity;
+            healthBarFill.fillAmount = healthPercent;
+        }
+
+        public void UpdateOxygenBar(float value)
+        {
+            // Calculate the health percentage and update the fill amount
+            var healthPercent = value / healthSystem.maxOxygen;
             healthBarFill.fillAmount = healthPercent;
         }
     }

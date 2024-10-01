@@ -18,7 +18,8 @@ namespace UI
         public GameInputHandler gameInputHandler;
         public string cursorName;
         public Vector2 cursorHotspot;
-        [FormerlySerializedAs("healthBarUI")] public StatsBarUI statsBarUI;
+        [FormerlySerializedAs("statsBarUI")] public StatsBarUI healthBarUI;
+        public StatsBarUI oxygenBarUI;
 
         public PlayerEventManager playerEventManager;
 
@@ -58,6 +59,9 @@ namespace UI
             UnityAction<float> healthChange = OnHealthChanged;
             playerEventManager.AddListenerToHealthChangedEvent(healthChange);
 
+            UnityAction<float> oxygenChange = OnOxygenChanged;
+            playerEventManager.AddListenerToOxygenChangedEvent(oxygenChange);
+
             UnityAction<string> dead = OnDead;
             playerEventManager.AddListenerToCharacterEvent(dead);
 
@@ -73,6 +77,9 @@ namespace UI
             UnityAction<float> healthChange = OnHealthChanged;
             playerEventManager.RemoveListenerFromCharacterEvent(healthChange);
 
+            UnityAction<float> oxygenChange = OnOxygenChanged;
+            playerEventManager.RemoveListenerFromCharacterEvent(oxygenChange);
+
             UnityAction<string> dead = OnDead;
             playerEventManager.RemoveListenerFromCharacterEvent(dead);
         }
@@ -80,7 +87,12 @@ namespace UI
 
         void OnHealthChanged(float health)
         {
-            statsBarUI.UpdateStatsBar(health);
+            healthBarUI.UpdateSuitIntegrityBar(health);
+        }
+
+        void OnOxygenChanged(float oxygen)
+        {
+            oxygenBarUI.UpdateOxygenBar(oxygen);
         }
 
 
