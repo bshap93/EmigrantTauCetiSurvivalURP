@@ -8,6 +8,7 @@ using UI.InGameConsole.Scripts;
 using UI.Menus.SimpleTextOverlay.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace UI
 {
@@ -17,7 +18,7 @@ namespace UI
         public GameInputHandler gameInputHandler;
         public string cursorName;
         public Vector2 cursorHotspot;
-        public HealthBarUI healthBarUI;
+        [FormerlySerializedAs("healthBarUI")] public StatsBarUI statsBarUI;
 
         public PlayerEventManager playerEventManager;
 
@@ -79,7 +80,7 @@ namespace UI
 
         void OnHealthChanged(float health)
         {
-            healthBarUI.UpdateHealthBar(health);
+            statsBarUI.UpdateStatsBar(health);
         }
 
 

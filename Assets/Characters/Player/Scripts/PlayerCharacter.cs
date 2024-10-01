@@ -1,10 +1,9 @@
 ﻿using Characters.Enemies.Attacks.Commands;
-using Characters.Health.Scripts;
 using Characters.Health.Scripts.Commands;
 using Characters.Health.Scripts.Debugging;
+using Characters.Health.Scripts.States;
 using Characters.Player.Scripts.States;
 using Characters.Scripts;
-using Combat.Weapons;
 using Combat.Weapons.Scripts;
 using Core.Events;
 using Core.Events.EventManagers;
@@ -34,16 +33,16 @@ namespace Characters.Player.Scripts
         public BaseItemObject equippedItem;
 
         DungenCharacter _dungenCharacter;
+
+
+        HealthSystem _healthSystem;
         Transform _initialOrientation;
-
-
-        public HealthSystem HealthSystem;
 
         public Transform Position => transform;
 
         public static PlayerCharacter Instance { get; private set; }
 
-        public float CurrentHealth => HealthSystem.CurrentHealth;
+        public float CurrentHealth => _healthSystem.CurrentSuitIntegrity;
 
 
         void Awake()
@@ -63,8 +62,8 @@ namespace Characters.Player.Scripts
             _initialOrientation = transform;
             _dungenCharacter = GetComponent<DungenCharacter>();
             _dungenCharacter.OnTileChanged += OnCharacterTileChanged;
+            _healthSystem = GetComponent<HealthSystem>();
             // This must be done before  GameManager
-            HealthSystem = new HealthSystem("Player", 100, playerEventManager);
             playerStateController.Initialize(this, new ExploreState(null, mainPlayerAnimator));
             playerEventManager.AddListenerToPlayerTakesDamageEvent(TakeDamage);
             EventManager.ERestartCurrentLevel.AddListener(ResetPlayer);
@@ -88,17 +87,17 @@ namespace Characters.Player.Scripts
         }
         public HealthSystem GetHealthSystem()
         {
-            return HealthSystem;
+            return _healthSystem;
         }
         public void Heal(float value)
         {
-            HealthSystem.Heal(value);
+            _healthSystem.HealSuitIntegrity(value);
         }
 
         [Button("Reset Player")]
         public void ResetPlayer()
         {
-            HealthSystem.CurrentHealth = HealthSystem.MaxHealth;
+            _healthSystem.CurrentSuitIntegrity = _healthSystem.MaxSuitIntegrity;
             transform.position = _initialOrientation.position;
             transform.rotation = _initialOrientation.rotation;
         }

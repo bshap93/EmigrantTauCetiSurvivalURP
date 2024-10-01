@@ -1,4 +1,5 @@
-﻿using Characters.Scripts;
+﻿using System;
+using Characters.Scripts;
 using Core.Events.EventManagers;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,6 +19,10 @@ namespace Characters.Enemies
         public void TriggerCharacterChangeHealth(float health)
         {
             enemyChangeHealthEvent.Invoke(health);
+        }
+        public void TriggerCharacterChangeOxygen(float oxygen)
+        {
+            throw new NotImplementedException();
         }
         public void TriggerCharacterDied(string characterName)
         {
@@ -54,6 +59,10 @@ namespace Characters.Enemies
         public void RemoveListenerFromCharacterEvent(UnityAction<string> listener)
         {
             enemyDiedEvent.RemoveListener(listener);
+        }
+        public void AddListenerToOxygenChangedEvent(UnityAction<float> oxygenChange)
+        {
+            throw new NotImplementedException();
         }
     }
 }

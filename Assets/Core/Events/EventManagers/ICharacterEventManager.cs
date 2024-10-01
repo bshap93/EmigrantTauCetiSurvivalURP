@@ -11,6 +11,8 @@ namespace Core.Events.EventManagers
         /// <param name="health"></param>
         public void TriggerCharacterChangeHealth(float health);
 
+        public void TriggerCharacterChangeOxygen(float oxygen);
+
         public void TriggerCharacterDied(string characterName);
 
         public void TriggerCharacterTakesDamage(IDamageable damageable, float damage);
@@ -33,5 +35,6 @@ namespace Core.Events.EventManagers
         public void AddListenerToCharacterEvent(UnityAction<string> listener);
 
         public void RemoveListenerFromCharacterEvent(UnityAction<string> listener);
+        public void AddListenerToOxygenChangedEvent(UnityAction<float> oxygenChange);
     }
 }

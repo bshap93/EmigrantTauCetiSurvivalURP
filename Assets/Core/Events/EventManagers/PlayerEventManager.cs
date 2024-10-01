@@ -9,6 +9,8 @@ namespace Core.Events.EventManagers
     {
         // Health has changed for a character by a certain amount
         public UnityEvent<float> playerHealthChangedEvent = new();
+        // Oxygen has changed for a character by a certain amount
+        public UnityEvent<float> playerOxygenChangedEvent = new();
         public UnityEvent playerStateInitializedEvent = new();
 
         public UnityEvent<string> playerDiedEvent = new();
@@ -54,10 +56,18 @@ namespace Core.Events.EventManagers
         {
             playerDiedEvent.RemoveListener(listener);
         }
+        public void AddListenerToOxygenChangedEvent(UnityAction<float> oxygenChange)
+        {
+            playerOxygenChangedEvent.AddListener(oxygenChange);
+        }
 
         public void TriggerCharacterChangeHealth(float health)
         {
             playerHealthChangedEvent.Invoke(health);
+        }
+        public void TriggerCharacterChangeOxygen(float oxygen)
+        {
+            playerOxygenChangedEvent.Invoke(oxygen);
         }
 
         public void TriggerCharacterDied(string characterName)

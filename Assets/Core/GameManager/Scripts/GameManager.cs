@@ -1,5 +1,3 @@
-using Characters.Health.Scripts;
-using Characters.Player.Scripts;
 using Core.Events.EventManagers;
 using Core.SaveSystem.Scripts;
 using Items.Inventory.Scripts;
@@ -43,9 +41,6 @@ namespace Core.GameManager.Scripts
         void Start()
         {
             inGameConsoleManager = consoleManagerObject.GetComponent<InGameConsoleManager>();
-
-            PlayerCharacter.Instance.HealthSystem =
-                new HealthSystem("Player", 100, playerEventManager);
 
 
             _disableCursorCommand = new DisableCursorCommand();

@@ -1,4 +1,4 @@
-﻿using Characters.Health.Scripts;
+﻿using Characters.Health.Scripts.States;
 
 namespace Characters.Scripts
 {

@@ -1,4 +1,4 @@
-﻿using Characters.Health.Scripts;
+﻿using Characters.Health.Scripts.States;
 using Characters.Player.Scripts;
 using Core.Events.EventManagers;
 using Core.GameManager.Scripts;
@@ -18,12 +18,12 @@ namespace UI.Oxygen.Scripts
         void Start()
         {
             GameManager.Instance.onSystemActivated.AddListener(OnSystemActivated);
-            _healthSystem = PlayerCharacter.Instance.HealthSystem; // Get the player's health system
+            _healthSystem = PlayerCharacter.Instance.GetHealthSystem(); // Get the player's health system
             if (playerEventManager == null) playerEventManager = GameManager.Instance.playerEventManager;
 
 
             // Initialize the health bar with the current health
-            UpdateHealthBar(_healthSystem.CurrentHealth);
+            UpdateHealthBar(_healthSystem.CurrentSuitIntegrity);
         }
 
 
@@ -32,13 +32,13 @@ namespace UI.Oxygen.Scripts
             if (systemName == "Health")
             {
                 Debug.Log("Health system activated");
-                _healthSystem = PlayerCharacter.Instance.HealthSystem; // Get the player's health system
+                _healthSystem = PlayerCharacter.Instance.GetHealthSystem(); // Get the player's health system
                 // Subscribe to health change events
                 UnityAction<float> healthChange = UpdateHealthBar;
                 playerEventManager.AddListenerToHealthChangedEvent(healthChange);
 
                 // Initialize the health bar with the current health
-                UpdateHealthBar(_healthSystem.CurrentHealth);
+                UpdateHealthBar(_healthSystem.CurrentSuitIntegrity);
             }
         }
 
@@ -46,7 +46,7 @@ namespace UI.Oxygen.Scripts
         public void UpdateHealthBar(float currentHealth)
         {
             // Calculate the health percentage and update the fill amount
-            var healthPercent = currentHealth / _healthSystem.MaxHealth;
+            var healthPercent = currentHealth / _healthSystem.MaxSuitIntegrity;
             oxygenBar.fillAmount = healthPercent;
         }
     }

@@ -2,8 +2,8 @@
 using Characters.Enemies.Attacks.Commands;
 using Characters.Enemies.Scripts;
 using Characters.Enemies.States;
-using Characters.Health.Scripts;
 using Characters.Health.Scripts.Commands;
+using Characters.Health.Scripts.States;
 using Characters.Player.Scripts;
 using Characters.Scripts;
 using DG.Tweening;
@@ -32,6 +32,8 @@ namespace Characters.Enemies
         public List<Transform> waypoints;
         public Transform player;
         public Animator enemyAnimator;
+
+        public HealthSystem healthSystem;
 
 
         public float attackCooldown = 1.5f; // Cooldown duration in second
@@ -74,7 +76,7 @@ namespace Characters.Enemies
             _stateController = GetComponent<EnemyStateController>();
 
 
-            _healthSystem = new HealthSystem(_enemyName, 100, enemyEventManager);
+            _healthSystem = GetComponent<HealthSystem>();
             // Get the EnemyVisiblity component
             _visibility = GetComponent<EnemyVisiblity>();
             // Set the initial state to patrolling, and former state to null
@@ -103,7 +105,7 @@ namespace Characters.Enemies
                 var dealDamageCommand = new DealDamageCommand();
                 dealDamageCommand.Execute(dmgeable, damage, enemyEventManager);
                 var healthSystem = dmgeable.GetHealthSystem();
-                if (healthSystem.CurrentHealth <= 0)
+                if (healthSystem.CurrentSuitIntegrity <= 0)
                     ChangeState(new DeadState(enemyAnimator, _stateController.GetCurrentState()));
                 else
                     ChangeState(
@@ -115,13 +117,14 @@ namespace Characters.Enemies
         public HealthSystem GetHealthSystem()
         {
             if (_healthSystem == null)
-                _healthSystem = new HealthSystem(_enemyName, 100, enemyEventManager);
+                _healthSystem = GetComponent<HealthSystem>();
+
 
             return _healthSystem;
         }
         public void Heal(float value)
         {
-            _healthSystem.Heal(value);
+            _healthSystem.HealSuitIntegrity(value);
         }
         public void FindWaypoints()
         {

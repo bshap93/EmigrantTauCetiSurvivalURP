@@ -13,14 +13,14 @@ namespace Characters.Health.Scripts.Commands
             var healthSystem = damageable.GetHealthSystem();
             if (damageable is Enemy)
                 Debug.Log(
-                    healthSystem.CharacterName + "'s Health drops from " + healthSystem.CurrentHealth + " to " +
-                    (healthSystem.CurrentHealth - value));
+                    healthSystem.CharacterName + "'s Health drops from " + healthSystem.CurrentSuitIntegrity + " to " +
+                    (healthSystem.CurrentSuitIntegrity - value));
 
-            healthSystem.CurrentHealth -= value;
+            healthSystem.CurrentSuitIntegrity -= value;
 
 
-            eventManager.TriggerCharacterChangeHealth(healthSystem.CurrentHealth);
-            if (healthSystem.CurrentHealth <= 0)
+            eventManager.TriggerCharacterChangeHealth(healthSystem.CurrentSuitIntegrity);
+            if (healthSystem.CurrentSuitIntegrity <= 0)
                 eventManager.TriggerCharacterDied(healthSystem.CharacterName);
         }
     }
