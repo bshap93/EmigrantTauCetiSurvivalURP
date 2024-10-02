@@ -2,6 +2,7 @@
 using Characters.Player.Scripts;
 using Characters.Player.Scripts.Movement;
 using Core.InputHandler.Scripts;
+using Polyperfect.Crafting.Integration;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -13,6 +14,7 @@ namespace Characters.Player.InputHandlers.Scripts
         [FormerlySerializedAs("playerRotationInputHandler")] [SerializeField]
         RotatePlayerDirection rotatePlayerDirection;
         [SerializeField] PlayerCharacter playerCharacter;
+        [SerializeField] CategoryObject pistolCategoryObject;
 
 
         void Start()
@@ -63,6 +65,12 @@ namespace Characters.Player.InputHandlers.Scripts
 
         void HandleCombatInput()
         {
+            if (playerCharacter.equippedItem == null) return;
+
+
+            if (!pistolCategoryObject.Contains(playerCharacter.equippedItem)) return;
+
+
             if (Input.GetMouseButton(1) && Input.GetMouseButton(0))
                 playerCharacter.PerformAttack(null);
             else if (Input.GetMouseButtonUp(0)) playerCharacter.CeaseUsing();

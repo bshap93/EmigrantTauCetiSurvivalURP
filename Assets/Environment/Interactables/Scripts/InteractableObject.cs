@@ -14,7 +14,8 @@ namespace Environment.Interactables.Scripts
             Container,
             Door,
             Display,
-            Panel
+            Panel,
+            CraftingStation
         }
 
         [SerializeField] [CanBeNull] OpenableObject openableObject;

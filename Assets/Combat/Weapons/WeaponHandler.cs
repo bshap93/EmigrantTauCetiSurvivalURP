@@ -52,11 +52,13 @@ namespace Combat.Weapons
         {
             Debug.Log("Equipping weapon: " + item.name);
             weaponObject.SetActive(true);
+            PlayerCharacter.Instance.equippedItem = item;
         }
         public override void Unequip(BaseItemObject item, IDamageable equipper)
         {
             Debug.Log("Unequipping weapon: " + item.name);
             weaponObject.SetActive(false);
+            PlayerCharacter.Instance.equippedItem = null;
         }
     }
 }
