@@ -67,7 +67,7 @@ namespace Polyperfect.Crafting.Demo
 
         public void MoveTo(Vector3 item)
         {
-            StopInteracting();
+           StopInteracting();
             SetDestination(item);
             //currentAction = ActionType.Move;
         }  
