@@ -23,7 +23,8 @@ namespace Environment.Interactables.Openable.Scripts
         public enum OpeningMechanism
         {
             Button,
-            Proximity
+            Proximity,
+            UseCraftingStation
         }
 
         public List<OpenerAgent> agentsAllowedToOpen;

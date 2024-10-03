@@ -23,4 +23,4 @@ MonoBehaviour:
   results:
     items:
     - item: {fileID: 11400000, guid: 9fefe389db1c03d45a92d0ef0c315d29, type: 2}
-      count: 1
+      count: 0

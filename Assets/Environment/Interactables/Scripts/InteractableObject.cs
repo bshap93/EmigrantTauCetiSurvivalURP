@@ -70,7 +70,7 @@ namespace Environment.Interactables.Scripts
                         InteractSimple();
                         HideTooltip();
                     }
-                    else
+                    else if (openableObject != null)
                     {
                         if (openableObject != null)
                             openableObject.Close();
