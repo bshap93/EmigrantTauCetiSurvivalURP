@@ -4,11 +4,11 @@ using Characters.Health.Scripts.Debugging;
 using Characters.Health.Scripts.States;
 using Characters.Player.Scripts.States;
 using Characters.Scripts;
-using Combat.Weapons.Scripts;
 using Core.Events;
 using Core.Events.EventManagers;
 using DunGen;
 using Items.Equipment;
+using Items.Weapons.Scripts;
 using JetBrains.Annotations;
 using Plugins.DunGen.Code;
 using Polyperfect.Crafting.Integration;
@@ -25,7 +25,7 @@ namespace Characters.Player.Scripts
         public NavMeshAgent navMeshAgent;
         public PlayerEventManager playerEventManager;
         [SerializeField] PlayerStateController playerStateController;
-        [FormerlySerializedAs("weaponHandler")]
+        [FormerlySerializedAs("weaponHandler")] [CanBeNull]
         public EquippableHandler equippableHandler;
 
 
