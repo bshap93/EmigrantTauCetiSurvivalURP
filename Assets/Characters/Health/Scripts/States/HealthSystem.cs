@@ -17,11 +17,18 @@ namespace Characters.Health.Scripts.States
             Leaking
         }
 
+        public enum SuitModificationType
+        {
+            FullRepair,
+            PartialRepair,
+            Upgrade
+        }
+
+
+        public const float MaxOxygen = 100;
+        public const float MaxSuitIntegrity = 100;
+
         public string characterName;
-
-
-        public float maxOxygen;
-        [SerializeField] public float maxSuitIntegrity;
 
         public float currentSuitIntegrity;
         public float currentOxygen;
@@ -40,12 +47,12 @@ namespace Characters.Health.Scripts.States
         {
             _characterEventManager = gameObject.GetComponent<ICharacterEventManager>();
 
-            // Subscribe to the OnHealthChanged event
-            UnityAction<float> healthChange = OnHealthChangedHandler;
-            _characterEventManager.AddListenerToHealthChangedEvent(healthChange);
 
             UnityAction<float> oxygenChange = OnOxygenChangedHandler;
             _characterEventManager.AddListenerToOxygenChangedEvent(oxygenChange);
+
+            UnityAction<SuitModificationType> suitRepair = RepairSuitHandler;
+            _characterEventManager.AddListenerToSuitRepairEvent(suitRepair);
 
             switch (oxygenStateInitial)
             {
@@ -63,6 +70,14 @@ namespace Characters.Health.Scripts.States
         {
             _oxygenState.Update();
         }
+        public void RepairSuitHandler(SuitModificationType suitModificationType)
+        {
+            if (suitModificationType == SuitModificationType.FullRepair)
+            {
+                HealSuitIntegrity(MaxSuitIntegrity);
+                ChangeOxygenState(new OxygenStableState(this));
+            }
+        }
 
         public IOxygenState GetOxygenState()
         {
@@ -77,11 +92,6 @@ namespace Characters.Health.Scripts.States
         }
 
 
-        void OnHealthChangedHandler(float health)
-        {
-            if (currentSuitIntegrity <= 0) _characterEventManager.TriggerCharacterDied(characterName);
-        }
-
         void OnOxygenChangedHandler(float oxygen)
         {
             if (currentOxygen <= 0) _characterEventManager.TriggerCharacterDied(characterName);
@@ -89,15 +99,14 @@ namespace Characters.Health.Scripts.States
         public void HealSuitIntegrity(float value)
         {
             currentSuitIntegrity += value;
-            if (currentSuitIntegrity > maxSuitIntegrity) currentSuitIntegrity = maxSuitIntegrity;
-            _characterEventManager.TriggerCharacterChangeHealth(currentSuitIntegrity);
+            if (currentSuitIntegrity > MaxSuitIntegrity) currentSuitIntegrity = MaxSuitIntegrity;
         }
 
         public void HealOxygen(float value)
         {
             currentOxygen += value;
-            if (currentOxygen > maxOxygen) currentOxygen = maxOxygen;
-            _characterEventManager.TriggerCharacterChangeHealth(currentOxygen);
+            if (currentOxygen > MaxOxygen) currentOxygen = MaxOxygen;
+            _characterEventManager.TriggerCharacterChangeOxygen(currentOxygen);
         }
     }
 }

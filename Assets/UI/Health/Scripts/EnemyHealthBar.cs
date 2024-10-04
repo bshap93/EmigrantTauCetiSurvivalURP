@@ -49,7 +49,7 @@ namespace UI.Health.Scripts
         void UpdateHealthBar(float currentHealth)
         {
             // Calculate the health percentage and update the fill amount
-            var healthPercent = currentHealth / _healthSystem.maxSuitIntegrity;
+            var healthPercent = currentHealth / HealthSystem.MaxSuitIntegrity;
             healthBarFill.fillAmount = healthPercent;
         }
     }

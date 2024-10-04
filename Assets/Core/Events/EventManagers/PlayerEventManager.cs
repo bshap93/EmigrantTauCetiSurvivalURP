@@ -1,4 +1,5 @@
-﻿using Characters.Player.Scripts;
+﻿using Characters.Health.Scripts.States;
+using Characters.Player.Scripts;
 using Characters.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,6 +16,7 @@ namespace Core.Events.EventManagers
 
         public UnityEvent<string> playerDiedEvent = new();
         public UnityEvent<IDamageable, float> playerTakesDamageEvent = new();
+        public UnityEvent<HealthSystem.SuitModificationType> playerSuitRepairEvent = new();
 
         public PlayerCharacter player;
 
@@ -60,6 +62,14 @@ namespace Core.Events.EventManagers
         {
             playerOxygenChangedEvent.AddListener(oxygenChange);
         }
+        public void AddListenerToSuitRepairEvent(UnityAction<HealthSystem.SuitModificationType> suitModType)
+        {
+            playerSuitRepairEvent.AddListener(suitModType);
+        }
+        public void RemoveListenerFromOxygenChangedEvent(UnityAction<float> oxygenChange)
+        {
+            playerOxygenChangedEvent.RemoveListener(oxygenChange);
+        }
 
         public void TriggerCharacterChangeHealth(float health)
         {
@@ -73,6 +83,11 @@ namespace Core.Events.EventManagers
         public void TriggerCharacterDied(string characterName)
         {
             playerDiedEvent.Invoke(characterName);
+        }
+
+        public void TriggerCharacterSuitRepair(HealthSystem.SuitModificationType suitModType)
+        {
+            playerSuitRepairEvent.Invoke(suitModType);
         }
 
         public void AddListenerToPlayerTakesDamageEvent(UnityAction<IDamageable, float> listener)

@@ -38,10 +38,10 @@ namespace Items.Weapons
 
                     Equip(item, PlayerCharacter.Instance);
                 }
-            }
-            else
-            {
-                Unequip(currentItemObejct, PlayerCharacter.Instance);
+                else
+                {
+                    Unequip(currentItemObejct, PlayerCharacter.Instance);
+                }
             }
         }
 
@@ -56,6 +56,10 @@ namespace Items.Weapons
         {
             if (PlayerCharacter.Instance.equippedItem == null &&
                 PlayerCharacter.Instance.equippableHandler == null)
+                return;
+
+
+            if (weaponCategory.Contains(item.ID) == false)
                 return;
 
             Debug.Log("Unequipping weapon: " + item.name);

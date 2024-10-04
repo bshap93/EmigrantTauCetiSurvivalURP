@@ -1,4 +1,5 @@
 ﻿using System;
+using Characters.Health.Scripts.States;
 using Characters.Scripts;
 using Core.Events.EventManagers;
 using UnityEngine;
@@ -36,6 +37,10 @@ namespace Characters.Enemies
         {
             enemyStateInitializedEvent.Invoke();
         }
+        public void TriggerCharacterSuitRepair(HealthSystem.SuitModificationType suitModificationType)
+        {
+            throw new NotImplementedException();
+        }
         public void AddListenerToCharacterEvent(UnityAction listener)
         {
             enemyStateInitializedEvent.AddListener(listener);
@@ -61,6 +66,14 @@ namespace Characters.Enemies
             enemyDiedEvent.RemoveListener(listener);
         }
         public void AddListenerToOxygenChangedEvent(UnityAction<float> oxygenChange)
+        {
+            throw new NotImplementedException();
+        }
+        public void AddListenerToSuitRepairEvent(UnityAction<HealthSystem.SuitModificationType> suitRepair)
+        {
+            throw new NotImplementedException();
+        }
+        public void RemoveListenerFromOxygenChangedEvent(UnityAction<float> oxygenChange)
         {
             throw new NotImplementedException();
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using Characters.Player.Scripts;
+﻿using Characters.Player.Scripts;
 using Characters.Scripts;
 using Core.GameManager.Scripts;
 using Polyperfect.Crafting.Demo;
@@ -8,7 +7,7 @@ using UnityEngine;
 
 namespace Items.Equipment.Consumables
 {
-    public class ConsumableHandler : EquippableHandler
+    public abstract class ConsumableHandler : EquippableHandler
     {
         public CategoryObject consumableCategory;
         void Start()
@@ -28,17 +27,19 @@ namespace Items.Equipment.Consumables
 
                     Equip(item, PlayerCharacter.Instance);
                 }
-            }
-            else
-            {
-                Unequip(currentItemObejct, PlayerCharacter.Instance);
+                else
+                {
+                    Unequip(currentItemObejct, PlayerCharacter.Instance);
+                }
             }
         }
 
         public override void Equip(BaseItemObject item, IDamageable equipper)
         {
+            // if (consumableCategory.Contains(item.ID) == false)
+            //     return;
+
             Debug.Log("Equipping consumable: " + item.name);
-            currentItemObejct = item;
             PlayerCharacter.Instance.equippedItem = item;
             PlayerCharacter.Instance.equippableHandler = this;
         }
@@ -46,21 +47,15 @@ namespace Items.Equipment.Consumables
         public override void Unequip(BaseItemObject item, IDamageable equipper)
         {
             if (PlayerCharacter.Instance.equippedItem == null &&
-                PlayerCharacter.Instance.equippableHandler == this)
+                PlayerCharacter.Instance.equippableHandler == null)
+                return;
+
+            if (consumableCategory.Contains(item.ID) == false)
                 return;
 
             Debug.Log("Unequipping consumable: " + item.name);
-            currentItemObejct = null;
             PlayerCharacter.Instance.equippedItem = null;
             PlayerCharacter.Instance.equippableHandler = null;
-        }
-        public override void Use(IDamageable target)
-        {
-            throw new NotImplementedException();
-        }
-        public override void CeaseUsing()
-        {
-            throw new NotImplementedException();
         }
     }
 }

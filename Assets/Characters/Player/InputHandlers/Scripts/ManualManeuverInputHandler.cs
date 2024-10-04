@@ -13,16 +13,15 @@ namespace Characters.Player.InputHandlers.Scripts
         [SerializeField] MovementManager movementManager;
         [FormerlySerializedAs("playerRotationInputHandler")] [SerializeField]
         RotatePlayerDirection rotatePlayerDirection;
-        [SerializeField] PlayerCharacter playerCharacter;
         [SerializeField] CategoryObject pistolCategoryObject;
+        [SerializeField] CategoryObject consumableCategoryObject;
 
 
         void Start()
         {
             if (movementManager == null) movementManager = MovementManager.Instance;
-            if (playerCharacter == null) playerCharacter = PlayerCharacter.Instance;
             if (rotatePlayerDirection == null)
-                rotatePlayerDirection = playerCharacter.GetComponent<RotatePlayerDirection>();
+                rotatePlayerDirection = PlayerCharacter.Instance.GetComponent<RotatePlayerDirection>();
         }
 
         void Update()
@@ -33,7 +32,7 @@ namespace Characters.Player.InputHandlers.Scripts
         public void HandleInput()
         {
             HandleMovementInput();
-            HandleCombatInput();
+            HandleItemUseInput();
         }
 
         void HandleMovementInput()
@@ -63,22 +62,26 @@ namespace Characters.Player.InputHandlers.Scripts
             }
         }
 
-        void HandleCombatInput()
+        void HandleItemUseInput()
         {
-            if (playerCharacter.equippedItem == null) return;
+            if (PlayerCharacter.Instance.equippedItem == null) return;
 
 
-            if (!pistolCategoryObject.Contains(playerCharacter.equippedItem)) return;
+            if (pistolCategoryObject.Contains(PlayerCharacter.Instance.equippedItem))
+            {
+                if (Input.GetMouseButton(1) && Input.GetMouseButton(0))
+                    PlayerCharacter.Instance.PerformAttack(null);
+                else if (Input.GetMouseButtonUp(0)) PlayerCharacter.Instance.CeaseUsing();
+                else if (Input.GetMouseButton(1))
+                    PlayerCharacter.Instance.EnterCombatReadyState();
 
+                else
+                    PlayerCharacter.Instance.ReturnToExploreState();
+            }
 
-            if (Input.GetMouseButton(1) && Input.GetMouseButton(0))
-                playerCharacter.PerformAttack(null);
-            else if (Input.GetMouseButtonUp(0)) playerCharacter.CeaseUsing();
-            else if (Input.GetMouseButton(1))
-                playerCharacter.EnterCombatReadyState();
-
-            else
-                playerCharacter.ReturnToExploreState();
+            if (consumableCategoryObject.Contains(PlayerCharacter.Instance.equippedItem))
+                if (Input.GetKey(KeyCode.Return))
+                    PlayerCharacter.Instance.UseConsumable();
         }
     }
 }

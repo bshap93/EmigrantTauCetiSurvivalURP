@@ -8,6 +8,8 @@ using Core.Events;
 using Core.Events.EventManagers;
 using DunGen;
 using Items.Equipment;
+using Items.Equipment.Consumables;
+using Items.Weapons;
 using Items.Weapons.Scripts;
 using JetBrains.Annotations;
 using Plugins.DunGen.Code;
@@ -97,7 +99,7 @@ namespace Characters.Player.Scripts
         [Button("Reset Player")]
         public void ResetPlayer()
         {
-            _healthSystem.currentSuitIntegrity = _healthSystem.maxSuitIntegrity;
+            _healthSystem.currentSuitIntegrity = HealthSystem.MaxSuitIntegrity;
             transform.position = _initialOrientation.position;
             transform.rotation = _initialOrientation.rotation;
         }
@@ -145,11 +147,20 @@ namespace Characters.Player.Scripts
         }
         public void PerformAttack([CanBeNull] IDamageable target)
         {
-            equippableHandler.Use(target);
+            if (equippableHandler != null && equippableHandler is WeaponHandler)
+                equippableHandler.Use(target);
         }
+
+        public void UseConsumable()
+        {
+            if (equippableHandler != null && equippableHandler is ConsumableHandler)
+                equippableHandler.Use(this);
+        }
+
         public void CeaseUsing()
         {
-            equippableHandler.CeaseUsing();
+            if (equippableHandler != null)
+                equippableHandler.CeaseUsing();
         }
     }
 }

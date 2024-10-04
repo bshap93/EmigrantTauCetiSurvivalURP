@@ -18,8 +18,9 @@ namespace UI
         public GameInputHandler gameInputHandler;
         public string cursorName;
         public Vector2 cursorHotspot;
-        [FormerlySerializedAs("statsBarUI")] public StatsBarUI healthBarUI;
-        public StatsBarUI oxygenBarUI;
+        [FormerlySerializedAs("healthBarUI")] [FormerlySerializedAs("statsBarUI")]
+        public SuitIntegrityHealthBarUI suitIntegrityHealthBarUI;
+        public OxygenBarUI oxygenBarUI;
 
         public PlayerEventManager playerEventManager;
 
@@ -87,7 +88,7 @@ namespace UI
 
         void OnHealthChanged(float health)
         {
-            healthBarUI.UpdateSuitIntegrityBar(health);
+            suitIntegrityHealthBarUI.UpdateSuitIntegrityBar(health);
         }
 
         void OnOxygenChanged(float oxygen)

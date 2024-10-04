@@ -10,10 +10,12 @@ public class OxygenStatusIndicator : MonoBehaviour
     [FormerlySerializedAs("_oxygenStatusImage")]
     public Image oxygenStatusImage;
     HealthSystem _healthSystem;
+    Color _regularColor;
     // Start is called before the first frame update
     void Start()
     {
         _healthSystem = PlayerCharacter.Instance.GetHealthSystem(); // Get the player's health system
+        _regularColor = oxygenStatusImage.color;
     }
 
     // Update is called once per frame
@@ -22,6 +24,6 @@ public class OxygenStatusIndicator : MonoBehaviour
         if (_healthSystem.GetOxygenState() is OxygenLeakingState)
             oxygenStatusImage.color = Color.red;
         else
-            oxygenStatusImage.color = Color.blue;
+            oxygenStatusImage.color = _regularColor;
     }
 }

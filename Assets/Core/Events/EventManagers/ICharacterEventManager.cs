@@ -1,4 +1,5 @@
-﻿using Characters.Scripts;
+﻿using Characters.Health.Scripts.States;
+using Characters.Scripts;
 using UnityEngine.Events;
 
 namespace Core.Events.EventManagers
@@ -19,6 +20,8 @@ namespace Core.Events.EventManagers
 
         public void TriggerCharacterStateInitialized();
 
+        public void TriggerCharacterSuitRepair(HealthSystem.SuitModificationType suitModificationType);
+
 
         /// <summary>
         ///     Listeners
@@ -36,5 +39,8 @@ namespace Core.Events.EventManagers
 
         public void RemoveListenerFromCharacterEvent(UnityAction<string> listener);
         public void AddListenerToOxygenChangedEvent(UnityAction<float> oxygenChange);
+        public void AddListenerToSuitRepairEvent(UnityAction<HealthSystem.SuitModificationType> suitRepair);
+
+        public void RemoveListenerFromOxygenChangedEvent(UnityAction<float> oxygenChange);
     }
 }

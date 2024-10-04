@@ -1,5 +1,4 @@
-﻿using System;
-using Characters.Player.Scripts;
+﻿using Characters.Player.Scripts;
 using UnityEngine;
 
 namespace Characters.Health.Scripts.States.OxygenState
@@ -17,6 +16,7 @@ namespace Characters.Health.Scripts.States.OxygenState
         public void Update()
         {
             _healthSystem.currentOxygen -= Time.deltaTime * _healthSystem.oxygenDepletionRate;
+            Debug.Log("OxygenLeakingState: " + _healthSystem.currentOxygen);
             _playerCharacter.playerEventManager.TriggerCharacterChangeOxygen(_healthSystem.currentOxygen);
         }
         public void Enter()
@@ -25,7 +25,7 @@ namespace Characters.Health.Scripts.States.OxygenState
         }
         public void Exit()
         {
-            throw new NotImplementedException();
+            _healthSystem.inGameConsoleManager.LogMessage("Oxygen leak fixed!");
         }
 
         public HealthSystem.OxygenState GetState()
