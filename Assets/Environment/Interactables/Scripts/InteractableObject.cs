@@ -1,5 +1,6 @@
 ﻿using Characters.Player.InputHandlers.Scripts;
 using Environment.Interactables.Openable.Scripts;
+using Environment.Interactables.SceneTransitions.Scripts;
 using JetBrains.Annotations;
 using UI;
 using UnityEngine;
@@ -16,7 +17,8 @@ namespace Environment.Interactables.Scripts
             Display,
             Panel,
             CraftingStation,
-            Console
+            Console,
+            LevelHatch
         }
 
         [SerializeField] [CanBeNull] OpenableObject openableObject;
@@ -123,6 +125,8 @@ namespace Environment.Interactables.Scripts
             if (interactableType == InteractableType.Container)
                 if (interactionUI != null)
                     interactionUI.SetActive(true);
+
+            if (interactableType == InteractableType.LevelHatch) GetComponent<SceneChangeTrigger>().ChangeScene();
         }
 
         void ShowTooltip()

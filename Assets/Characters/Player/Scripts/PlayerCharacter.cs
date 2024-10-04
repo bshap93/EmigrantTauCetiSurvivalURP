@@ -70,12 +70,13 @@ namespace Characters.Player.Scripts
             playerEventManager.AddListenerToPlayerTakesDamageEvent(TakeDamage);
             EventManager.ERestartCurrentLevel.AddListener(ResetPlayer);
             playerEventManager.TriggerCharacterStateInitialized();
+            equippableHandler = GetComponentInChildren<EquippableHandler>();
         }
 
         void OnDestroy()
         {
-            _dungenCharacter.OnTileChanged -= OnCharacterTileChanged;
-            playerEventManager.RemoveListenerFromPlayerTakesDamageEvent(TakeDamage);
+           // _dungenCharacter.OnTileChanged -= OnCharacterTileChanged;
+            // playerEventManager.RemoveListenerFromPlayerTakesDamageEvent(TakeDamage);
         }
 
         // Handle debug damage
