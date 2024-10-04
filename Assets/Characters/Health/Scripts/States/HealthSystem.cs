@@ -107,6 +107,7 @@ namespace Characters.Health.Scripts.States
             currentOxygen += value;
             if (currentOxygen > MaxOxygen) currentOxygen = MaxOxygen;
             _characterEventManager.TriggerCharacterChangeOxygen(currentOxygen);
+            Debug.Log("HealOxygen: " + currentOxygen);
         }
     }
 }
