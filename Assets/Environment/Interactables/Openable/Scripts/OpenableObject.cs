@@ -24,7 +24,8 @@ namespace Environment.Interactables.Openable.Scripts
         {
             Button,
             Proximity,
-            UseCraftingStation
+            UseCraftingStation,
+            UseConsole
         }
 
         public List<OpenerAgent> agentsAllowedToOpen;

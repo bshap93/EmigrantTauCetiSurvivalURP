@@ -15,12 +15,13 @@ namespace Environment.Interactables.Scripts
             Door,
             Display,
             Panel,
-            CraftingStation
+            CraftingStation,
+            Console
         }
 
         [SerializeField] [CanBeNull] OpenableObject openableObject;
 
-        [FormerlySerializedAs("InteractionUI")]
+        [FormerlySerializedAs("InteractionUI")] [CanBeNull]
         public GameObject interactionUI;
 
         public bool broken;
@@ -48,12 +49,15 @@ namespace Environment.Interactables.Scripts
                 return;
             }
 
+
             // Get the Collider from the child zone (assuming there's a single child collider)
             _zoneCollider = GetComponent<BoxCollider>();
 
             // Ensure it's marked as a trigger
             if (_zoneCollider != null)
                 _zoneCollider.isTrigger = true;
+
+            EndInteractionSimple();
         }
 
         void Update()
@@ -116,7 +120,9 @@ namespace Environment.Interactables.Scripts
             UIManager.Instance.inGameConsoleManager
                 .LogMessage("Interacting with object: " + objectName);
 
-            if (interactableType == InteractableType.Container) interactionUI.SetActive(true);
+            if (interactableType == InteractableType.Container)
+                if (interactionUI != null)
+                    interactionUI.SetActive(true);
         }
 
         void ShowTooltip()
@@ -158,6 +164,12 @@ namespace Environment.Interactables.Scripts
             {
                 interactionUI.SetActive(false);
                 Debug.Log("End interaction with container");
+            }
+
+            if (interactableType == InteractableType.CraftingStation)
+            {
+                interactionUI.SetActive(false);
+                Debug.Log("End interaction with crafting station");
             }
         }
     }

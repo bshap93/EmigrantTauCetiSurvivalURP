@@ -4,16 +4,22 @@ using System.Linq;
 using Polyperfect.Crafting.Framework;
 using UnityEngine;
 using UnityEngine.Events;
-using SLOT = Polyperfect.Crafting.Framework.ISlot<Polyperfect.Crafting.Framework.Quantity, Polyperfect.Crafting.Integration.ItemStack>;
+using SLOT =
+    Polyperfect.Crafting.Framework.ISlot<Polyperfect.Crafting.Framework.Quantity,
+        Polyperfect.Crafting.Integration.ItemStack>;
 
 namespace Polyperfect.Crafting.Integration
 {
     public class ChildSlotsInventory : BaseItemStackInventory
     {
-        [Serializable]
-        class StackAddedEvent : UnityEvent<ItemStack>
-        {
-        }
+        [Tooltip(
+            "If true, will only get child slots that are already members of other inventories. Useful for avoiding grabbing discard slots for example.")]
+        [SerializeField]
+        bool GrabFromSubInventories;
+
+        bool initted;
+
+        SlottedInventory<SLOT> representativeInventory;
 
         public override string __Usage =>
             $"Gets all child slots, like {nameof(ItemSlotComponent)}s. If {nameof(GrabFromSubInventories)} is enabled, it will ignore slots like Discard Slots that do not belong to other inventories.";
@@ -27,14 +33,6 @@ namespace Polyperfect.Crafting.Integration
                 return representativeInventory;
             }
         }
-
-        SlottedInventory<SLOT> representativeInventory;
-
-        [Tooltip("If true, will only get child slots that are already members of other inventories. Useful for avoiding grabbing discard slots for example.")]
-        [SerializeField]
-        bool GrabFromSubInventories = false;
-
-        bool initted;
 
         protected override ISlottedInventory<SLOT> _slottedInventoryImplementation => RepresentativeInventory;
 
@@ -53,35 +51,42 @@ namespace Polyperfect.Crafting.Integration
         {
             RepresentativeInventory.ClearSlots();
             if (!GrabFromSubInventories)
-            {
                 foreach (var slot in GetComponentsInChildren<SLOT>(true))
-                {
                     AddSlot(slot);
-                }
-            }
             else
-            {
-                foreach (var subInventory in GetComponentsInChildren<BaseItemStackInventory>(true).Where(c => c != this))
+                foreach (var subInventory in GetComponentsInChildren<BaseItemStackInventory>(true)
+                             .Where(c => c != this))
                 {
                     subInventory.TryInit();
-                    foreach (var slot in subInventory.Slots)
-                    {
-                        AddSlot(slot);
-                    }
+                    foreach (var slot in subInventory.Slots) AddSlot(slot);
                 }
-            }
         }
 
         public void AddSlot(SLOT slot)
         {
             if (RepresentativeInventory.Slots.Contains(slot))
                 return;
+
             RepresentativeInventory.AddSlot(slot);
         }
 
         public void RemoveSlot(SLOT slot)
         {
             RepresentativeInventory.RemoveSlot(slot);
+        }
+        public void RemoveItem(RuntimeID id)
+        {
+            foreach (var slot in SlotList)
+                if (slot.Peek().ID == id)
+                {
+                    slot.ExtractAll();
+                    return;
+                }
+        }
+
+        [Serializable]
+        class StackAddedEvent : UnityEvent<ItemStack>
+        {
         }
     }
 }

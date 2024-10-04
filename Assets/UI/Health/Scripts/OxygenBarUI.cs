@@ -31,7 +31,6 @@ namespace UI.Health.Scripts
         {
             var oxygenPercent = oxygen / HealthSystem.MaxOxygen;
             oxygenBarFill.fillAmount = oxygenPercent;
-            Debug.Log("OxygenBarUI: " + oxygenPercent);
         }
     }
 }

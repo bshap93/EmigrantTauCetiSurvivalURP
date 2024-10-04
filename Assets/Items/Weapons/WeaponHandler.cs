@@ -38,31 +38,21 @@ namespace Items.Weapons
 
                     Equip(item, PlayerCharacter.Instance);
                 }
-                else
-                {
-                    Unequip(currentItemObejct, PlayerCharacter.Instance);
-                }
+            }
+            else if (arg0.ID == default)
+            {
+                Unequip(currentItemObejct, PlayerCharacter.Instance);
             }
         }
 
         public override void Equip(BaseItemObject item, IDamageable equipper)
         {
-            Debug.Log("Equipping weapon: " + item.name);
             weaponObject.SetActive(true);
             PlayerCharacter.Instance.equippedItem = item;
             PlayerCharacter.Instance.equippableHandler = this;
         }
         public override void Unequip(BaseItemObject item, IDamageable equipper)
         {
-            if (PlayerCharacter.Instance.equippedItem == null &&
-                PlayerCharacter.Instance.equippableHandler == null)
-                return;
-
-
-            if (weaponCategory.Contains(item.ID) == false)
-                return;
-
-            Debug.Log("Unequipping weapon: " + item.name);
             weaponObject.SetActive(false);
             PlayerCharacter.Instance.equippedItem = null;
             PlayerCharacter.Instance.equippableHandler = null;
