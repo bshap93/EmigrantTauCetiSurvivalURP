@@ -5,13 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Tut04NowMain.unity
-    guid: e179071cac7957f45874f3a0ba28406f
   - enabled: 1
     path: Assets/Scenes/SurvivalCraftingDeckLevels/BridgeLevel.unity
     guid: 532ce4a5b92d0b3409ba6a0f44e60193
   - enabled: 1
-    path: Assets/Scenes/SurvivalCraftingDeckLevels/AirlockStorage.unity
-    guid: 089e1a8cd9ea06748bba823edfb496fb
+    path: Assets/Scenes/SurvivalCraftingDeckLevels/AirlockLevel.unity
+    guid: c47b2b0b565eb624894a8c137b0f01b5
   m_configObjects: {}
