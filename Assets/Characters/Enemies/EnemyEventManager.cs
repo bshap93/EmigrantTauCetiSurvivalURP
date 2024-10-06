@@ -17,9 +17,9 @@ namespace Characters.Enemies
         public UnityEvent<string> enemyDiedEvent = new();
 
         public UnityEvent<IDamageable, float> enemyTakesDamageEvent = new();
-        public void TriggerCharacterChangeHealth(float health)
+        public void TriggerCharacterChangeHealth(float health, bool damage)
         {
-            enemyChangeHealthEvent.Invoke(health);
+            throw new NotImplementedException();
         }
         public void TriggerCharacterChangeOxygen(float oxygen)
         {
@@ -49,13 +49,9 @@ namespace Characters.Enemies
         {
             enemyStateInitializedEvent.RemoveListener(listener);
         }
-        public void AddListenerToHealthChangedEvent(UnityAction<float> listener)
+        public void AddListenerToHealthChangedEvent(UnityAction<float, bool> listener)
         {
-            enemyChangeHealthEvent.AddListener(listener);
-        }
-        public void RemoveListenerFromCharacterEvent(UnityAction<float> listener)
-        {
-            enemyChangeHealthEvent.RemoveListener(listener);
+            throw new NotImplementedException();
         }
         public void AddListenerToCharacterEvent(UnityAction<string> listener)
         {
@@ -76,6 +72,18 @@ namespace Characters.Enemies
         public void RemoveListenerFromOxygenChangedEvent(UnityAction<float> oxygenChange)
         {
             throw new NotImplementedException();
+        }
+        public void TriggerCharacterChangeHealth(float health)
+        {
+            enemyChangeHealthEvent.Invoke(health);
+        }
+        public void AddListenerToHealthChangedEvent(UnityAction<float> listener)
+        {
+            enemyChangeHealthEvent.AddListener(listener);
+        }
+        public void RemoveListenerFromCharacterEvent(UnityAction<float> listener)
+        {
+            enemyChangeHealthEvent.RemoveListener(listener);
         }
     }
 }
