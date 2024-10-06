@@ -177,7 +177,8 @@ MonoBehaviour:
   deadZoneRadius: 100
   rotateYAmount: 15
   mouseSensitivity: 100
-  invertYAxisRotation: 0
+  timeBetweenAdjustments: 0.033
+  isCameraLocked: 0
 --- !u!114 &176692169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1794978891}
   roomCamera: {fileID: 1903981043}
+  player: {fileID: 0}
 --- !u!1001 &410909739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -272,6 +274,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6957920063636033639, guid: 80778df9aad3fdd4ab62addcc8cec8b1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9875a245ac49007498213638a307faa1, type: 2}
     - target: {fileID: 9090805961294938893, guid: 80778df9aad3fdd4ab62addcc8cec8b1, type: 3}
       propertyPath: endValueV3.y
       value: 360
@@ -882,8 +888,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0997eb2e70243839006d58ce0ed95e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementInputHandler: {fileID: 1540151387}
-  playerRotationInputHandler: {fileID: 1540151390}
+  movementManager: {fileID: 0}
+  rotatePlayerDirection: {fileID: 1540151390}
+  pistolCategoryObject: {fileID: 0}
+  consumableCategoryObject: {fileID: 0}
 --- !u!114 &1540151390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -956,9 +964,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rooms: []
-  onRoomGeneration:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1773757790
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,10 +994,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   consoleManagerObject: {fileID: 7332547742229069211}
-  healthSystemDebug: {fileID: 6992351164836321908}
   onSystemActivated:
     m_PersistentCalls:
       m_Calls: []
+  playerEventManager: {fileID: 0}
+  saveManager: {fileID: 0}
+  inGameConsoleManager: {fileID: 0}
+  itemWorldFragmentManager: {fileID: 0}
 --- !u!4 &1773757792
 Transform:
   m_ObjectHideFlags: 0

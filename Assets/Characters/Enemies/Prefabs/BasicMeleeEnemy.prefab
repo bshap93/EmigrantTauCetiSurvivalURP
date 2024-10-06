@@ -1965,6 +1965,7 @@ MonoBehaviour:
   waypoints: []
   player: {fileID: 0}
   enemyAnimator: {fileID: 6238545312888454265}
+  healthSystem: {fileID: 0}
   attackCooldown: 1.5
   detectionRange: 50
   attackRange: 2
@@ -1973,6 +1974,7 @@ MonoBehaviour:
   weapon: {fileID: 8959555905352844675}
   chaseDuration: 5
   enemyEventManager: {fileID: 6647152542643145040}
+  isDead: 0
 --- !u!114 &6194972447447572332
 MonoBehaviour:
   m_ObjectHideFlags: 0

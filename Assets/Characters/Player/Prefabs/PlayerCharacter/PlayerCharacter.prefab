@@ -3858,9 +3858,9 @@ MonoBehaviour:
   navMeshAgent: {fileID: 2615701017369390743}
   playerEventManager: {fileID: 2305768180263059401}
   playerStateController: {fileID: 2402878329258907408}
-  currentWeapon: {fileID: 0}
-  weaponHandler: {fileID: 0}
+  equippableHandler: {fileID: 0}
   mainPlayerAnimator: {fileID: 7037616060418019936}
+  equippedItem: {fileID: 0}
 --- !u!114 &9149977288323513347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3891,6 +3891,9 @@ MonoBehaviour:
   playerHealthChangedEvent:
     m_PersistentCalls:
       m_Calls: []
+  playerOxygenChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
   playerStateInitializedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -3898,6 +3901,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   playerTakesDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  playerSuitRepairEvent:
     m_PersistentCalls:
       m_Calls: []
   player: {fileID: 4578681605245414156}

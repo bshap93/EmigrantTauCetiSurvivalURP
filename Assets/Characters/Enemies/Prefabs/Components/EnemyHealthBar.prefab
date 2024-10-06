@@ -113,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarFill: {fileID: 4060424069972676892, guid: d0333a3d6f86f494ea1e50d1674d4080, type: 3}
   enemyEventManager: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!1 &8400727718159978512
 GameObject:
   m_ObjectHideFlags: 0

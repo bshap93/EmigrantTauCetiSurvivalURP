@@ -4922,6 +4922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bebcd9d777624b928a898810446017e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageDealt: 50
   sparksParticleSystem: {fileID: 414427018771251639}
   scrap: {fileID: 6992445484791610501}
 --- !u!65 &86621045430868191
